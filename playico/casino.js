@@ -1027,7 +1027,7 @@
             const newLinks = document.createElement('div');
             newLinks.className = 'sidebar__links';
             newLinks.innerHTML = `
-                <a class="sidebar__link sidebar__link--bonus w-100" onclick="event.preventDefault(); const path = document.documentElement.lang === 'tr' ? '/tr/wheel' : '/en/wheel'; window.history.pushState('', '', path); window.history.pushState('', '', path); window.history.go(-1);" style="background: url(https://cdn.lexcore.space/playico/assets/Cark_Button.gif) left center / cover no-repeat;"></a>
+                <a class="sidebar__link sidebar__link--bonus w-100" onclick="event.preventDefault(); const path = document.documentElement.lang === 'tr' ? '/tr/wheel' : '/en/wheel'; window.history.pushState('', '', path); window.history.pushState('', '', path); window.history.go(-1);" style="background: url(https://jacknicholsan.github.io/playico/images/Cark_Button.gif) left center / cover no-repeat;"></a>
             `;
             lastSidebarLinks.insertAdjacentElement('afterend', newLinks);
         },
