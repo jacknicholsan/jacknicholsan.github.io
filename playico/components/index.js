@@ -110,14 +110,14 @@
                         
                         <!-- Sağ Taraf -->
                         <div class="welcome-right">
-                            <div class="game-box">
-                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="game-image">
-                                <div class="game-title">Casino</div>
+                            <div class="pico-gamebox">
+                                <div class="pico-gamebox-label">Casino</div>
+                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="pico-gamebox-image">
                             </div>
                             
-                            <div class="game-box sports">
-                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="game-image">
-                                <div class="game-title">Sports</div>
+                            <div class="pico-gamebox pico-gamebox-sports">
+                                <div class="pico-gamebox-label">Spor</div>
+                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="pico-gamebox-image">
                             </div>
                         </div>
                     </div>
@@ -135,11 +135,11 @@
         mainContent.prepend(welcomeElement);
       }
     }
-    const gameBoxes = document.querySelectorAll(".game-box");
+    const gameBoxes = document.querySelectorAll(".pico-gamebox");
     gameBoxes.forEach((box) => {
       box.addEventListener("click", (e) => {
         e.preventDefault();
-        const isSports = box.classList.contains("sports");
+        const isSports = box.classList.contains("pico-gamebox-sports");
         const url = isSports ? `/sportsbook` : `/casino`;
         window.history.pushState("", "", url);
         window.history.pushState("", "", url);
