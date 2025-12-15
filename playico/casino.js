@@ -236,7 +236,7 @@
                                     <p class="vip-privilege-description">Playico deneyiminizi en üst seviyeye çıkarmak için her an yanınızdayız. Sorularınızı yanıtlıyor, oyun keyfinize kesintisiz destek sağlıyoruz.</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/chat-bubbles.png" alt="Chat Bubbles">
+                                    <img src="https://jacknicholsan.github.io/playico/images/chat-bubbles.svg" alt="Chat Bubbles">
                                 </div>
                             </div>
                             <div class="vip-privilege-card">
@@ -246,7 +246,7 @@
                                     <p class="vip-privilege-description">Playico'da günlük, haftalık ve aylık düzenli bonuslarla oyun keyfinizi artırır. Ayrıca, şanssız anlarınızda veya seviye atladığınızda ekstra yüklemelerle yanınızda olur!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/calendar.png" alt="Calendar">
+                                    <img src="https://jacknicholsan.github.io/playico/images/calendar.svg" alt="Calendar">
                                 </div>
                             </div>
                             <div class="vip-privilege-card">
@@ -256,7 +256,7 @@
                                     <p class="vip-privilege-description">Playico'da ne kadar çok oynarsan, o kadar fazla ödül kazanırsın! Seviyeni yükselt, ilerle ve avantajların tadını çıkar!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/star.png" alt="Star">
+                                    <img src="https://jacknicholsan.github.io/playico/images/star.svg" alt="Star">
                                 </div>
                             </div>
                             <div class="vip-privilege-card">
@@ -266,7 +266,7 @@
                                     <p class="vip-privilege-description">Üst düzey kullanıcılar için özel VIP host, kişiye özel bonuslar ve sık yenilenen avantajlarla Playico deneyiminizi eşsiz kılacak!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/headphones.png" alt="Headphones">
+                                    <img src="https://jacknicholsan.github.io/playico/images/headphones.svg" alt="Headphones">
                                 </div>
                             </div>
                         </div>
@@ -275,14 +275,14 @@
                         <div class="vip-representative-content">
                             <div class="vip-representative-header">
                                 <div class="vip-representative-icon">
-                                    <img src="https://playicogiris.net/playico/vip/call.png" alt="Phone Icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/call.svg" alt="Phone Icon">
                                 </div>
                                 <h2 class="vip-representative-title">
                                     Kişisel VIP Temsilciniz size her durumda
                                     <span class="highlight">yardımcı olmak için yanınızda</span>
                                 </h2>
                                 <div class="vip-representative-icon">
-                                    <img src="https://playicogiris.net/playico/vip/chat.png" alt="Chat Icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/chat.png" alt="Chat Icon">
                                 </div>
                             </div>
                             <div class="vip-representative-features">
@@ -312,7 +312,7 @@
                                 <div class="vip-representative-card">
                                     <div class="vip-user-info">
                                         <div class="vip-representative-avatar">
-                                            <img src="https://playicogiris.net/playico/vip/1.png" alt="Selin">
+                                            <img src="https://jacknicholsan.github.io/playico/images/1.png" alt="Selin">
                                         </div>
                                         <h3>Selin</h3>
                                     </div>
@@ -321,7 +321,7 @@
                                 <div class="vip-representative-card">
                                     <div class="vip-user-info"> 
                                         <div class="vip-representative-avatar">
-                                            <img src="https://playicogiris.net/playico/vip/2.png" alt="Semih">
+                                            <img src="https://jacknicholsan.github.io/playico/images/2.png" alt="Semih">
                                         </div>
                                         <h3>Semih</h3>
                                     </div>
@@ -330,7 +330,7 @@
                                 <div class="vip-representative-card">
                                     <div class="vip-user-info">
                                         <div class="vip-representative-avatar">
-                                            <img src="https://playicogiris.net/playico/vip/4.png" alt="Nazar">
+                                            <img src="https://jacknicholsan.github.io/playico/images/4.png" alt="Nazar">
                                         </div>
                                         <h3>Nazar</h3>
                                     </div>
@@ -348,7 +348,7 @@
                                     <p class="vip-privilege-description">Maksimum bahis limitlerini artırarak daha büyük kazançlar elde edin! VIP kullanıcılarımız için ödemeler her zamankinden daha yüksek.</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/money.png" alt="VIP Ödemeler">
+                                    <img src="https://jacknicholsan.github.io/playico/money.png" alt="VIP Ödemeler">
                                 </div>
                             </div>
                             <div class="vip-privilege-card small gold">
@@ -358,7 +358,7 @@
                                     <p class="vip-privilege-description">Artık beklemeye hiç gerek yok! Çekim önceliği sen de.</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/crown.png" alt="Crown">
+                                    <img src="https://jacknicholsan.github.io/playico/crown.png" alt="Crown">
                                 </div>
                             </div>
                             <div class="vip-privilege-card small gold">
@@ -368,7 +368,7 @@
                                     <p class="vip-privilege-description">Özel tasarlanmış sohbet odamızda kapalı, prestijli sohbetlere katılın. Burada herkes değil, VIP konuşur!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/vip-chat.png" alt="Chat">
+                                    <img src="https://jacknicholsan.github.io/playico/vip-chat.png" alt="Chat">
                                 </div>
                             </div>
                             <div class="vip-privilege-card large">
@@ -378,7 +378,7 @@
                                     <p class="vip-privilege-description">Şanssız mı döndün? Yeni seviyeye geçtikçe, belirli koşullarda kayıplarınızı geri alın!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://playicogiris.net/playico/vip/rocket.png" alt="Bonus">
+                                    <img src="https://jacknicholsan.github.io/playico/rocket.png" alt="Bonus">
                                 </div>
                             </div>
                         </div>
@@ -387,7 +387,7 @@
                         <div class="coming-soon-container">
                             <div class="coming-soon-content">
                                 <div class="coming-soon-icon">
-                                    <img src="https://playicogiris.net/playico/vip/gift.png" alt="Coming Soon">
+                                    <img src="https://jacknicholsan.github.io/playico/gift.png" alt="Coming Soon">
                                 </div>
                                 <h2 class="coming-soon-title">Çok Yakında!</h2>
                                 <p class="coming-soon-description">Yüksek bonuslar için hazırlıklarımız devam ediyor. Çok yakında sizlerle!</p>
