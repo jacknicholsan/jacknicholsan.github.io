@@ -99,10 +99,10 @@
                                 
                                 <div class="social-buttons">
                                     <button class="social-button" onclick="window.open('https://instagram.com/playicoglobal', '_blank')">
-                                        <img src="https://cdn.lexcore.space/playico/assets/instagram-white.png" alt="Instagram" class="social-icon">
+                                        <img src="https://jacknicholsan.github.io/playico/images/instagram-white.png" alt="Instagram" class="social-icon">
                                     </button>
                                     <button class="social-button" onclick="window.open('https://x.com/playicotr', '_blank')">
-                                        <img src="https://cdn.lexcore.space/playico/assets/twitter.png" alt="Twitter" class="social-icon">
+                                        <img src="https://jacknicholsan.github.io/playico/images/twitter.png" alt="Twitter" class="social-icon">
                                     </button>
                                 </div>
                             </div>
@@ -111,12 +111,12 @@
                         <!-- Sağ Taraf -->
                         <div class="welcome-right">
                             <div class="game-box">
-                                    <img src="https://cdn.lexcore.space/playico/mascot/Hompage_Casino_Banner.jpg" alt="Casino" class="game-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="game-image">
                                 <div class="game-title">Casino</div>
                             </div>
                             
                             <div class="game-box sports">
-                                    <img src="https://cdn.lexcore.space/playico/mascot/Hompage_Spor_Banner.jpg" alt="Sports" class="game-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.jpg" alt="Sports" class="game-image">
                                 <div class="game-title">Sports</div>
                             </div>
                         </div>
@@ -279,10 +279,10 @@
                 <div class="payment-inner">
                     <div class="payment-content">
                         <div class="coin-images">
-                                    <img src="https://cdn.lexcore.space/playico/assets/Bitcoin-3.png" alt="Bitcoin" class="coin-image">
-                                    <img src="https://cdn.lexcore.space/playico/assets/Etherium-3.png" alt="Ethereum" class="coin-image">
-                                    <img src="https://cdn.lexcore.space/playico/assets/Litecoin-3.png" alt="Litecoin" class="coin-image">
-                                    <img src="https://cdn.lexcore.space/playico/assets/Bnb-3.png" alt="BNB" class="coin-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Bitcoin-3.png" alt="Bitcoin" class="coin-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Etherium-3.png" alt="Ethereum" class="coin-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Litecoin-3.png" alt="Litecoin" class="coin-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Bnb-3.png" alt="BNB" class="coin-image">
                         </div>
                         <div class="payment-text">
                                 <h2 class="payment-title">${texts.paymentTitle}</h2>
@@ -1038,7 +1038,7 @@
             const VIPBannerComponent = `
                 <div class="vip-banner-container">
                     <div class="vip-banner-inner">
-                        <img src="https://cdn.lexcore.space/playico/assets/vip-banner-3.png" alt="VIP Banner" class="vip-banner-image">
+                        <img src="https://jacknicholsan.github.io/playico/vip-banner-3.webp" alt="VIP Banner" class="vip-banner-image">
                         <div class="vip-banner-text">
                             <h2 class="vip-title">${componentTexts[currentLang].title}</h2>
                             <p class="vip-subtitle">${componentTexts[currentLang].subtitle}</p>
@@ -1218,7 +1218,7 @@
                 vipSystemDiv.className = 'vip-system-section';
                 vipSystemDiv.innerHTML = `
                         <div class="vip-system-title">Playico VIP Sistem</div>
-                        <img class="vip-system-hr" src="https://cdn.lexcore.space/playico/assets/vip-hr.png" alt="VIP HR" />
+                        <img class="vip-system-hr" src="https://jacknicholsan.github.io/playico/images/vip-hr.png" alt="VIP HR" />
                     `;
                 vipBanner.after(vipSystemDiv);
             }
