@@ -1312,7 +1312,7 @@
 
   const currentPath = window.location.pathname;
 
-  // DOM hazır olana kadar bekleme fonksiyonu - hızlı versiyon
+  // DOM hazır olana kadar bekleme fonksiyonu - çok hızlı versiyon
   function waitForElement(selector, timeout = 2000) {
     return new Promise((resolve, reject) => {
       // Önce hemen kontrol et
@@ -1324,7 +1324,7 @@
 
       // Yoksa çok hızlı polling ile kontrol et
       let attempts = 0;
-      const maxAttempts = 50; // 50 * 10ms = 500ms max
+      const maxAttempts = 100; // 100 * 5ms = 500ms max
       const checkInterval = setInterval(() => {
         attempts++;
         const element = document.querySelector(selector);
@@ -1352,7 +1352,7 @@
             reject(new Error(`Element ${selector} not found`));
           }, timeout);
         }
-      }, 10); // Her 10ms'de bir kontrol et
+      }, 5); // Her 5ms'de bir kontrol et - çok hızlı
     });
   }
 
@@ -1466,7 +1466,7 @@
     }
   }
 
-  // İlk yükleme için DOM hazır olana kadar bekle - hızlı versiyon
+  // İlk yükleme için - site yüklendiği anda çalış
   function initializePage() {
     // Önce hemen kontrol et
     const mainContent = document.querySelector("#main__content");
@@ -1476,15 +1476,31 @@
       return;
     }
 
-    // Yoksa bekle ama çok kısa süre
-    waitForElement("#main__content", 1000)
-      .then(() => {
+    // Yoksa çok hızlı polling ile bekle (her 5ms'de bir kontrol)
+    let attempts = 0;
+    const maxAttempts = 200; // 200 * 5ms = 1000ms max
+    const checkInterval = setInterval(() => {
+      attempts++;
+      const mainContent = document.querySelector("#main__content");
+      if (mainContent) {
+        clearInterval(checkInterval);
         executePageInit();
-      })
-      .catch(() => {
-        // Element bulunamazsa, çok kısa gecikme ile tekrar dene
-        setTimeout(initializePage, 50);
-      });
+      } else if (attempts >= maxAttempts) {
+        clearInterval(checkInterval);
+        // MutationObserver ile devam et
+        const observer = new MutationObserver(() => {
+          const mainContent = document.querySelector("#main__content");
+          if (mainContent) {
+            observer.disconnect();
+            executePageInit();
+          }
+        });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    }, 5); // Her 5ms'de bir kontrol et - çok hızlı
   }
 
   function executePageInit() {
@@ -1575,12 +1591,18 @@
         }
   }
 
-  // Hemen başlat - DOM durumuna bakmadan
+  // Script yüklendiği anda hemen başlat - hiç bekleme
   initializePage();
   
-  // DOMContentLoaded'da da kontrol et (güvenlik için)
+  // DOMContentLoaded'da da kontrol et (güvenlik için - çift kontrol)
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", executePageInit);
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sadece eğer henüz çalışmadıysa
+      const mainContent = document.querySelector("#main__content");
+      if (mainContent) {
+        executePageInit();
+      }
+    });
   }
 
   function updateSidebarLinks() {
@@ -1842,7 +1864,7 @@
     }
   });
 
-  // İlk yüklemede #main__content'i hemen kontrol et
+  // İlk yüklemede #main__content'i hemen kontrol et - site yüklendiği anda
   const mainContent = document.querySelector("#main__content");
   if (mainContent) {
     // Element varsa hemen observer'ı başlat
@@ -1852,7 +1874,7 @@
     });
     debouncedUrlCheck(); // İlk kontrolü yap
   } else {
-    // Yoksa hızlı polling ile bekle
+    // Yoksa çok hızlı polling ile bekle (her 5ms)
     let checkCount = 0;
     const quickCheck = setInterval(() => {
       checkCount++;
@@ -1864,8 +1886,8 @@
           subtree: false,
         });
         debouncedUrlCheck();
-      } else if (checkCount > 20) {
-        // 20 * 10ms = 200ms sonra fallback'e geç
+      } else if (checkCount > 40) {
+        // 40 * 5ms = 200ms sonra fallback'e geç
         clearInterval(quickCheck);
         const fallbackObserver = new MutationObserver(() => {
           debouncedUrlCheck();
@@ -1875,7 +1897,7 @@
           subtree: false,
         });
       }
-    }, 10); // Her 10ms'de bir kontrol et
+    }, 5); // Her 5ms'de bir kontrol et - çok hızlı
   }
 
   function updateSidebarNavIcons() {
