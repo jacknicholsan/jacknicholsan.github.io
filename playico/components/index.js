@@ -1038,7 +1038,7 @@
             const VIPBannerComponent = `
                 <div class="vip-banner-container">
                     <div class="vip-banner-inner">
-                        <img src="https://jacknicholsan.github.io/playico/vip-banner-3.webp" alt="VIP Banner" class="vip-banner-image">
+                        <img src="https://jacknicholsan.github.io/playico/images/vip-banner-3.webp" alt="VIP Banner" class="vip-banner-image">
                         <div class="vip-banner-text">
                             <h2 class="vip-title">${componentTexts[currentLang].title}</h2>
                             <p class="vip-subtitle">${componentTexts[currentLang].subtitle}</p>
