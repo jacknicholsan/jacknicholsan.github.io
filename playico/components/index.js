@@ -116,7 +116,7 @@
                             </div>
                             
                             <div class="game-box sports">
-                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.jpg" alt="Sports" class="game-image">
+                                    <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="game-image">
                                 <div class="game-title">Sports</div>
                             </div>
                         </div>
