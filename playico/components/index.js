@@ -110,14 +110,16 @@
                         
                         <!-- Sağ Taraf -->
                         <div class="welcome-right">
-                            <div class="pico-gamebox">
-                                <div class="pico-gamebox-label">Casino</div>
-                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="pico-gamebox-image">
+                            <div class="game-box">
+                                <div class="game-box-label">Casino</div>
+                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="game-image">
+                                <div class="game-title">Casino</div>
                             </div>
                             
-                            <div class="pico-gamebox pico-gamebox-sports">
-                                <div class="pico-gamebox-label">Spor</div>
-                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="pico-gamebox-image">
+                            <div class="game-box sports">
+                                <div class="game-box-label">Spor</div>
+                                <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="game-image">
+                                <div class="game-title">Sports</div>
                             </div>
                         </div>
                     </div>
@@ -135,11 +137,11 @@
         mainContent.prepend(welcomeElement);
       }
     }
-    const gameBoxes = document.querySelectorAll(".pico-gamebox");
+    const gameBoxes = document.querySelectorAll(".game-box");
     gameBoxes.forEach((box) => {
       box.addEventListener("click", (e) => {
         e.preventDefault();
-        const isSports = box.classList.contains("pico-gamebox-sports");
+        const isSports = box.classList.contains("sports");
         const url = isSports ? `/sportsbook` : `/casino`;
         window.history.pushState("", "", url);
         window.history.pushState("", "", url);
