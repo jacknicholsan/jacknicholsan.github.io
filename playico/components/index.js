@@ -1234,6 +1234,35 @@
 
     const currentPath = window.location.pathname;
 
+    // DOM hazır olana kadar bekleme fonksiyonu
+    function waitForElement(selector, timeout = 5000) {
+        return new Promise((resolve, reject) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                resolve(element);
+                return;
+            }
+
+            const observer = new MutationObserver((mutations, obs) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    obs.disconnect();
+                    resolve(element);
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+            setTimeout(() => {
+                observer.disconnect();
+                reject(new Error(`Element ${selector} not found within ${timeout}ms`));
+            }, timeout);
+        });
+    }
+
     function hideMiniSliderWrapper() {
         const miniSliderWrapper = document.querySelector('#mini-slider-wrapper');
         if (miniSliderWrapper) {
@@ -1335,42 +1364,45 @@
         }
     }
 
-    if (
-        currentPath == '/en/' ||
-        currentPath == '/tr/' ||
-        currentPath == '/en' ||
-        currentPath == '/tr' ||
-        currentPath == '/en/?modal=login' ||
-        currentPath == '/tr/?modal=login' ||
-        currentPath == '/en/?modal=register' ||
-        currentPath == '/tr/?modal=register' ||
-        currentPath == '/tr/?modal=wallet-settings' ||
-        currentPath == '/en/?modal=wallet-settings' ||
-        currentPath == '/tr/?modal=wallet' ||
-        currentPath == '/en/?modal=wallet') {
-        // Ana Sayfa Yüklemesi
-        // initFakeBets();
-        //showBannerSlider();
-        //showPopularSports();
-        showBannerSection();
-        showFeatures();
-        showPaymentSection();
-        //showBrands();
-        setTimeout(() => {
-            moveTopGamesAfterBrands();
-        }, 100);
-        initCoinAnimation();
-        showWelcome();
+    // İlk yükleme için DOM hazır olana kadar bekle
+    function initializePage() {
+        waitForElement('#main__content', 3000).then(() => {
+            if (
+                currentPath == '/en/' ||
+                currentPath == '/tr/' ||
+                currentPath == '/en' ||
+                currentPath == '/tr' ||
+                currentPath == '/en/?modal=login' ||
+                currentPath == '/tr/?modal=login' ||
+                currentPath == '/en/?modal=register' ||
+                currentPath == '/tr/?modal=register' ||
+                currentPath == '/tr/?modal=wallet-settings' ||
+                currentPath == '/en/?modal=wallet-settings' ||
+                currentPath == '/tr/?modal=wallet' ||
+                currentPath == '/en/?modal=wallet') {
+                // Ana Sayfa Yüklemesi
+                // initFakeBets();
+                //showBannerSlider();
+                //showPopularSports();
+                showBannerSection();
+                showFeatures();
+                showPaymentSection();
+                //showBrands();
+                setTimeout(() => {
+                    moveTopGamesAfterBrands();
+                }, 100);
+                initCoinAnimation();
+                showWelcome();
 
-        removeHeaderContainerClass();
-        //hideSlider();
-        // hideTopGames();
-        hideBannersWrapper();
-        hideVIPBanner();
-        hideMiniSliderWrapper();
-        //showOriginalGames(); // Yeni eklenen
+                removeHeaderContainerClass();
+                //hideSlider();
+                // hideTopGames();
+                hideBannersWrapper();
+                hideVIPBanner();
+                hideMiniSliderWrapper();
+                //showOriginalGames(); // Yeni eklenen
 
-    } else if (currentPath == '/en/vip' ||
+            } else if (currentPath == '/en/vip' ||
         currentPath == '/tr/vip'  ||
         currentPath == '/en/vip/' ||
         currentPath == '/tr/vip/' ||
@@ -1419,6 +1451,19 @@
         hideVIPBanner();
         hidePopularSports();
         //hideOriginalGames(); // Yeni eklenen
+            }
+        }).catch(() => {
+            // Element bulunamazsa, kısa bir gecikme ile tekrar dene
+            setTimeout(initializePage, 200);
+        });
+    }
+
+    // DOMContentLoaded veya mevcut DOM durumuna göre başlat
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePage);
+    } else {
+        // DOM zaten yüklüyse hemen çalıştır
+        initializePage();
     }
 
 
@@ -1495,11 +1540,16 @@
     // }
 
     // URL değişikliklerini izle (History API)
+    let lastUrl = location.href;
 
-    new MutationObserver(() => {
-        const url = location.href;
-        if (url !== lastUrl) {
-            lastUrl = url;
+    // Debounce fonksiyonu - çok sık tetiklenmeyi önler
+    let urlCheckTimeout;
+    function debouncedUrlCheck() {
+        clearTimeout(urlCheckTimeout);
+        urlCheckTimeout = setTimeout(() => {
+            const url = location.href;
+            if (url !== lastUrl) {
+                lastUrl = url;
             updateWelcomeTexts();
             updatePaymentTexts();
             //updateFeaturesTexts();
@@ -1545,6 +1595,14 @@
                 if (!originalGames || originalGames.style.display == 'none') {
                     //showOriginalGames();
                 }
+                // #main__content'in varlığını kontrol et
+                const mainContent = document.querySelector('#main__content');
+                if (!mainContent) {
+                    // Element yoksa kısa bir süre bekle ve tekrar dene
+                    setTimeout(() => debouncedUrlCheck(), 200);
+                    return;
+                }
+
                 if (!banner || banner.style.display == 'none') {
                     showBannerSection();
                 }
@@ -1613,23 +1671,61 @@
                 // hideBannersWrapper();
                 //hideOriginalGames(); // Yeni eklenen
             }
+            
+            // Ek kontrol - ana sayfa için
+            if (url == '/en/' || url == '/tr/' || url == '/en' || url == '/tr') {
+                // initFakeBets();
+                //showBannerSlider();
+                //showPopularSports();
+                showBannerSection();
+                showFeatures();
+                showPaymentSection();
+                //showBrands();
+                showWelcome();
+                // showBackgroundSplit();
+                initCoinAnimation();
+                hideSlider();
+                // hideTopGames();
+                hideBannersWrapper();
+            }
         }
-        if (url == '/en/' || url == '/tr/' || url == '/en' || url == '/tr') {
-            // initFakeBets();
-            //showBannerSlider();
-            //showPopularSports();
-            showBannerSection();
-            showFeatures();
-            showPaymentSection();
-            //showBrands();
-            showWelcome();
-            // showBackgroundSplit();
-            initCoinAnimation();
-            hideSlider();
-            // hideTopGames();
-            hideBannersWrapper();
+        }, 100); // 100ms debounce
+    }
+
+    // MutationObserver'ı daha spesifik hale getir - sadece #main__content değişikliklerini izle
+    const mainContentObserver = new MutationObserver((mutations) => {
+        // Sadece #main__content içinde değişiklik varsa kontrol et
+        const hasMainContentChange = mutations.some(mutation => {
+            const target = mutation.target;
+            return target.id === 'main__content' || 
+                   target.closest('#main__content') || 
+                   Array.from(mutation.addedNodes).some(node => 
+                       node.nodeType === 1 && (node.id === 'main__content' || node.closest('#main__content'))
+                   );
+        });
+        
+        if (hasMainContentChange) {
+            debouncedUrlCheck();
         }
-    }).observe(document, { subtree: true, childList: true });
+    });
+
+    // İlk yüklemede #main__content'i bekle
+    waitForElement('#main__content').then(() => {
+        mainContentObserver.observe(document.querySelector('#main__content'), { 
+            childList: true, 
+            subtree: false // Sadece direkt çocukları izle
+        });
+        debouncedUrlCheck(); // İlk kontrolü yap
+    }).catch(() => {
+        // Element bulunamazsa, document.body'yi izle ama daha az sıklıkla
+        const fallbackObserver = new MutationObserver(() => {
+            debouncedUrlCheck();
+        });
+        fallbackObserver.observe(document.body, { 
+            childList: true, 
+            subtree: false 
+        });
+    });
 
     function updateSidebarNavIcons() {
         // Tüm sidebar nav li elementlerini seç
@@ -1861,19 +1957,15 @@
     // Fonksiyonu direkt çağır
     //updateSidebarNavIcons();
 
-    // URL değişikliklerinde fonksiyonu çalıştır
-    let lastUrl = location.href.pathname
-    new MutationObserver(() => {
+    // Bu MutationObserver kaldırıldı - yukarıdaki tek bir observer yeterli
+    // window.cleanPath hesaplaması için ayrı bir fonksiyon
+    function updateCleanPath() {
         const url = location.href;
-        window.testURL = lastUrl;
-        window.testCurrent = url;
-
-        if (url !== lastUrl) {
-            lastUrl = url;
-        }
         window.cleanPath = url.replace(/^\/[a-z]{2}\//, '/').replace(/\/$/, '');
-        
-    }).observe(document, { subtree: true, childList: true });
+    }
+    
+    // İlk yüklemede cleanPath'i hesapla
+    updateCleanPath();
 
    
 
