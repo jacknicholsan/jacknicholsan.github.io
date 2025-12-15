@@ -348,7 +348,7 @@
                                     <p class="vip-privilege-description">Maksimum bahis limitlerini artırarak daha büyük kazançlar elde edin! VIP kullanıcılarımız için ödemeler her zamankinden daha yüksek.</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://jacknicholsan.github.io/playico/money.png" alt="VIP Ödemeler">
+                                    <img src="https://jacknicholsan.github.io/playico/images/money.png" alt="VIP Ödemeler">
                                 </div>
                             </div>
                             <div class="vip-privilege-card small gold">
@@ -358,7 +358,7 @@
                                     <p class="vip-privilege-description">Artık beklemeye hiç gerek yok! Çekim önceliği sen de.</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://jacknicholsan.github.io/playico/crown.png" alt="Crown">
+                                    <img src="https://jacknicholsan.github.io/playico/images/crown.png" alt="Crown">
                                 </div>
                             </div>
                             <div class="vip-privilege-card small gold">
@@ -368,7 +368,7 @@
                                     <p class="vip-privilege-description">Özel tasarlanmış sohbet odamızda kapalı, prestijli sohbetlere katılın. Burada herkes değil, VIP konuşur!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://jacknicholsan.github.io/playico/vip-chat.png" alt="Chat">
+                                    <img src="https://jacknicholsan.github.io/playico/images/vip-chat.png" alt="Chat">
                                 </div>
                             </div>
                             <div class="vip-privilege-card large">
@@ -378,7 +378,7 @@
                                     <p class="vip-privilege-description">Şanssız mı döndün? Yeni seviyeye geçtikçe, belirli koşullarda kayıplarınızı geri alın!</p>
                                 </div>
                                 <div class="vip-privilege-icon">
-                                    <img src="https://jacknicholsan.github.io/playico/rocket.png" alt="Bonus">
+                                    <img src="https://jacknicholsan.github.io/playico/images/rocket.png" alt="Bonus">
                                 </div>
                             </div>
                         </div>
@@ -387,7 +387,7 @@
                         <div class="coming-soon-container">
                             <div class="coming-soon-content">
                                 <div class="coming-soon-icon">
-                                    <img src="https://jacknicholsan.github.io/playico/gift.png" alt="Coming Soon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/gift.png" alt="Coming Soon">
                                 </div>
                                 <h2 class="coming-soon-title">Çok Yakında!</h2>
                                 <p class="coming-soon-description">Yüksek bonuslar için hazırlıklarımız devam ediyor. Çok yakında sizlerle!</p>
