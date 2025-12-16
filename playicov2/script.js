@@ -49,7 +49,7 @@ function addHeaderButtons() {
       }
     ];
     
-    // Butonları oluştur
+    // Butonları oluştur.
     buttons.forEach(button => {
       const btn = document.createElement('a');
       btn.className = `header__custom-btn ${button.class}`;
