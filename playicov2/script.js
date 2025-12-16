@@ -12,33 +12,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttons = [
       {
         text: 'Ukra Live',
-        icon: '📺',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/tv.svg',
         class: 'header__btn-ukra',
         href: '#'
       },
       {
         text: 'Para Yatır',
-        icon: '💳',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/money.svg',
         class: 'header__btn-deposit',
         href: '#'
       },
       {
-        icon: '☎️',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/call.svg',
         class: 'header__btn-contact',
         href: '#'
       },
       {
-        icon: '𝕏',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/x.svg',
         class: 'header__btn-x',
         href: '#'
       },
       {
-        icon: '✈️',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/telegram.svg',
         class: 'header__btn-telegram',
         href: '#'
       },
       {
-        icon: '💬',
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/wp.svg',
         class: 'header__btn-whatsapp',
         href: '#'
       }
@@ -51,12 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.href = button.href;
       btn.setAttribute('aria-label', button.text || button.class.replace('header__btn-', ''));
       
+      // SVG ikon oluştur
+      const iconImg = document.createElement('img');
+      iconImg.src = button.iconUrl;
+      iconImg.className = 'header__btn-icon-svg';
+      iconImg.alt = button.text || '';
+      iconImg.setAttribute('aria-hidden', 'true');
+      
       if (button.text) {
         // Metinli butonlar (Ukra Live, Para Yatır)
-        const iconSpan = document.createElement('span');
-        iconSpan.className = 'header__btn-icon';
-        iconSpan.textContent = button.icon;
-        btn.appendChild(iconSpan);
+        btn.appendChild(iconImg);
         
         const textSpan = document.createElement('span');
         textSpan.className = 'header__btn-text';
@@ -64,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.appendChild(textSpan);
       } else {
         // Sadece ikonlu butonlar
-        btn.textContent = button.icon;
+        btn.appendChild(iconImg);
       }
       
       buttonsContainer.appendChild(btn);
