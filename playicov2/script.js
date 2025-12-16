@@ -41,6 +41,11 @@ function addHeaderButtons() {
         iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/telegram.svg',
         class: 'header__btn-telegram',
         href: '#'
+      },
+      {
+        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/tiktok.svg',
+        class: 'header__btn-tiktok',
+        href: '#'
       }
     ];
     
