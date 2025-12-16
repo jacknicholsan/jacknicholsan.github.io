@@ -147,11 +147,6 @@ function addFooterPartnersAndAwards() {
   const partnersSection = document.createElement('div');
   partnersSection.className = 'footer__partners-section';
   
-  const partnersTitle = document.createElement('h3');
-  partnersTitle.className = 'footer__partners-title';
-  partnersTitle.textContent = 'Official Partners®';
-  partnersSection.appendChild(partnersTitle);
-  
   const partnersContainer = document.createElement('div');
   partnersContainer.className = 'footer__partners';
   
@@ -211,5 +206,56 @@ window.addEventListener('load', function() {
   if (!document.querySelector('.footer__partners-section')) {
     addFooterPartnersAndAwards();
   }
+});
+
+// Footer sosyal medya ikonlarını SVG ile değiştir
+function replaceFooterSocialIcons() {
+  const footerSocial = document.querySelector('.footer__social');
+  
+  if (!footerSocial) {
+    setTimeout(replaceFooterSocialIcons, 100);
+    return;
+  }
+  
+  const socialLinks = footerSocial.querySelectorAll('a');
+  
+  socialLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    let iconUrl = '';
+    
+    // Hangi sosyal medya olduğunu belirle
+    if (href && href.includes('instagram')) {
+      iconUrl = 'https://jacknicholsan.github.io/playicov2/icons/svg/instagram.svg';
+    } else if (href && href.includes('X') || href && href.includes('twitter')) {
+      iconUrl = 'https://jacknicholsan.github.io/playicov2/icons/svg/x.svg';
+    } else if (href && href.includes('telegram') || link.querySelector('svg[viewBox="0 0 240 240"]')) {
+      iconUrl = 'https://jacknicholsan.github.io/playicov2/icons/svg/telegram.svg';
+    }
+    
+    if (iconUrl) {
+      // Mevcut içeriği temizle
+      link.innerHTML = '';
+      
+      // Yeni SVG img oluştur
+      const img = document.createElement('img');
+      img.src = iconUrl;
+      img.alt = link.getAttribute('href') || 'Social Media';
+      img.className = 'footer__social-icon';
+      img.loading = 'lazy';
+      
+      link.appendChild(img);
+    }
+  });
+}
+
+// Footer sosyal medya ikonlarını değiştir
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', replaceFooterSocialIcons);
+} else {
+  replaceFooterSocialIcons();
+}
+
+window.addEventListener('load', function() {
+  replaceFooterSocialIcons();
 });
 
