@@ -1,7 +1,12 @@
 // Header'a butonları ekle
-document.addEventListener('DOMContentLoaded', function() {
+function addHeaderButtons() {
   const headerActions = document.querySelector('.header__actions');
   const signinButton = document.querySelector('.header__signin');
+  
+  // Eğer butonlar zaten eklenmişse tekrar ekleme
+  if (document.querySelector('.header__custom-buttons')) {
+    return;
+  }
   
   if (headerActions && signinButton) {
     // Mevcut butonları oluştur
@@ -76,6 +81,51 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Butonları "Giriş Yap" butonunun soluna ekle
     headerActions.insertBefore(buttonsContainer, signinButton);
+  } else {
+    // Elementler henüz hazır değilse, kısa bir süre sonra tekrar dene
+    setTimeout(addHeaderButtons, 100);
+  }
+}
+
+// Sayfa yüklendiğinde çalıştır
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addHeaderButtons);
+} else {
+  // DOM zaten yüklenmişse hemen çalıştır
+  addHeaderButtons();
+}
+
+// Ek güvenlik: Sayfa tamamen yüklendikten sonra da kontrol et
+window.addEventListener('load', function() {
+  if (!document.querySelector('.header__custom-buttons')) {
+    addHeaderButtons();
   }
 });
+
+// MutationObserver: Header dinamik olarak eklendiğinde de çalışsın
+const observer = new MutationObserver(function(mutations) {
+  if (!document.querySelector('.header__custom-buttons')) {
+    const headerActions = document.querySelector('.header__actions');
+    const signinButton = document.querySelector('.header__signin');
+    if (headerActions && signinButton) {
+      addHeaderButtons();
+    }
+  }
+});
+
+// Observer'ı başlat
+if (document.body) {
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  // Body henüz yoksa, DOMContentLoaded'da başlat
+  document.addEventListener('DOMContentLoaded', function() {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
 
