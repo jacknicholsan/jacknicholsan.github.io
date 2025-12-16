@@ -177,6 +177,7 @@ function addFooterPartnersAndAwards() {
     'https://jacknicholsan.github.io/playicov2/awards/2.png',
     'https://jacknicholsan.github.io/playicov2/awards/3.png',
     'https://jacknicholsan.github.io/playicov2/awards/4.png',
+    'https://jacknicholsan.github.io/playicov2/awards/5.png',
   ];
   
   awardUrls.forEach(url => {
