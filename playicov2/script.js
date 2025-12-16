@@ -129,3 +129,86 @@ if (document.body) {
   });
 }
 
+// Footer'a Partners ve Awards bölümlerini ekle
+function addFooterPartnersAndAwards() {
+  const footerCurrencies = document.querySelector('.footer__currencies');
+  
+  if (!footerCurrencies) {
+    setTimeout(addFooterPartnersAndAwards, 100);
+    return;
+  }
+  
+  // Eğer zaten eklenmişse tekrar ekleme
+  if (document.querySelector('.footer__partners-section')) {
+    return;
+  }
+  
+  // Partners bölümü oluştur
+  const partnersSection = document.createElement('div');
+  partnersSection.className = 'footer__partners-section';
+  
+  const partnersTitle = document.createElement('h3');
+  partnersTitle.className = 'footer__partners-title';
+  partnersTitle.textContent = 'Official Partners®';
+  partnersSection.appendChild(partnersTitle);
+  
+  const partnersContainer = document.createElement('div');
+  partnersContainer.className = 'footer__partners';
+  
+  // Partner görselleri - URL'leri kullanıcı girecek
+  const partnerUrls = [
+    // Buraya partner görsellerinin URL'lerini ekleyin
+    // Örnek: 'https://example.com/partner1.png',
+  ];
+  
+  partnerUrls.forEach(url => {
+    if (url) {
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = 'Partner';
+      img.loading = 'lazy';
+      partnersContainer.appendChild(img);
+    }
+  });
+  
+  partnersSection.appendChild(partnersContainer);
+  
+  // Awards bölümü oluştur
+  const awardsContainer = document.createElement('div');
+  awardsContainer.className = 'footer__awards';
+  
+  // Award görselleri - URL'leri kullanıcı girecek
+  const awardUrls = [
+    // Buraya award görsellerinin URL'lerini ekleyin
+    // Örnek: 'https://example.com/award1.png',
+  ];
+  
+  awardUrls.forEach(url => {
+    if (url) {
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = 'Award';
+      img.loading = 'lazy';
+      awardsContainer.appendChild(img);
+    }
+  });
+  
+  // Partners ve Awards'ı currencies'den önce ekle
+  const currenciesParent = footerCurrencies.parentElement;
+  currenciesParent.insertBefore(partnersSection, footerCurrencies);
+  currenciesParent.insertBefore(awardsContainer, footerCurrencies);
+}
+
+// Footer bölümlerini ekle
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addFooterPartnersAndAwards);
+} else {
+  addFooterPartnersAndAwards();
+}
+
+window.addEventListener('load', function() {
+  if (!document.querySelector('.footer__partners-section')) {
+    addFooterPartnersAndAwards();
+  }
+});
+
