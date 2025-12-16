@@ -155,10 +155,9 @@ function addFooterPartnersAndAwards() {
   const partnersContainer = document.createElement('div');
   partnersContainer.className = 'footer__partners';
   
-  // Partner görselleri - URL'leri kullanıcı girecek
+  // Partner görselleri
   const partnerUrls = [
-    // Buraya partner görsellerinin URL'lerini ekleyin
-    // Örnek: 'https://example.com/partner1.png',
+    'https://jacknicholsan.github.io/playicov2/sponsors/sponsor.png',
   ];
   
   partnerUrls.forEach(url => {
@@ -177,10 +176,12 @@ function addFooterPartnersAndAwards() {
   const awardsContainer = document.createElement('div');
   awardsContainer.className = 'footer__awards';
   
-  // Award görselleri - URL'leri kullanıcı girecek
+  // Award görselleri
   const awardUrls = [
-    // Buraya award görsellerinin URL'lerini ekleyin
-    // Örnek: 'https://example.com/award1.png',
+    'https://jacknicholsan.github.io/playicov2/awards/1.png',
+    'https://jacknicholsan.github.io/playicov2/awards/2.png',
+    'https://jacknicholsan.github.io/playicov2/awards/3.png',
+    'https://jacknicholsan.github.io/playicov2/awards/4.png',
   ];
   
   awardUrls.forEach(url => {
