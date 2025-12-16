@@ -16,9 +16,9 @@ function addHeaderButtons() {
     // Butonların verileri
     const buttons = [
       {
-        text: 'Ukra Live',
+        text: 'Playico TV',
         iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/tv.svg',
-        class: 'header__btn-ukra',
+        class: 'header__btn-playicotv',
         href: '#'
       },
       {
