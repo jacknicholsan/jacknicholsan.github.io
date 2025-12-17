@@ -538,8 +538,13 @@ if (document.body) {
   });
 }
 
-// Popüler Oyunlar Swiper'ı 10 Sütun x 2 Satır Grid'e Çevir
+// Popüler Oyunlar Swiper'ı 10 Sütun x 2 Satır Grid'e Çevir (Sadece Desktop)
 function convertPopularGamesToGrid() {
+  // Mobilde orijinal swiper'ı koru (768px altı)
+  if (window.innerWidth <= 768) {
+    return;
+  }
+
   // Popüler Oyunlar section'ını bul (img src'ye göre)
   const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
   if (!popularSection) {
@@ -585,7 +590,7 @@ function convertPopularGamesToGrid() {
   swiperWrapper.style.display = 'grid';
   swiperWrapper.style.gridTemplateColumns = 'repeat(10, 1fr)';
   swiperWrapper.style.gridAutoRows = 'auto';
-  swiperWrapper.style.gap = '12px';
+  swiperWrapper.style.gap = '6px';
   swiperWrapper.style.transform = 'none';
   swiperWrapper.style.width = '100%';
   swiperWrapper.style.flexWrap = 'wrap';
@@ -616,17 +621,65 @@ window.addEventListener('load', function() {
   convertPopularGamesToGrid();
 });
 
+// Window resize event - ekran boyutu değiştiğinde kontrol et
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
+    if (popularSection) {
+      const section = popularSection.closest('.section');
+      if (section) {
+        const swiper = section.querySelector('.swiper');
+        if (swiper) {
+          const wrapper = swiper.querySelector('.swiper-wrapper');
+          // Mobilde grid'i kaldır, desktop'ta uygula
+          if (window.innerWidth <= 768) {
+            // Mobilde orijinal swiper'a geri dön
+            wrapper.style.display = '';
+            wrapper.style.gridTemplateColumns = '';
+            wrapper.style.gap = '';
+            wrapper.style.transform = '';
+            wrapper.style.width = '';
+            wrapper.style.flexWrap = '';
+            swiper.style.overflow = '';
+            // Slide'ları orijinal haline getir
+            const slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach((slide) => {
+              slide.style.width = '';
+              slide.style.marginRight = '';
+              slide.style.marginBottom = '';
+              slide.style.height = '';
+            });
+            // Navigation butonlarını göster
+            const prevButton = swiper.querySelector('.swiper-button-prev');
+            const nextButton = swiper.querySelector('.swiper-button-next');
+            if (prevButton) prevButton.style.display = '';
+            if (nextButton) nextButton.style.display = '';
+          } else {
+            // Desktop'ta grid uygula
+            convertPopularGamesToGrid();
+          }
+        }
+      }
+    }
+  }, 250);
+});
+
 // MutationObserver ile dinamik içerik için
 const popularGamesObserver = new MutationObserver(function(mutations) {
-  const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
-  if (popularSection) {
-    const section = popularSection.closest('.section');
-    if (section) {
-      const swiper = section.querySelector('.swiper');
-      if (swiper && swiper.classList.contains('swiper-initialized')) {
-        const wrapper = swiper.querySelector('.swiper-wrapper');
-        if (wrapper && wrapper.style.display !== 'grid') {
-          convertPopularGamesToGrid();
+  // Sadece desktop'ta grid uygula
+  if (window.innerWidth > 768) {
+    const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
+    if (popularSection) {
+      const section = popularSection.closest('.section');
+      if (section) {
+        const swiper = section.querySelector('.swiper');
+        if (swiper && swiper.classList.contains('swiper-initialized')) {
+          const wrapper = swiper.querySelector('.swiper-wrapper');
+          if (wrapper && wrapper.style.display !== 'grid') {
+            convertPopularGamesToGrid();
+          }
         }
       }
     }
