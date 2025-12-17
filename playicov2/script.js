@@ -480,19 +480,19 @@ function speedUpBigWinsSwiper() {
   
   // Swiper instance bulunduysa ayarları güncelle
   if (swiperInstance && swiperInstance.params) {
-    // Autoplay ayarlarını güncelle - daha hızlı
+    // Autoplay ayarlarını güncelle - daha hızlı ama okunabilir
     if (!swiperInstance.params.autoplay) {
       swiperInstance.params.autoplay = {
-        delay: 1000, // 1 saniye (daha hızlı)
+        delay: 600, // 0.6 saniye (daha hızlı ama okunabilir)
         disableOnInteraction: false,
         pauseOnMouseEnter: false,
       };
     } else {
-      swiperInstance.params.autoplay.delay = 1000; // 1 saniye
+      swiperInstance.params.autoplay.delay = 600; // 0.6 saniye
       swiperInstance.params.autoplay.disableOnInteraction = false;
       swiperInstance.params.autoplay.pauseOnMouseEnter = false;
     }
-    swiperInstance.params.speed = 500; // Daha hızlı geçiş
+    swiperInstance.params.speed = 350; // Daha hızlı geçiş (okunabilir)
     swiperInstance.update();
     
     // Autoplay'i hemen başlat
@@ -517,20 +517,20 @@ function speedUpBigWinsSwiper() {
             } else {
               clearInterval(autoplayInterval);
             }
-          }, 1000);
+          }, 600);
         }
-      }, 500);
+      }, 300);
     }
   } else {
     // Swiper henüz initialize edilmemişse, daha sık tekrar dene
     setTimeout(speedUpBigWinsSwiper, 200);
   }
   
-  // CSS transition süresini kısalt - daha hızlı
+  // CSS transition süresini kısalt - daha hızlı ama okunabilir
   const swiperWrapper = bigWinsWrapper.querySelector('.swiper-wrapper');
   if (swiperWrapper) {
-    swiperWrapper.style.transitionDuration = '0.3s';
-    swiperWrapper.style.transitionTimingFunction = 'linear';
+    swiperWrapper.style.transitionDuration = '0.35s';
+    swiperWrapper.style.transitionTimingFunction = 'ease-out';
   }
 }
 
