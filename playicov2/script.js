@@ -26,26 +26,6 @@ function addHeaderButtons() {
         iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/money.svg',
         class: 'header__btn-deposit',
         href: '#'
-      },
-      {
-        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/call.svg',
-        class: 'header__btn-contact',
-        href: '#'
-      },
-      {
-        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/x.svg',
-        class: 'header__btn-x',
-        href: '#'
-      },
-      {
-        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/telegram.svg',
-        class: 'header__btn-telegram',
-        href: '#'
-      },
-      {
-        iconUrl: 'https://jacknicholsan.github.io/playicov2/icons/svg/tiktok.svg',
-        class: 'header__btn-tiktok',
-        href: '#'
       }
     ];
     
@@ -947,7 +927,10 @@ function createWelcomeSection() {
         </h1>
         
         <div class="welcome-buttons">
-          <button class="register-button" id="register-button-custom" onclick="window.open('https://t.me/playico', '_blank')">${telegramButtonText}</button>
+          <button class="register-button" id="register-button-custom" onclick="window.open('https://t.me/playico', '_blank')">
+            <img src="https://jacknicholsan.github.io/playicov2/icons/svg/call.svg" alt="Call" class="register-button-icon">
+            ${telegramButtonText}
+          </button>
           
           <div class="social-buttons">
             <button class="social-button" onclick="window.open('https://instagram.com/playicoglobal', '_blank')">
