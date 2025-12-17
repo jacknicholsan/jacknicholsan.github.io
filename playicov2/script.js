@@ -538,3 +538,111 @@ if (document.body) {
   });
 }
 
+// Popüler Oyunlar Swiper'ı 2 Sütun Grid'e Çevir
+function convertPopularGamesToGrid() {
+  // Popüler Oyunlar section'ını bul (img src'ye göre)
+  const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
+  if (!popularSection) {
+    setTimeout(convertPopularGamesToGrid, 200);
+    return;
+  }
+
+  const section = popularSection.closest('.section');
+  if (!section) {
+    setTimeout(convertPopularGamesToGrid, 200);
+    return;
+  }
+
+  const swiper = section.querySelector('.swiper');
+  if (!swiper) {
+    setTimeout(convertPopularGamesToGrid, 200);
+    return;
+  }
+
+  // Swiper instance'ını bul ve destroy et
+  let swiperInstance = null;
+  if (swiper.swiper) {
+    swiperInstance = swiper.swiper;
+  } else if (swiper.__swiper__) {
+    swiperInstance = swiper.__swiper__;
+  }
+
+  if (swiperInstance && typeof swiperInstance.destroy === 'function') {
+    swiperInstance.destroy(true, true);
+  }
+
+  // Swiper wrapper'ı al
+  const swiperWrapper = swiper.querySelector('.swiper-wrapper');
+  if (!swiperWrapper) return;
+
+  // Navigation butonlarını gizle
+  const prevButton = swiper.querySelector('.swiper-button-prev');
+  const nextButton = swiper.querySelector('.swiper-button-next');
+  if (prevButton) prevButton.style.display = 'none';
+  if (nextButton) nextButton.style.display = 'none';
+
+  // Swiper wrapper'ı grid yapısına çevir
+  swiperWrapper.style.display = 'grid';
+  swiperWrapper.style.gridTemplateColumns = 'repeat(2, 1fr)';
+  swiperWrapper.style.gap = '12px';
+  swiperWrapper.style.transform = 'none';
+  swiperWrapper.style.width = '100%';
+  swiperWrapper.style.flexWrap = 'wrap';
+
+  // Tüm slide'ları düzenle
+  const slides = swiperWrapper.querySelectorAll('.swiper-slide');
+  slides.forEach((slide) => {
+    slide.style.width = '100%';
+    slide.style.marginRight = '0';
+    slide.style.marginBottom = '0';
+    slide.style.height = 'auto';
+  });
+
+  // Swiper container'a overflow visible ekle
+  swiper.style.overflow = 'visible';
+}
+
+// Popüler Oyunlar grid dönüşümünü başlat
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    convertPopularGamesToGrid();
+  });
+} else {
+  convertPopularGamesToGrid();
+}
+
+window.addEventListener('load', function() {
+  convertPopularGamesToGrid();
+});
+
+// MutationObserver ile dinamik içerik için
+const popularGamesObserver = new MutationObserver(function(mutations) {
+  const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
+  if (popularSection) {
+    const section = popularSection.closest('.section');
+    if (section) {
+      const swiper = section.querySelector('.swiper');
+      if (swiper && swiper.classList.contains('swiper-initialized')) {
+        const wrapper = swiper.querySelector('.swiper-wrapper');
+        if (wrapper && wrapper.style.display !== 'grid') {
+          convertPopularGamesToGrid();
+        }
+      }
+    }
+  }
+});
+
+if (document.body) {
+  popularGamesObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    popularGamesObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
