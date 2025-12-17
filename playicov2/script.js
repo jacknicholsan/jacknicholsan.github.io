@@ -922,7 +922,7 @@ function createWelcomeSection() {
       <!-- Sol Taraf -->
       <div class="welcome-left">
         <h1 class="welcome-title">
-          <span class="welcome-title-white">${welcomeTitleWhite}</span><br>
+          <span class="welcome-title-white">${welcomeTitleWhite}</span>
           <span class="welcome-title-orange">${welcomeTitleOrange}</span>
         </h1>
         
