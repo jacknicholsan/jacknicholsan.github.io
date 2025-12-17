@@ -538,7 +538,7 @@ if (document.body) {
   });
 }
 
-// Popüler Oyunlar Swiper'ı 2 Sütun Grid'e Çevir
+// Popüler Oyunlar Swiper'ı 10 Sütun x 2 Satır Grid'e Çevir
 function convertPopularGamesToGrid() {
   // Popüler Oyunlar section'ını bul (img src'ye göre)
   const popularSection = document.querySelector('.section__title img[src*="MKv6AV6BjjCUY6PfEac32Ho6z8mTwNebByfeZMIj"]');
@@ -581,9 +581,10 @@ function convertPopularGamesToGrid() {
   if (prevButton) prevButton.style.display = 'none';
   if (nextButton) nextButton.style.display = 'none';
 
-  // Swiper wrapper'ı grid yapısına çevir
+  // Swiper wrapper'ı grid yapısına çevir - 10 sütun x 2 satır (10 üstte, 10 altta)
   swiperWrapper.style.display = 'grid';
-  swiperWrapper.style.gridTemplateColumns = 'repeat(2, 1fr)';
+  swiperWrapper.style.gridTemplateColumns = 'repeat(10, 1fr)';
+  swiperWrapper.style.gridAutoRows = 'auto';
   swiperWrapper.style.gap = '12px';
   swiperWrapper.style.transform = 'none';
   swiperWrapper.style.width = '100%';
