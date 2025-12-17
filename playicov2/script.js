@@ -756,7 +756,7 @@ function convertLiveCasinoToGrid() {
   if (prevButton) prevButton.style.display = 'none';
   if (nextButton) nextButton.style.display = 'none';
 
-  // Swiper wrapper'ı grid yapısına çevir - 2 satır
+  // Swiper wrapper'ı grid yapısına çevir - 2 satır (Popüler Oyunlar ile aynı gap)
   swiperWrapper.style.display = 'grid';
   swiperWrapper.style.gridTemplateColumns = `repeat(${columnsPerRow}, 1fr)`;
   swiperWrapper.style.gridTemplateRows = 'repeat(2, auto)';
