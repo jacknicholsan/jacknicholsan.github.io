@@ -288,11 +288,33 @@ function styleBigWins() {
     const clonedKush = firstKush.cloneNode(true);
     liveButtonContainer.appendChild(clonedKush);
     
-    // Big wins wrapper'a ekle (swiper'dan önce)
+    // Swiper'ın parent'ını bul (col-12) ve flex wrapper oluştur
     const swiper = bigWinsWrapper.querySelector('.swiper');
+    
     if (swiper) {
-      bigWinsWrapper.insertBefore(liveButtonContainer, swiper);
+      const swiperParent = swiper.parentElement;
+      
+      // Eğer zaten wrapper yoksa oluştur
+      if (!swiperParent.classList.contains('big-wins-live-wrapper')) {
+        // Wrapper oluştur
+        const liveWrapper = document.createElement('div');
+        liveWrapper.className = 'big-wins-live-wrapper';
+        
+        // CANLI butonunu wrapper'a ekle
+        liveWrapper.appendChild(liveButtonContainer);
+        
+        // Swiper'ı parent'tan çıkar ve wrapper'a ekle
+        swiperParent.removeChild(swiper);
+        liveWrapper.appendChild(swiper);
+        
+        // Wrapper'ı parent'a ekle
+        swiperParent.appendChild(liveWrapper);
+      } else {
+        // Wrapper zaten varsa, sadece CANLI butonunu ekle
+        swiperParent.insertBefore(liveButtonContainer, swiper);
+      }
     } else {
+      // Swiper yoksa, big wins wrapper'a ekle
       bigWinsWrapper.appendChild(liveButtonContainer);
     }
     
