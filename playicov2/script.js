@@ -701,3 +701,174 @@ if (document.body) {
   });
 }
 
+// Live Casino Swiper'ı 2 Satır Grid'e Çevir (Sadece Desktop)
+function convertLiveCasinoToGrid() {
+  // Mobilde orijinal swiper'ı koru (768px altı)
+  if (window.innerWidth <= 768) {
+    return;
+  }
+
+  // Live Casino section'ını bul (img src'ye göre)
+  const liveCasinoSection = document.querySelector('.section__title img[src*="KmXybc8QaAS8Wph7Q29KO2W2GCnxqkqHLVrgxZm3"]');
+  if (!liveCasinoSection) {
+    setTimeout(convertLiveCasinoToGrid, 200);
+    return;
+  }
+
+  const section = liveCasinoSection.closest('.section');
+  if (!section) {
+    setTimeout(convertLiveCasinoToGrid, 200);
+    return;
+  }
+
+  const swiper = section.querySelector('.swiper');
+  if (!swiper) {
+    setTimeout(convertLiveCasinoToGrid, 200);
+    return;
+  }
+
+  // Swiper instance'ını bul ve destroy et
+  let swiperInstance = null;
+  if (swiper.swiper) {
+    swiperInstance = swiper.swiper;
+  } else if (swiper.__swiper__) {
+    swiperInstance = swiper.__swiper__;
+  }
+
+  if (swiperInstance && typeof swiperInstance.destroy === 'function') {
+    swiperInstance.destroy(true, true);
+  }
+
+  // Swiper wrapper'ı al
+  const swiperWrapper = swiper.querySelector('.swiper-wrapper');
+  if (!swiperWrapper) return;
+
+  // İçerik sayısını say
+  const slides = swiperWrapper.querySelectorAll('.swiper-slide');
+  const slideCount = slides.length;
+  
+  // 2 satır için sütun sayısını hesapla (yukarı yuvarla)
+  const columnsPerRow = Math.ceil(slideCount / 2);
+
+  // Navigation butonlarını gizle
+  const prevButton = swiper.querySelector('.swiper-button-prev');
+  const nextButton = swiper.querySelector('.swiper-button-next');
+  if (prevButton) prevButton.style.display = 'none';
+  if (nextButton) nextButton.style.display = 'none';
+
+  // Swiper wrapper'ı grid yapısına çevir - 2 satır
+  swiperWrapper.style.display = 'grid';
+  swiperWrapper.style.gridTemplateColumns = `repeat(${columnsPerRow}, 1fr)`;
+  swiperWrapper.style.gridTemplateRows = 'repeat(2, auto)';
+  swiperWrapper.style.gap = '3px';
+  swiperWrapper.style.rowGap = '8px';
+  swiperWrapper.style.transform = 'none';
+  swiperWrapper.style.width = '100%';
+  swiperWrapper.style.flexWrap = 'wrap';
+
+  // Tüm slide'ları düzenle
+  slides.forEach((slide) => {
+    slide.style.width = '100%';
+    slide.style.marginRight = '0';
+    slide.style.marginBottom = '0';
+    slide.style.height = 'auto';
+  });
+
+  // Swiper container'a overflow visible ekle
+  swiper.style.overflow = 'visible';
+}
+
+// Live Casino grid dönüşümünü başlat
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    convertLiveCasinoToGrid();
+  });
+} else {
+  convertLiveCasinoToGrid();
+}
+
+window.addEventListener('load', function() {
+  convertLiveCasinoToGrid();
+});
+
+// Window resize event - ekran boyutu değiştiğinde kontrol et
+let liveCasinoResizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(liveCasinoResizeTimeout);
+  liveCasinoResizeTimeout = setTimeout(function() {
+    const liveCasinoSection = document.querySelector('.section__title img[src*="KmXybc8QaAS8Wph7Q29KO2W2GCnxqkqHLVrgxZm3"]');
+    if (liveCasinoSection) {
+      const section = liveCasinoSection.closest('.section');
+      if (section) {
+        const swiper = section.querySelector('.swiper');
+        if (swiper) {
+          const wrapper = swiper.querySelector('.swiper-wrapper');
+          // Mobilde grid'i kaldır, desktop'ta uygula
+          if (window.innerWidth <= 768) {
+            // Mobilde orijinal swiper'a geri dön
+            wrapper.style.display = '';
+            wrapper.style.gridTemplateColumns = '';
+            wrapper.style.gridTemplateRows = '';
+            wrapper.style.gap = '';
+            wrapper.style.rowGap = '';
+            wrapper.style.transform = '';
+            wrapper.style.width = '';
+            wrapper.style.flexWrap = '';
+            swiper.style.overflow = '';
+            // Slide'ları orijinal haline getir
+            const slides = wrapper.querySelectorAll('.swiper-slide');
+            slides.forEach((slide) => {
+              slide.style.width = '';
+              slide.style.marginRight = '';
+              slide.style.marginBottom = '';
+              slide.style.height = '';
+            });
+            // Navigation butonlarını göster
+            const prevButton = swiper.querySelector('.swiper-button-prev');
+            const nextButton = swiper.querySelector('.swiper-button-next');
+            if (prevButton) prevButton.style.display = '';
+            if (nextButton) nextButton.style.display = '';
+          } else {
+            // Desktop'ta grid uygula
+            convertLiveCasinoToGrid();
+          }
+        }
+      }
+    }
+  }, 250);
+});
+
+// MutationObserver ile dinamik içerik için
+const liveCasinoObserver = new MutationObserver(function(mutations) {
+  // Sadece desktop'ta grid uygula
+  if (window.innerWidth > 768) {
+    const liveCasinoSection = document.querySelector('.section__title img[src*="KmXybc8QaAS8Wph7Q29KO2W2GCnxqkqHLVrgxZm3"]');
+    if (liveCasinoSection) {
+      const section = liveCasinoSection.closest('.section');
+      if (section) {
+        const swiper = section.querySelector('.swiper');
+        if (swiper && swiper.classList.contains('swiper-initialized')) {
+          const wrapper = swiper.querySelector('.swiper-wrapper');
+          if (wrapper && wrapper.style.display !== 'grid') {
+            convertLiveCasinoToGrid();
+          }
+        }
+      }
+    }
+  }
+});
+
+if (document.body) {
+  liveCasinoObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    liveCasinoObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
