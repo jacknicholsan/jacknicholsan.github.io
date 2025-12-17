@@ -277,10 +277,27 @@ function styleBigWins() {
     return;
   }
   
-  // İlk slide için CANLI butonu oluştur
+  // CANLI butonunu swiper dışına çıkar ve sabit yap
   const firstKush = firstSlide.querySelector('.kush');
-  if (firstKush) {
-    const winnerDiv = firstKush.querySelector('.kush__winner');
+  if (firstKush && !bigWinsWrapper.querySelector('.big-wins-live-button')) {
+    // CANLI butonu container oluştur
+    const liveButtonContainer = document.createElement('div');
+    liveButtonContainer.className = 'big-wins-live-button';
+    
+    // KUSH elementini klonla
+    const clonedKush = firstKush.cloneNode(true);
+    liveButtonContainer.appendChild(clonedKush);
+    
+    // Big wins wrapper'a ekle (swiper'dan önce)
+    const swiper = bigWinsWrapper.querySelector('.swiper');
+    if (swiper) {
+      bigWinsWrapper.insertBefore(liveButtonContainer, swiper);
+    } else {
+      bigWinsWrapper.appendChild(liveButtonContainer);
+    }
+    
+    // Klonlanan kush içindeki winner div'i bul
+    const winnerDiv = clonedKush.querySelector('.kush__winner');
     if (winnerDiv) {
       // Mevcut içeriği temizle
       winnerDiv.innerHTML = '';
@@ -303,9 +320,9 @@ function styleBigWins() {
     }
   }
   
-  // Diğer slide'lar için ödül miktarlarını TL'ye çevir ve düzenle
+  // Diğer slide'lar için ödül miktarlarını TL'ye çevir ve düzenle (ilk slide'ı atla)
   allSlides.forEach((slide, index) => {
-    if (index === 0) return; // İlk slide'ı atla
+    if (index === 0) return; // İlk slide'ı atla (CANLI butonu artık swiper dışında)
     
     const winnerDiv = slide.querySelector('.kush__winner');
     if (!winnerDiv) return;
@@ -395,7 +412,7 @@ window.addEventListener('load', function() {
   speedUpBigWinsSwiper();
 });
 
-// Swiper hızını artır
+// Swiper hızını artır ve autoplay'i aktif et
 function speedUpBigWinsSwiper() {
   const bigWinsWrapper = document.querySelector('#big-wins-wrapper');
   if (!bigWinsWrapper) {
@@ -403,17 +420,61 @@ function speedUpBigWinsSwiper() {
     return;
   }
   
-  const swiper = bigWinsWrapper.querySelector('.swiper');
-  if (swiper && swiper.swiper) {
-    // Swiper instance'ı varsa speed'i artır
-    if (swiper.swiper.params) {
-      if (swiper.swiper.params.autoplay) {
-        swiper.swiper.params.autoplay.delay = 2000; // 2 saniye (daha hızlı)
-        swiper.swiper.params.speed = 800; // Geçiş hızı
+  const swiperElement = bigWinsWrapper.querySelector('.swiper');
+  if (!swiperElement) {
+    setTimeout(speedUpBigWinsSwiper, 100);
+    return;
+  }
+  
+  // Swiper instance'ını bul - farklı yolları dene
+  let swiperInstance = null;
+  
+  // Yöntem 1: Swiper.js instance'ını kontrol et (en yaygın)
+  if (swiperElement.swiper) {
+    swiperInstance = swiperElement.swiper;
+  }
+  // Yöntem 2: Swiper'in kendi instance property'si
+  else if (swiperElement.__swiper__) {
+    swiperInstance = swiperElement.__swiper__;
+  }
+  // Yöntem 3: Swiper initialized ise, instance'ı bul
+  else if (swiperElement.classList.contains('swiper-initialized')) {
+    // Tüm olası swiper instance'larını kontrol et
+    for (let key in swiperElement) {
+      if (swiperElement[key] && swiperElement[key].params && swiperElement[key].slideTo) {
+        swiperInstance = swiperElement[key];
+        break;
       }
-      swiper.swiper.params.speed = 800;
-      swiper.swiper.update();
     }
+  }
+  
+  // Swiper instance bulunduysa ayarları güncelle
+  if (swiperInstance && swiperInstance.params) {
+    // Autoplay ayarlarını güncelle
+    if (!swiperInstance.params.autoplay) {
+      swiperInstance.params.autoplay = {
+        delay: 2000,
+        disableOnInteraction: false,
+      };
+    } else {
+      swiperInstance.params.autoplay.delay = 2000;
+      swiperInstance.params.autoplay.disableOnInteraction = false;
+    }
+    swiperInstance.params.speed = 800;
+    swiperInstance.update();
+    
+    // Autoplay'i başlat
+    if (swiperInstance.autoplay) {
+      if (typeof swiperInstance.autoplay.start === 'function') {
+        swiperInstance.autoplay.start();
+      } else if (swiperInstance.autoplay.running === false) {
+        swiperInstance.autoplay.running = true;
+        swiperInstance.autoplay.run();
+      }
+    }
+  } else {
+    // Swiper henüz initialize edilmemişse, tekrar dene
+    setTimeout(speedUpBigWinsSwiper, 500);
   }
   
   // CSS transition süresini kısalt
@@ -427,8 +488,8 @@ function speedUpBigWinsSwiper() {
 const bigWinsObserver = new MutationObserver(function(mutations) {
   const bigWinsWrapper = document.querySelector('#big-wins-wrapper');
   if (bigWinsWrapper) {
-    const firstSlide = bigWinsWrapper.querySelector('.swiper-slide:first-child');
-    if (firstSlide && !firstSlide.querySelector('.kush__trophy-icon')) {
+    // CANLI butonu yoksa oluştur
+    if (!bigWinsWrapper.querySelector('.big-wins-live-button')) {
       styleBigWins();
     }
     speedUpBigWinsSwiper();
