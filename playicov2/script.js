@@ -308,21 +308,29 @@ function styleBigWins() {
   allSlides.forEach((slide, index) => {
     if (index === 0) return; // İlk slide'ı atla
     
+    const winnerDiv = slide.querySelector('.kush__winner');
+    if (!winnerDiv) return;
+    
+    // Mevcut içeriği al
     const prizeElement = slide.querySelector('.kush__prize');
+    const usernameBtn = slide.querySelector('.chat__name.username-win');
+    
+    // Ödül miktarını TL'ye çevir
+    let prizeText = '';
     if (prizeElement) {
-      const prizeText = prizeElement.textContent.trim();
+      const originalPrizeText = prizeElement.textContent.trim();
       // $ işaretini kaldır ve TL'ye çevir
-      const amount = prizeText.replace('$', '').trim();
+      const amount = originalPrizeText.replace('$', '').trim();
       // Basit dönüşüm: 1$ = ~30 TL (kullanıcı isterse değiştirebilir)
       const tlAmount = (parseFloat(amount) * 30).toLocaleString('tr-TR', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
       });
-      prizeElement.textContent = `${tlAmount} TL`;
+      prizeText = `${tlAmount} TL`;
     }
     
-    // Kullanıcı adını düzenle
-    const usernameBtn = slide.querySelector('.chat__name.username-win');
+    // Kullanıcı adını al
+    let usernameText = 'K***';
     if (usernameBtn) {
       const usernameSpan = usernameBtn.querySelector('span');
       if (usernameSpan) {
@@ -331,16 +339,43 @@ function styleBigWins() {
         if (svgIcon) {
           svgIcon.remove();
         }
-        // "Gizlenmiş" yazısını kaldır, sadece kullanıcı adını göster
-        const textNodes = Array.from(usernameSpan.childNodes).filter(node => 
-          node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== 'Gizlenmiş'
-        );
-        if (textNodes.length === 0) {
-          // Eğer sadece "Gizlenmiş" varsa, örnek isim göster (gerçek veri gelince değişecek)
-          usernameSpan.textContent = 'K***';
+        // Metin içeriğini al
+        const textContent = usernameSpan.textContent.trim();
+        if (textContent && textContent !== 'Gizlenmiş') {
+          usernameText = textContent;
         }
       }
     }
+    
+    // İçeriği tek satırda göster: Kullanıcı adı + Ödül
+    winnerDiv.innerHTML = '';
+    winnerDiv.style.display = 'flex';
+    winnerDiv.style.flexDirection = 'row';
+    winnerDiv.style.alignItems = 'center';
+    winnerDiv.style.justifyContent = 'center';
+    winnerDiv.style.gap = '8px';
+    winnerDiv.style.whiteSpace = 'nowrap';
+    
+    // Kullanıcı adı
+    const usernameSpan = document.createElement('span');
+    usernameSpan.className = 'chat__name username-win';
+    usernameSpan.style.color = '#ffffff';
+    usernameSpan.style.fontSize = '13px';
+    usernameSpan.style.fontWeight = '500';
+    usernameSpan.style.whiteSpace = 'nowrap';
+    usernameSpan.textContent = usernameText;
+    
+    // Ödül miktarı
+    const prizeSpan = document.createElement('span');
+    prizeSpan.className = 'kush__prize';
+    prizeSpan.style.color = '#e25f3c';
+    prizeSpan.style.fontSize = '16px';
+    prizeSpan.style.fontWeight = '700';
+    prizeSpan.style.whiteSpace = 'nowrap';
+    prizeSpan.textContent = prizeText;
+    
+    winnerDiv.appendChild(usernameSpan);
+    winnerDiv.appendChild(prizeSpan);
   });
 }
 
