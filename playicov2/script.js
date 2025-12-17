@@ -894,3 +894,149 @@ if (document.body) {
   });
 }
 
+// Welcome Section - Main Slider'ın Altına Ekle
+function createWelcomeSection() {
+  // Main slider'ı bul
+  const mainSlider = document.querySelector('#main-slider');
+  if (!mainSlider) {
+    setTimeout(createWelcomeSection, 200);
+    return;
+  }
+
+  // Welcome section zaten varsa güncelle, yoksa oluştur
+  let welcomeContainer = document.querySelector('.welcome-container');
+  
+  if (!welcomeContainer) {
+    // Welcome section oluştur
+    welcomeContainer = document.createElement('div');
+    welcomeContainer.className = 'welcome-container';
+    
+    // Main slider'ın hemen altına ekle
+    mainSlider.insertAdjacentElement('afterend', welcomeContainer);
+  }
+
+  // Dil değerini localStorage'dan oku
+  const language = localStorage.getItem('language') || 'tr';
+  const isEnglish = language.toLowerCase() === 'en';
+
+  // İçerikleri dil'e göre ayarla
+  const welcomeTitleWhite = isEnglish 
+    ? 'Globally Licensed, High Security' 
+    : 'Global Lisanslı, Yüksek Güvenlikli';
+  
+  const welcomeTitleOrange = isEnglish 
+    ? 'Casino and Sports Betting Platform' 
+    : 'Casino ve Spor Bahisleri Platformu';
+
+  const telegramButtonText = isEnglish 
+    ? 'Join Telegram' 
+    : 'Telegram\'a Katıl';
+
+  const casinoLabel = isEnglish ? 'Casino' : 'Casino';
+  const sportsLabel = isEnglish ? 'Sports' : 'Spor';
+  const sportsTitle = isEnglish ? 'Sports' : 'Sports';
+
+  // HTML içeriğini oluştur
+  welcomeContainer.innerHTML = `
+    <div class="welcome-inner container">
+      <!-- Sol Taraf -->
+      <div class="welcome-left">
+        <h1 class="welcome-title">
+          <span class="welcome-title-white">${welcomeTitleWhite}</span><br>
+          <span class="welcome-title-orange">${welcomeTitleOrange}</span>
+        </h1>
+        
+        <div class="welcome-buttons">
+          <button class="register-button" id="register-button-custom" onclick="window.open('https://t.me/playico', '_blank')">${telegramButtonText}</button>
+          
+          <div class="social-buttons">
+            <button class="social-button" onclick="window.open('https://instagram.com/playicoglobal', '_blank')">
+              <img src="https://jacknicholsan.github.io/playico/images/instagram-white.png" alt="Instagram" class="social-icon">
+            </button>
+            <button class="social-button" onclick="window.open('https://x.com/playicotr', '_blank')">
+              <img src="https://jacknicholsan.github.io/playico/images/twitter.png" alt="Twitter" class="social-icon">
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sağ Taraf -->
+      <div class="welcome-right">
+        <div class="game-box">
+          <div class="game-box-label">${casinoLabel}</div>
+          <img src="https://jacknicholsan.github.io/playico/images/Hompage_Casino_Banner.webp" alt="Casino" class="game-image">
+          <div class="game-title">Casino</div>
+        </div>
+        
+        <div class="game-box sports">
+          <div class="game-box-label">${sportsLabel}</div>
+          <img src="https://jacknicholsan.github.io/playico/images/Hompage_Spor_Banner.webp" alt="Sports" class="game-image">
+          <div class="game-title">${sportsTitle}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Dil değişikliğini dinle
+function updateWelcomeSectionOnLanguageChange() {
+  // Storage event listener (başka tab'da değişiklik olursa)
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'language') {
+      createWelcomeSection();
+    }
+  });
+
+  // Custom event listener (aynı sayfada değişiklik olursa)
+  window.addEventListener('languagechange', function() {
+    createWelcomeSection();
+  });
+
+  // localStorage değişikliklerini izle (polling)
+  let lastLanguage = localStorage.getItem('language') || 'tr';
+  setInterval(function() {
+    const currentLanguage = localStorage.getItem('language') || 'tr';
+    if (currentLanguage !== lastLanguage) {
+      lastLanguage = currentLanguage;
+      createWelcomeSection();
+    }
+  }, 500);
+}
+
+// Welcome section'ı başlat
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    createWelcomeSection();
+    updateWelcomeSectionOnLanguageChange();
+  });
+} else {
+  createWelcomeSection();
+  updateWelcomeSectionOnLanguageChange();
+}
+
+window.addEventListener('load', function() {
+  createWelcomeSection();
+});
+
+// MutationObserver ile dinamik içerik için
+const welcomeObserver = new MutationObserver(function(mutations) {
+  const mainSlider = document.querySelector('#main-slider');
+  if (mainSlider && !document.querySelector('.welcome-container')) {
+    createWelcomeSection();
+  }
+});
+
+if (document.body) {
+  welcomeObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    welcomeObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
