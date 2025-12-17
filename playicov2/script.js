@@ -234,10 +234,10 @@ function replaceFooterSocialIcons() {
     }
     
     if (iconUrl) {
-      // Mevcut içeriği temizle
+      // Mevcut içeriği temizle.
       link.innerHTML = '';
       
-      // Yeni SVG img oluştur
+      // Yeni SVG img oluştur-asdasdassa
       const img = document.createElement('img');
       img.src = iconUrl;
       img.alt = link.getAttribute('href') || 'Social Media';
@@ -259,4 +259,124 @@ if (document.readyState === 'loading') {
 window.addEventListener('load', function() {
   replaceFooterSocialIcons();
 });
+
+// Big Wins bölümünü görseldeki tasarıma göre düzenle
+function styleBigWins() {
+  const bigWinsWrapper = document.querySelector('#big-wins-wrapper');
+  
+  if (!bigWinsWrapper) {
+    setTimeout(styleBigWins, 100);
+    return;
+  }
+  
+  const firstSlide = bigWinsWrapper.querySelector('.swiper-slide:first-child');
+  const allSlides = bigWinsWrapper.querySelectorAll('.swiper-slide');
+  
+  if (!firstSlide) {
+    setTimeout(styleBigWins, 100);
+    return;
+  }
+  
+  // İlk slide için CANLI butonu oluştur
+  const firstKush = firstSlide.querySelector('.kush');
+  if (firstKush) {
+    const winnerDiv = firstKush.querySelector('.kush__winner');
+    if (winnerDiv) {
+      // Mevcut içeriği temizle
+      winnerDiv.innerHTML = '';
+      
+      // Kupa ikonu için container
+      const trophyContainer = document.createElement('div');
+      trophyContainer.className = 'kush__trophy-icon';
+      const trophyImg = document.createElement('img');
+      // Kullanıcı bu URL'yi kendi gif URL'si ile değiştirecek
+      trophyImg.src = ''; // Kullanıcı buraya gif URL'sini ekleyecek
+      trophyImg.alt = 'Trophy';
+      trophyContainer.appendChild(trophyImg);
+      
+      // CANLI yazısı
+      const liveText = document.createElement('div');
+      liveText.className = 'kush__live-text';
+      liveText.textContent = 'CANLI';
+      
+      winnerDiv.appendChild(trophyContainer);
+      winnerDiv.appendChild(liveText);
+    }
+  }
+  
+  // Diğer slide'lar için ödül miktarlarını TL'ye çevir ve düzenle
+  allSlides.forEach((slide, index) => {
+    if (index === 0) return; // İlk slide'ı atla
+    
+    const prizeElement = slide.querySelector('.kush__prize');
+    if (prizeElement) {
+      const prizeText = prizeElement.textContent.trim();
+      // $ işaretini kaldır ve TL'ye çevir
+      const amount = prizeText.replace('$', '').trim();
+      // Basit dönüşüm: 1$ = ~30 TL (kullanıcı isterse değiştirebilir)
+      const tlAmount = (parseFloat(amount) * 30).toLocaleString('tr-TR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+      prizeElement.textContent = `${tlAmount} TL`;
+    }
+    
+    // Kullanıcı adını düzenle
+    const usernameBtn = slide.querySelector('.chat__name.username-win');
+    if (usernameBtn) {
+      const usernameSpan = usernameBtn.querySelector('span');
+      if (usernameSpan) {
+        // SVG ikonunu kaldır
+        const svgIcon = usernameSpan.querySelector('.svg-icon');
+        if (svgIcon) {
+          svgIcon.remove();
+        }
+        // "Gizlenmiş" yazısını kaldır, sadece kullanıcı adını göster
+        const textNodes = Array.from(usernameSpan.childNodes).filter(node => 
+          node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== 'Gizlenmiş'
+        );
+        if (textNodes.length === 0) {
+          // Eğer sadece "Gizlenmiş" varsa, örnek isim göster (gerçek veri gelince değişecek)
+          usernameSpan.textContent = 'K***';
+        }
+      }
+    }
+  });
+}
+
+// Big Wins stillerini uygula
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', styleBigWins);
+} else {
+  styleBigWins();
+}
+
+window.addEventListener('load', function() {
+  styleBigWins();
+});
+
+// MutationObserver: Big Wins bölümü dinamik olarak eklendiğinde de çalışsın
+const bigWinsObserver = new MutationObserver(function(mutations) {
+  const bigWinsWrapper = document.querySelector('#big-wins-wrapper');
+  if (bigWinsWrapper) {
+    const firstSlide = bigWinsWrapper.querySelector('.swiper-slide:first-child');
+    if (firstSlide && !firstSlide.querySelector('.kush__trophy-icon')) {
+      styleBigWins();
+    }
+  }
+});
+
+if (document.body) {
+  bigWinsObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    bigWinsObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
 
