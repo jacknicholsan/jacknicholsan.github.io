@@ -306,7 +306,7 @@ function styleBigWins() {
       const trophyContainer = document.createElement('div');
       trophyContainer.className = 'kush__trophy-icon';
       const trophyImg = document.createElement('img');
-      trophyImg.src = 'https://jacknicholsan.github.io/playicov2/images/cup.gif';
+      trophyImg.src = 'https://jacknicholsan.github.io/playicov2/icons/cup.gif';
       trophyImg.alt = 'Trophy';
       trophyContainer.appendChild(trophyImg);
       
