@@ -289,8 +289,7 @@ function styleBigWins() {
       const trophyContainer = document.createElement('div');
       trophyContainer.className = 'kush__trophy-icon';
       const trophyImg = document.createElement('img');
-      // Kullanıcı bu URL'yi kendi gif URL'si ile değiştirecek
-      trophyImg.src = ''; // Kullanıcı buraya gif URL'sini ekleyecek
+      trophyImg.src = 'https://jacknicholsan.github.io/playicov2/images/cup.gif';
       trophyImg.alt = 'Trophy';
       trophyContainer.appendChild(trophyImg);
       
