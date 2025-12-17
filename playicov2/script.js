@@ -347,31 +347,32 @@ function styleBigWins() {
       }
     }
     
-    // İçeriği tek satırda göster: Kullanıcı adı + Ödül
+    // İçeriği dikey göster: Kullanıcı adı yukarıda, Ödül altta
     winnerDiv.innerHTML = '';
     winnerDiv.style.display = 'flex';
-    winnerDiv.style.flexDirection = 'row';
+    winnerDiv.style.flexDirection = 'column';
     winnerDiv.style.alignItems = 'center';
     winnerDiv.style.justifyContent = 'center';
-    winnerDiv.style.gap = '8px';
-    winnerDiv.style.whiteSpace = 'nowrap';
+    winnerDiv.style.gap = '4px';
     
-    // Kullanıcı adı
+    // Kullanıcı adı - minimalist
     const usernameSpan = document.createElement('span');
     usernameSpan.className = 'chat__name username-win';
-    usernameSpan.style.color = '#ffffff';
-    usernameSpan.style.fontSize = '13px';
-    usernameSpan.style.fontWeight = '500';
+    usernameSpan.style.color = 'rgba(255, 255, 255, 0.7)';
+    usernameSpan.style.fontSize = '12px';
+    usernameSpan.style.fontWeight = '400';
     usernameSpan.style.whiteSpace = 'nowrap';
+    usernameSpan.style.lineHeight = '1.2';
     usernameSpan.textContent = usernameText;
     
-    // Ödül miktarı
+    // Ödül miktarı - minimalist
     const prizeSpan = document.createElement('span');
     prizeSpan.className = 'kush__prize';
     prizeSpan.style.color = '#e25f3c';
-    prizeSpan.style.fontSize = '16px';
-    prizeSpan.style.fontWeight = '700';
+    prizeSpan.style.fontSize = '15px';
+    prizeSpan.style.fontWeight = '600';
     prizeSpan.style.whiteSpace = 'nowrap';
+    prizeSpan.style.lineHeight = '1.2';
     prizeSpan.textContent = prizeText;
     
     winnerDiv.appendChild(usernameSpan);
@@ -381,14 +382,47 @@ function styleBigWins() {
 
 // Big Wins stillerini uygula
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', styleBigWins);
+  document.addEventListener('DOMContentLoaded', function() {
+    styleBigWins();
+    speedUpBigWinsSwiper();
+  });
 } else {
   styleBigWins();
+  speedUpBigWinsSwiper();
 }
 
 window.addEventListener('load', function() {
   styleBigWins();
+  speedUpBigWinsSwiper();
 });
+
+// Swiper hızını artır
+function speedUpBigWinsSwiper() {
+  const bigWinsWrapper = document.querySelector('#big-wins-wrapper');
+  if (!bigWinsWrapper) {
+    setTimeout(speedUpBigWinsSwiper, 100);
+    return;
+  }
+  
+  const swiper = bigWinsWrapper.querySelector('.swiper');
+  if (swiper && swiper.swiper) {
+    // Swiper instance'ı varsa speed'i artır
+    if (swiper.swiper.params) {
+      if (swiper.swiper.params.autoplay) {
+        swiper.swiper.params.autoplay.delay = 2000; // 2 saniye (daha hızlı)
+        swiper.swiper.params.speed = 800; // Geçiş hızı
+      }
+      swiper.swiper.params.speed = 800;
+      swiper.swiper.update();
+    }
+  }
+  
+  // CSS transition süresini kısalt
+  const swiperWrapper = bigWinsWrapper.querySelector('.swiper-wrapper');
+  if (swiperWrapper) {
+    swiperWrapper.style.transitionDuration = '0.5s';
+  }
+}
 
 // MutationObserver: Big Wins bölümü dinamik olarak eklendiğinde de çalışsın
 const bigWinsObserver = new MutationObserver(function(mutations) {
@@ -398,6 +432,7 @@ const bigWinsObserver = new MutationObserver(function(mutations) {
     if (firstSlide && !firstSlide.querySelector('.kush__trophy-icon')) {
       styleBigWins();
     }
+    speedUpBigWinsSwiper();
   }
 });
 
