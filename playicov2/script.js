@@ -929,8 +929,8 @@ function createWelcomeSection() {
     : 'Casino ve Spor Bahisleri Platformu';
 
   const telegramButtonText = isEnglish 
-    ? 'Join Telegram' 
-    : 'Telegram\'a Katıl';
+    ? 'Request a Call' 
+    : 'Aranma Talebi';
 
   const casinoLabel = isEnglish ? 'Casino' : 'Casino';
   const sportsLabel = isEnglish ? 'Sports' : 'Spor';
@@ -951,10 +951,16 @@ function createWelcomeSection() {
           
           <div class="social-buttons">
             <button class="social-button" onclick="window.open('https://instagram.com/playicoglobal', '_blank')">
-              <img src="https://jacknicholsan.github.io/playico/images/instagram-white.png" alt="Instagram" class="social-icon">
+              <img src="https://jacknicholsan.github.io/playicov2/icons/svg/instagram.svg" alt="Instagram" class="social-icon">
             </button>
             <button class="social-button" onclick="window.open('https://x.com/playicotr', '_blank')">
-              <img src="https://jacknicholsan.github.io/playico/images/twitter.png" alt="Twitter" class="social-icon">
+              <img src="https://jacknicholsan.github.io/playicov2/icons/svg/x.svg" alt="Twitter" class="social-icon">
+            </button>
+            <button class="social-button" onclick="window.open('https://t.me/playico', '_blank')">
+              <img src="https://jacknicholsan.github.io/playicov2/icons/svg/telegram.svg" alt="Telegram" class="social-icon">
+            </button>
+            <button class="social-button" onclick="window.open('https://tiktok.com/@playicoglobal', '_blank')">
+              <img src="https://jacknicholsan.github.io/playicov2/icons/svg/tiktok.svg" alt="TikTok" class="social-icon">
             </button>
           </div>
         </div>
