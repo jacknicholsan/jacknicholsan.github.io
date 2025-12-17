@@ -590,7 +590,8 @@ function convertPopularGamesToGrid() {
   swiperWrapper.style.display = 'grid';
   swiperWrapper.style.gridTemplateColumns = 'repeat(10, 1fr)';
   swiperWrapper.style.gridAutoRows = 'auto';
-  swiperWrapper.style.gap = '6px';
+  swiperWrapper.style.gap = '3px';
+  swiperWrapper.style.rowGap = '8px';
   swiperWrapper.style.transform = 'none';
   swiperWrapper.style.width = '100%';
   swiperWrapper.style.flexWrap = 'wrap';
