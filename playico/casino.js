@@ -1585,7 +1585,7 @@
         async searchGames(query) {
             try {
                 const timestamp = Math.floor(Date.now() / 1000);
-                const response = await fetch('https://api1.ebetlab.com/api/player/public/games2/search', {
+                const response = await fetch('https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/search', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
