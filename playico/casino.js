@@ -1483,7 +1483,7 @@
                         };
                         break;
                     case 'slots':
-                        url = 'https://api1.ebetlab.com/api/player/public/games2/welcome/popular';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/new-releases';
                         body = {
                             type: "new-releases",
                             page: 1,
@@ -1495,9 +1495,9 @@
                         };
                         break;
                     case 'table':
-                        url = 'https://api1.ebetlab.com/api/player/public/games2/welcome/table-games';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/table-games';
                         body = {
-                            type: "table",
+                            type: "table-games",
                             page: 1,
                             limit: 24,
                             providers: provider ? [provider] : [],
@@ -1507,7 +1507,7 @@
                         };
                         break;
                     case 'live':
-                        url = 'https://api1.ebetlab.com/api/player/public/games2/welcome/live-lobby';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live-lobby';
                         body = {
                             type: "live-lobby",
                             page: 1,
@@ -1521,7 +1521,7 @@
 
 
                     default:
-                        url = 'https://api1.ebetlab.com/api/player/public/games2/group/lobby';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/lobby';
                         body = {
                             type: "lobby",
                             page: 1,
