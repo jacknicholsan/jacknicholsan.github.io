@@ -1423,7 +1423,7 @@
         async fetchProviders() {
             try {
                 const timestamp = Math.floor(Date.now() / 1000);
-                const response = await fetch('https://api1.ebetlab.com/api/player/public/providers/index', {
+                const response = await fetch('https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/providers/index', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1471,7 +1471,7 @@
 
                 switch(type) {
                     case 'playico-originals':
-                        url = 'https://api1.ebetlab.com/api/player/public/games2/provider/177';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/provider/177';
                         body = {
                             type: "free-spins",
                             page: 1,
