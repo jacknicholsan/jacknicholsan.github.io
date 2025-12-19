@@ -1507,9 +1507,9 @@
                         };
                         break;
                     case 'live':
-                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live-lobby';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live';
                         body = {
-                            type: "live-lobby",
+                            type: "live",
                             page: 1,
                             limit: 24,
                             providers: provider ? [provider] : [],
