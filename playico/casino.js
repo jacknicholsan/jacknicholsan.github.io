@@ -1507,7 +1507,7 @@
                         };
                         break;
                     case 'live':
-                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live';
+                        url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live-lobby';
                         body = {
                             type: "live",
                             page: 1,
@@ -1546,7 +1546,7 @@
                 }
 
                 const data = await response.json();
-                if(type === 'slots' || type === 'table') {
+                if(type === 'slots1' || type === 'table1' || type === 'live1') {
                     return data?.data || [];
                 }
                 return data.data?.data || [];
