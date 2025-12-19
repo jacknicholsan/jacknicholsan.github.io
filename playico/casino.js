@@ -1509,7 +1509,7 @@
                     case 'live':
                         url = 'https://api1.jukd049944jdjdh333ikslisspoelerss44shh334opodjd4ssd.com/api/player/public/games2/group/live-lobby';
                         body = {
-                            type: "live",
+                            type: "live-lobby",
                             page: 1,
                             limit: 24,
                             providers: provider ? [provider] : [],
