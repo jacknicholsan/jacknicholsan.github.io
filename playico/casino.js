@@ -1546,7 +1546,7 @@
                 }
 
                 const data = await response.json();
-                if(type === 'slots' || type === 'table' || type === 'live') {
+                if(type === 'slots' || type === 'table') {
                     return data?.data || [];
                 }
                 return data.data?.data || [];
