@@ -1000,7 +1000,7 @@
             const newLinks = document.createElement('div');
             newLinks.className = 'sidebar__links';
             newLinks.innerHTML = `
-                <a class="sidebar__link sidebar__link--bonus w-100" onclick="event.preventDefault(); window.open('https://t2m.io/PlayicoTV', '_blank');" style="background: url(https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/kvlkxlvkasdqGVADVQE/statics/5jHvdCAjyUFaihtN7nBsVty8ClgXX3ZqYckxiOeL.gif) left center / cover no-repeat;"></a>
+                <a class="sidebar__link sidebar__link--bonus w-100" onclick="event.preventDefault(); window.open('https://t2m.io/playicotv', '_blank');" style="background: url(https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/kvlkxlvkasdqGVADVQE/statics/5jHvdCAjyUFaihtN7nBsVty8ClgXX3ZqYckxiOeL.gif) left center / cover no-repeat;"></a>
             `;
             lastSidebarLinks.insertAdjacentElement('afterend', newLinks);
         },
