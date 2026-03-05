@@ -943,6 +943,66 @@ section,
     display: none !important;
 }
 
+/* ===== POPÜLER SAĞLAYICILAR — Orijinaller gibi başlık, filtre, hover parlama ===== */
+
+/* Başlık — orijinaller ile aynı stil */
+#populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc {
+    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    padding-left: 12px !important;
+    border-left: 3px solid #f0bf43 !important;
+    line-height: 1.2 !important;
+    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
+    margin-bottom: 5px !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
+/* Kart link — parlama overlay için */
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8 {
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+}
+
+/* Görseller — her zamanki filter */
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider img.app-ltr-9cywm4 {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 12px !important;
+    transition: filter 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
+/* Hover: hafif kalkma + iç parlama (inset glow) */
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8:hover img.app-ltr-9cywm4 {
+    transform: translateY(-6px) scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(224, 181, 80, 0.25) inset !important;
+    filter: sepia(20%) saturate(140%) hue-rotate(6deg) brightness(0.96) !important;
+}
+
+/* Hover parlama — üstten içe doğru ışık süpürme */
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 12px !important;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, transparent 40%, transparent 100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.35s ease !important;
+}
+
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8:hover::after {
+    opacity: 1 !important;
+}
+
 /* ===== SAĞLAYICILAR ALANI ===== */
 
 /* Sağlayıcılar Başlığı (Altın Tasarım) */
