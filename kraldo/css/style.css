@@ -1012,23 +1012,67 @@ footer.app-ltr-13ukv3g,
     margin: 16px 0 !important;
 }
 
-/* Alt blok — sosyal + telif */
+/* Alt blok — sol: ikonlar + telif, sağ: lisans görselleri */
 .app-ltr-13ukv3g .app-ltr-176106l {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 20px !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
 }
 
-/* Sosyal medya ikonları — yuvarlatılmış kare, tüm ikonlar görünsün */
+/* Sol taraf: sosyal ikonlar + telif metni (sola hizalı) */
 .app-ltr-13ukv3g .app-ltr-1h746bz {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     gap: 12px !important;
     flex-wrap: wrap !important;
 }
+.app-ltr-13ukv3g .app-ltr-176106l p.app-ltr-1959n0c {
+    flex-shrink: 0 !important;
+}
+
+/* Sağ taraf: lisans görselleri (script.js ile eklenir) */
+.app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+}
+.app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+.app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a:hover {
+    opacity: 0.9 !important;
+    transform: scale(1.03) !important;
+}
+.app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals img {
+    height: 36px !important;
+    width: auto !important;
+    max-height: 40px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+@media (max-width: 768px) {
+    .app-ltr-13ukv3g .app-ltr-176106l {
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+    .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals {
+        margin-left: 0 !important;
+    }
+    .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals img {
+        height: 32px !important;
+    }
+}
+
+/* Sosyal medya ikonları — yuvarlatılmış kare */
 
 .app-ltr-13ukv3g a.app-ltr-4cj164 {
     display: inline-flex !important;
@@ -1121,7 +1165,7 @@ footer.app-ltr-13ukv3g,
     background-color: #F7D27F !important;
 }
 
-/* Telif metni */
+/* Telif metni — solda, ikonlarla aynı hizada */
 .app-ltr-13ukv3g p.app-ltr-1959n0c {
     color: rgba(255, 255, 255, 0.5) !important;
     font-size: 12px !important;
