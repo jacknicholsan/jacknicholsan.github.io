@@ -606,7 +606,9 @@ section.app-ltr-1kawqjx::after {
     z-index: 0 !important;
 }
 
-p.app-ltr-wsdk5y {
+/* Başlık — masaüstü (wsdk5y) + mobil (whe9cs) aynı stil */
+p.app-ltr-wsdk5y,
+p.app-ltr-whe9cs {
     color: #f0bf43 !important;
     font-size: 18px !important;
     font-weight: 700 !important;
@@ -626,7 +628,8 @@ img.app-ltr-v4gekj {
 }
 
 /* Yazının üzerinden geçen MAVİ parlama (shine) animasyonu */
-p.app-ltr-wsdk5y::after {
+p.app-ltr-wsdk5y::after,
+p.app-ltr-whe9cs::after {
     content: '' !important;
     position: absolute !important;
     top: 0 !important;
@@ -946,7 +949,9 @@ section,
 /* ===== POPÜLER SAĞLAYICILAR — Orijinaller gibi başlık, filtre, hover parlama ===== */
 
 /* Başlık — orijinaller ile aynı stil */
-#populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc {
+/* Başlık — masaüstü (vorshc) + mobil (gfovjz) aynı stil */
+#populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
+#populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
     background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
@@ -1148,14 +1153,16 @@ footer.app-ltr-13ukv3g,
     z-index: 1 !important;
 }
 
-/* Footer logo */
-.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa {
+/* Footer logo — masaüstü (1r910aa) + mobil (b7ljj5) aynı stil */
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa,
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5 {
     display: inline-flex !important;
     align-items: center !important;
     opacity: 0.95 !important;
     transition: opacity 0.2s ease, filter 0.2s ease !important;
 }
-.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa:hover {
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa:hover,
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5:hover {
     opacity: 1 !important;
     filter: brightness(1.1) !important;
 }
@@ -1235,6 +1242,10 @@ img.app-ltr-le4fez {
     display: block !important;
 }
 @media (max-width: 768px) {
+    footer.app-ltr-13ukv3g {
+        padding-bottom: 370px !important;
+        margin-bottom: -20px !important;
+    }
     .app-ltr-13ukv3g .app-ltr-176106l {
         justify-content: center !important;
         flex-direction: column !important;
@@ -1592,4 +1603,120 @@ img.app-ltr-le4fez {
 .app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(2):hover::before,
 .app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(4):hover::before {
     background-color: #F7D27F !important;
+}
+
+/* ===== MOBİL BOTTOM MENÜ — Bizim palet (lacivert + altın) ===== */
+
+.app-ltr-rlbnh9 {
+    background: #081521 !important;
+    border-top: none !important;
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.app-ltr-rlbnh9 .app-ltr-6fyu7i {
+    background: #081521 !important;
+    border: none !important;
+}
+
+/* Üstte ışıma — .app-ltr-6fyu7i üzerinde, header gibi kenarlara doğru yok olan */
+.app-ltr-rlbnh9 .app-ltr-6fyu7i::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 5px !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(224, 181, 80, 0.08) 15%, rgba(224, 181, 80, 0.35) 50%, rgba(224, 181, 80, 0.08) 85%, transparent 100%) !important;
+    filter: blur(2px) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+.app-ltr-rlbnh9 .app-ltr-ja3k2i {
+    background: transparent !important;
+    border: none !important;
+}
+
+.app-ltr-rlbnh9 .app-ltr-ja3k2i {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    gap: 4px !important;
+    padding: 10px 8px 12px !important;
+}
+
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 5px 7px !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    transition: color 0.25s ease, background 0.25s ease !important;
+    background: transparent !important;
+}
+
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q:hover {
+    color: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q.active-link,
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q[aria-current="page"] {
+    color: #E0B550 !important;
+    background: rgba(224, 181, 80, 0.12) !important;
+}
+
+.app-ltr-rlbnh9 .app-ltr-1rc4kex {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    transition: background-color 0.25s ease !important;
+}
+
+/* Ana Sayfa (ilk item) — ikon olarak favicon */
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child .app-ltr-1rc4kex {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background-color: transparent !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q:hover .app-ltr-1rc4kex {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ana Sayfa favicon — hover'da hafif parlak */
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child:hover .app-ltr-1rc4kex {
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    filter: brightness(1.15) !important;
+}
+
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q.active-link .app-ltr-1rc4kex,
+.app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q[aria-current="page"] .app-ltr-1rc4kex {
+    background-color: #E0B550 !important;
+}
+
+/* Ana Sayfa favicon — aktif sayfada altın ton */
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link .app-ltr-1rc4kex,
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] .app-ltr-1rc4kex {
+    background-color: transparent !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
