@@ -478,14 +478,14 @@ a.app-ltr-1wihcbu:hover::after {
     transform: translateX(100%) !important;
 }
 
-/* ===== EN ÇOK OYNANLAR (.app-ltr-zitybv) — Altın/lacivert filtre, şık hover ===== */
+/* ===== EN ÇOK OYNANLAR / KRALDO ORİJİNALLERİ — Sadece #kraldo-originals section’ında ===== */
 
-.app-ltr-zitybv .app-ltr-1u72um6 {
+#kraldo-originals .app-ltr-1u72um6 {
     position: relative !important;
 }
 
 /* Kart wrapper — mevcut hover'ı sıfırla, yeni geçiş */
-.app-ltr-zitybv .app-ltr-1yyogpn {
+#kraldo-originals .app-ltr-1yyogpn {
     display: block !important;
     position: relative !important;
     overflow: hidden !important;
@@ -496,14 +496,14 @@ a.app-ltr-1wihcbu:hover::after {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
-.app-ltr-zitybv .app-ltr-1yyogpn:hover {
+#kraldo-originals .app-ltr-1yyogpn:hover {
     transform: translateY(-6px) scale(1.02) !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(224, 181, 80, 0.25), 0 0 20px rgba(224, 181, 80, 0.15) !important;
     border-color: rgba(224, 181, 80, 0.35) !important;
 }
 
 /* Görsel — altın + lacivert uyumlu filtre */
-.app-ltr-zitybv img.app-ltr-14baudc {
+#kraldo-originals img.app-ltr-14baudc {
     width: 100% !important;
     height: auto !important;
     display: block !important;
@@ -513,13 +513,13 @@ a.app-ltr-1wihcbu:hover::after {
     filter: sepia(0.2) saturate(1.15) hue-rotate(-8deg) brightness(0.93) contrast(1.03) !important;
 }
 
-.app-ltr-zitybv .app-ltr-1yyogpn:hover img.app-ltr-14baudc {
+#kraldo-originals .app-ltr-1yyogpn:hover img.app-ltr-14baudc {
     filter: sepia(0.06) saturate(1.08) hue-rotate(-4deg) brightness(1.06) contrast(1.02) !important;
     transform: scale(1.05) !important;
 }
 
 /* Hover'da üstten hafif altın ışık süpürme */
-.app-ltr-zitybv .app-ltr-1yyogpn::after {
+#kraldo-originals .app-ltr-1yyogpn::after {
     content: '' !important;
     position: absolute !important;
     inset: 0 !important;
@@ -530,7 +530,7 @@ a.app-ltr-1wihcbu:hover::after {
     transition: opacity 0.35s ease !important;
 }
 
-.app-ltr-zitybv .app-ltr-1yyogpn:hover::after {
+#kraldo-originals .app-ltr-1yyogpn:hover::after {
     opacity: 1 !important;
 }
 
@@ -860,14 +860,13 @@ section,
 
 /* ===== KRALDO ORİJİNALLERİ ALANI (Sadece bu alana özel spesifik seçici) ===== */
 
-/* ===== KRALDO ORİJİNALLERİ ALANI (5'li Grid Yapısı) ===== */
+/* ===== KRALDO ORİJİNALLERİ ALANI — Sadece #kraldo-originals (5'li grid, başlık, hover) ===== */
 
 /* Ana slider kapsayıcısını grid'e çevirip JS'i eziyoruz (masaüstü + mobil hash) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
-    /* Yan yana tam 5 eşit kolon */
     gap: 12px !important;
     transform: none !important;
     overflow: visible !important;
@@ -875,19 +874,19 @@ section,
 
 /* Mobil: 2 üstte 2 altta (5. kart gizli) */
 @media (max-width: 768px) {
-    .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
-    .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
+    #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
+    #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
         grid-template-columns: repeat(2, 1fr) !important;
     }
-    .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5),
-    .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5) {
+    #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5),
+    #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5) {
         display: none !important;
     }
 }
 
 /* Tekil kaydırma alanlarını sabitle, JS kuralını iptal et (masaüstü + mobil) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide {
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide {
     position: static !important;
     transform: none !important;
     min-width: unset !important;
@@ -895,9 +894,9 @@ section,
     width: 100% !important;
 }
 
-/* ===== Orijinaller Başlık Stili (Son Kazananlar Başlığı İle Aynı) - masaüstü + mobil ===== */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
+/* Orijinaller başlık stili (masaüstü + mobil) */
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
     background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
@@ -913,37 +912,34 @@ section,
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
-/* Görsellerin genişliği kolona göre otomatik otursun ve animasyona hazırlık (masaüstü + mobil) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4 {
+/* Görsellerin genişliği kolona göre otomatik (masaüstü + mobil) */
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4 {
     height: auto !important;
     width: 100% !important;
     border-radius: 12px !important;
     display: block !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    /* Hover geçişleri eklendi */
     cursor: pointer !important;
 }
 
-/* Oyun kartlarına hover (üzerine gelince) efekti (masaüstü + mobil) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover {
+/* Oyun kartlarına hover efekti (masaüstü + mobil) */
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover {
     transform: translateY(-8px) scale(1.02) !important;
-    /* Hafif yukarı kalkar ve büyür */
     box-shadow: 0 10px 20px rgba(218, 165, 32, 0.4),
         0 0 15px rgba(240, 191, 67, 0.2) inset !important;
-    /* Altın renginde dış ışıma */
 }
 
-/* Aynı alandaki slider içerisindeki oyun isimlerini kaldır (masaüstü + mobil hash) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-5me5kq,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-k6ty3a {
+/* Slider içindeki oyun isimlerini gizle (masaüstü + mobil) */
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-5me5kq,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-k6ty3a {
     display: none !important;
 }
 
-/* Hepsi ekrana sığdığı için yön oklarını gizle (masaüstü + mobil) */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54 .app-ltr-we262u,
-.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54 .app-ltr-we262u {
+/* Yön oklarını gizle (masaüstü + mobil) */
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54 .app-ltr-we262u,
+#kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54 .app-ltr-we262u {
     display: none !important;
 }
 

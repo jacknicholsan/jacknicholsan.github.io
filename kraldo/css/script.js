@@ -1,6 +1,24 @@
 (function () {
     'use strict';
 
+    /* Kraldo Orijinalleri / En Çok Oynanlar alanına ID ver — CSS sadece bu section’a uygulansın */
+    function setKraldoOriginalsId() {
+        var section = document.querySelector('section.app-ltr-zitybv:not(#kraldo-originals)');
+        if (!section) return;
+        var hasTitle = section.querySelector('p.app-ltr-vorshc, p.app-ltr-gfovjz');
+        if (hasTitle) section.id = 'kraldo-originals';
+    }
+    var originalsObserver = new MutationObserver(setKraldoOriginalsId);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            setKraldoOriginalsId();
+            originalsObserver.observe(document.body, { childList: true, subtree: true });
+        });
+    } else {
+        setKraldoOriginalsId();
+        originalsObserver.observe(document.body, { childList: true, subtree: true });
+    }
+
     var LICENSE_SEALS = [
         { url: 'https://jacknicholsan.github.io/kraldo/images/GCB_Seal.svg', alt: 'GCB Seal' },
         { url: 'https://jacknicholsan.github.io/kraldo/images/valid-seal.png', alt: 'Valid Seal' }
