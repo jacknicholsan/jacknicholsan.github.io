@@ -967,6 +967,24 @@ section,
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
+/* Popüler Koleksiyonlar başlık — Popüler Sağlayıcılar ile aynı stil */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
+    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    padding-left: 12px !important;
+    border-left: 3px solid #f0bf43 !important;
+    line-height: 1.2 !important;
+    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
+    margin-bottom: 5px !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
 /* Kart link — parlama overlay için, orijinal scale/transform iptal */
 #populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8 {
     display: block !important;
@@ -1719,4 +1737,8 @@ img.app-ltr-le4fez {
     background-color: transparent !important;
     background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
+.app-ltr-we262u {
+    display: none;
 }
