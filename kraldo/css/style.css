@@ -962,12 +962,13 @@ section,
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
-/* Kart link — parlama overlay için */
+/* Kart link — parlama overlay için, orijinal scale/transform iptal */
 #populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8 {
     display: block !important;
     position: relative !important;
     overflow: hidden !important;
     border-radius: 12px !important;
+    transform: none !important;
 }
 
 /* Görseller — her zamanki filter */
@@ -976,15 +977,22 @@ section,
     height: auto !important;
     display: block !important;
     border-radius: 12px !important;
-    transition: filter 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease !important;
+    transform: none !important;
+    transition: filter 0.35s ease, box-shadow 0.35s ease !important;
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
-/* Hover: hafif kalkma + iç parlama (inset glow) */
+/* Hover: görsel sabit, sadece ışık + parlama (büyüme yok) */
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8 {
+    transition: box-shadow 0.35s ease !important;
+}
+#populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8:hover {
+    box-shadow: 0 0 0 2px rgba(224, 181, 80, 0.5), 0 0 24px rgba(224, 181, 80, 0.2) !important;
+}
 #populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8:hover img.app-ltr-9cywm4 {
-    transform: translateY(-6px) scale(1.02) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(224, 181, 80, 0.25) inset !important;
-    filter: sepia(20%) saturate(140%) hue-rotate(6deg) brightness(0.96) !important;
+    transform: none !important;
+    box-shadow: 0 0 18px rgba(224, 181, 80, 0.2) inset !important;
+    filter: sepia(22%) saturate(150%) hue-rotate(7deg) brightness(0.95) !important;
 }
 
 /* Hover parlama — üstten içe doğru ışık süpürme */
@@ -993,7 +1001,7 @@ section,
     position: absolute !important;
     inset: 0 !important;
     border-radius: 12px !important;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, transparent 40%, transparent 100%) !important;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.22) 0%, transparent 45%, transparent 100%) !important;
     opacity: 0 !important;
     pointer-events: none !important;
     transition: opacity 0.35s ease !important;
@@ -1001,6 +1009,11 @@ section,
 
 #populer-saglayicilar .app-ltr-1e49d54 + .keen-slider a.app-ltr-1776mn8:hover::after {
     opacity: 1 !important;
+}
+
+/* Sağlayıcı isimlerini gizle */
+#populer-saglayicilar .app-ltr-5me5kq {
+    display: none !important;
 }
 
 /* ===== SAĞLAYICILAR ALANI ===== */
