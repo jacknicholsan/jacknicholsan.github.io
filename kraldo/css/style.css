@@ -105,39 +105,77 @@ a.app-ltr-wz10jn img {
     width: 100% !important;
 }
 
-/* ===== NAV WRAPPER — Üst ve Alt Altın Parlayan Çizgi ===== */
+/* ===== NAV WRAPPER — Dalga deseni, okyanus ===== */
 
-/* Ana dış wrapper — .app-ltr-3uycdy */
 .app-ltr-3uycdy {
     position: relative !important;
-    border-top: 1px solid rgba(218, 165, 32, 0.6) !important;
-    border-bottom: 1px solid rgba(218, 165, 32, 0.6) !important;
+    overflow: hidden !important;
+    border-top: 1px solid rgba(92, 129, 199, 0.3) !important;
+    border-bottom: 1px solid rgba(92, 129, 199, 0.25) !important;
+    /* Ana arka plan + sadece üst/altta ince altın ışıma (sağ/sol yok) */
+    background-image: linear-gradient(180deg, #0a1c2e 0%, #0d2842 40%, #081521 100%),
+        linear-gradient(180deg, rgba(224, 181, 80, 0.5) 0%, transparent 5px),
+        linear-gradient(0deg, rgba(224, 181, 80, 0.5) 0%, transparent 5px) !important;
+    background-size: 100% 100%, 100% 8px, 100% 8px !important;
+    background-position: 0 0, 0 0, 0 100% !important;
+    background-repeat: no-repeat, no-repeat, no-repeat !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* ===== MENÜ İTEM LİNKLERİ — HOVER ===== */
+/* Dalga deseni — SVG wave pattern */
+.app-ltr-3uycdy::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0.4 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath fill='none' stroke='%235C81C7' stroke-width='0.5' opacity='0.6' d='M0 60 Q300 20 600 60 T1200 60'/%3E%3Cpath fill='none' stroke='%235C81C7' stroke-width='0.5' opacity='0.4' d='M0 70 Q300 30 600 70 T1200 70'/%3E%3Cpath fill='none' stroke='%235C81C7' stroke-width='0.5' opacity='0.3' d='M0 50 Q300 90 600 50 T1200 50'/%3E%3C/svg%3E") !important;
+    background-size: 600px 120px !important;
+    background-repeat: repeat-x !important;
+    background-position: 0 50% !important;
+    pointer-events: none !important;
+}
 
-/* Link wrapper — transition ve border-radius */
+/* Altta ikinci katman — yumuşak dalga */
+.app-ltr-3uycdy::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(92, 129, 199, 0.06) 25%, rgba(92, 129, 199, 0.12) 50%, rgba(92, 129, 199, 0.06) 75%, transparent 100%) !important;
+    background-size: 200% 100% !important;
+    pointer-events: none !important;
+}
+
+.app-ltr-3uycdy .app-ltr-1l44gyp,
+.app-ltr-3uycdy .app-ltr-1jpm9pd,
+.app-ltr-3uycdy .app-ltr-1xhj18k {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ===== MENÜ İTEM LİNKLERİ — Şık hover (filtre rengi altın) ===== */
+
 .sl-navlink.app-ltr-v2xnvp {
-    transition: background 0.2s ease, box-shadow 0.2s ease !important;
-    border-radius: 8px !important;
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
+    border-radius: 10px !important;
+    padding: 8px 14px !important;
 }
 
-/* Hover — okunabilir altın efekt (metin netliği korunur) */
+/* Hover — yumuşak kalkma + altın çerçeve ve ışıma */
 .sl-navlink.app-ltr-v2xnvp:hover {
-    background: rgba(218, 165, 32, 0.12) !important;
-    box-shadow: inset 0 0 0 1px rgba(218, 165, 32, 0.3) !important;
+    background: rgba(224, 181, 80, 0.16) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: inset 0 0 0 1px rgba(224, 181, 80, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 20px rgba(224, 181, 80, 0.2), 0 4px 12px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Hover'da ikon span rengi */
 .sl-navlink.app-ltr-v2xnvp:hover .app-ltr-d34pj1 {
-    background-color: #f0bf43 !important;
-    filter: drop-shadow(0 0 4px rgba(240, 191, 67, 0.6)) !important;
+    background-color: #E0B550 !important;
+    filter: drop-shadow(0 0 8px rgba(224, 181, 80, 0.55)) !important;
 }
 
-/* Hover'da link metin rengi — okunaklı, parlak değil */
 .sl-navlink.app-ltr-v2xnvp:hover .app-ltr-1g3kp0t,
 .sl-navlink.app-ltr-v2xnvp:hover p {
-    color: #f0bf43 !important;
+    color: #F7D27F !important;
+    text-shadow: 0 0 14px rgba(247, 210, 127, 0.4) !important;
 }
 
 /* ===== AKTİF / SEÇİLİ MENÜ ===== */
@@ -308,6 +346,10 @@ a.app-ltr-gvuq9o img.app-ltr-11ivka5 {
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
+a.app-ltr-1776mn8 {
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
 /* Hover — kart */
 a.app-ltr-gvuq9o:hover {
     transform: translateY(-4px) scale(1.02) !important;
@@ -436,6 +478,62 @@ a.app-ltr-1wihcbu:hover::after {
     transform: translateX(100%) !important;
 }
 
+/* ===== EN ÇOK OYNANLAR (.app-ltr-zitybv) — Altın/lacivert filtre, şık hover ===== */
+
+.app-ltr-zitybv .app-ltr-1u72um6 {
+    position: relative !important;
+}
+
+/* Kart wrapper — mevcut hover'ı sıfırla, yeni geçiş */
+.app-ltr-zitybv .app-ltr-1yyogpn {
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.app-ltr-zitybv .app-ltr-1yyogpn:hover {
+    transform: translateY(-6px) scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(224, 181, 80, 0.25), 0 0 20px rgba(224, 181, 80, 0.15) !important;
+    border-color: rgba(224, 181, 80, 0.35) !important;
+}
+
+/* Görsel — altın + lacivert uyumlu filtre */
+.app-ltr-zitybv img.app-ltr-14baudc {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 12px !important;
+    transition: filter 0.35s ease, transform 0.35s ease !important;
+    transform-origin: center center !important;
+    filter: sepia(0.2) saturate(1.15) hue-rotate(-8deg) brightness(0.93) contrast(1.03) !important;
+}
+
+.app-ltr-zitybv .app-ltr-1yyogpn:hover img.app-ltr-14baudc {
+    filter: sepia(0.06) saturate(1.08) hue-rotate(-4deg) brightness(1.06) contrast(1.02) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Hover'da üstten hafif altın ışık süpürme */
+.app-ltr-zitybv .app-ltr-1yyogpn::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 12px !important;
+    background: linear-gradient(160deg, rgba(224, 181, 80, 0.12) 0%, transparent 45%, transparent 100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.35s ease !important;
+}
+
+.app-ltr-zitybv .app-ltr-1yyogpn:hover::after {
+    opacity: 1 !important;
+}
+
 /* ===== SON KAZANANLAR — Minimal & Temiz ===== */
 
 section.app-ltr-1kawqjx {
@@ -510,22 +608,21 @@ section.app-ltr-1kawqjx::after {
 
 p.app-ltr-wsdk5y {
     color: #f0bf43 !important;
-    /* Daha parlak, canlı altın rengi */
     font-size: 18px !important;
-    /* Punto bir tık daha büyütüldü (16px > 18px) */
     font-weight: 700 !important;
     letter-spacing: 0.3px !important;
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
-    /* Sol çizgi de aynı parlak ton */
     line-height: 1.2 !important;
     text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
-    /* Dışarıya doğru altın parlama eklendi */
     position: relative !important;
     overflow: hidden !important;
-    /* Parlamanın yazının dışına taşmaması için */
     display: inline-block !important;
-    /* Efektin yazı sınırlarına göre çalışması için */
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
+img.app-ltr-v4gekj {
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Yazının üzerinden geçen MAVİ parlama (shine) animasyonu */
@@ -803,6 +900,7 @@ section,
 .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
     background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
     -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-size: 18px !important;
     font-weight: 700 !important;
@@ -812,6 +910,7 @@ section,
     line-height: 1.2 !important;
     text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 5px !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Görsellerin genişliği kolona göre otomatik otursun ve animasyona hazırlık (masaüstü + mobil) */
@@ -854,6 +953,7 @@ section,
 p.app-ltr-1wx00r7 {
     background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
     -webkit-background-clip: text !important;
+    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     font-size: 18px !important;
     font-weight: 700 !important;
@@ -863,6 +963,7 @@ p.app-ltr-1wx00r7 {
     line-height: 1.2 !important;
     text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 0 !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Sağlayıcılar - "Tümü" Butonu */
@@ -994,6 +1095,11 @@ footer.app-ltr-13ukv3g,
     height: auto !important;
     width: auto !important;
     object-fit: contain !important;
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
+}
+
+img.app-ltr-le4fez {
+    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* 18+ ve dil alanı */
@@ -1188,4 +1294,233 @@ footer.app-ltr-13ukv3g,
         -webkit-mask-size: 20px 20px !important;
         mask-size: 20px 20px !important;
     }
+}
+
+/* ===== MOBİL SIDE MENÜ — Bizim renkler (altın/lacivert), orijinal menü yapısı ===== */
+
+.app-ltr-pri86d .app-ltr-yc36mz {
+    background: rgba(8, 21, 33, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.app-ltr-pri86d .app-ltr-1xdb38w,
+.app-ltr-pri86d .app-ltr-aqfy1j {
+    background: linear-gradient(180deg, #0a1c2e 0%, #081521 100%) !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4) !important;
+    min-width: 320px !important;
+    width: 88vw !important;
+    max-width: 360px !important;
+}
+
+.app-ltr-pri86d .app-ltr-1qb6qag {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+.app-ltr-pri86d .app-ltr-1qb6qag:hover {
+    color: #E0B550 !important;
+}
+
+/* Logo — hafif sağa, tam orta hissi */
+.app-ltr-pri86d .app-ltr-py5jdu {
+    justify-content: flex-start !important;
+    padding-left: 20px !important;
+}
+.app-ltr-pri86d .app-ltr-1ku0cza {
+    margin-right: auto !important;
+    margin-left: 50px !important;
+}
+.app-ltr-pri86d .app-ltr-1ku0cza img.app-ltr-7wh13m {
+    max-height: 36px !important;
+    width: auto !important;
+}
+
+.app-ltr-pri86d nav.app-ltr-upe1zs {
+    padding: 12px 0 !important;
+}
+
+.app-ltr-pri86d .app-ltr-1ebprri {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 24px !important;
+}
+
+.app-ltr-pri86d .app-ltr-xh1dde {
+    margin-bottom: 4px !important;
+}
+
+.app-ltr-pri86d .app-ltr-1wkq73a {
+    display: block !important;
+}
+
+/* Menü linki — varsayılan */
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 22px !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    transition: background 0.25s ease, color 0.25s ease !important;
+    background: transparent !important;
+}
+
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8 .app-ltr-129y8n7 {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    transition: background-color 0.25s ease !important;
+}
+
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8 .app-ltr-10t84xr {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+}
+
+/* Hover — hafif dokunuş (bizim palet) */
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8:hover .app-ltr-129y8n7 {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Seçili menü öğesi — altın arka plan + üst/altta içe ışıma (görseldeki gibi) */
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"],
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8.active {
+    background-color: rgba(224, 181, 80, 0.22) !important;
+    background-image: linear-gradient(180deg, rgba(224, 181, 80, 0.5) 0%, transparent 6px),
+        linear-gradient(0deg, rgba(224, 181, 80, 0.5) 0%, transparent 6px) !important;
+    background-size: 100% 8px, 100% 8px !important;
+    background-position: 0 0, 0 100% !important;
+    background-repeat: no-repeat !important;
+    border-radius: 10px !important;
+}
+
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"] .app-ltr-129y8n7,
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8.active .app-ltr-129y8n7 {
+    background-color: #E0B550 !important;
+}
+
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"] .app-ltr-10t84xr,
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8.active .app-ltr-10t84xr {
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+/* Alt menü oku — orijinal davranış, bizim renkte */
+.app-ltr-pri86d .app-ltr-pkzbfq {
+    color: rgba(255, 255, 255, 0.6) !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+}
+.app-ltr-pri86d .app-ltr-8atqhb:hover .app-ltr-pkzbfq {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"] ~ .app-ltr-pkzbfq,
+.app-ltr-pri86d a.sl-navlink.app-ltr-779vh8.active ~ .app-ltr-pkzbfq {
+    color: #E0B550 !important;
+}
+
+/* Dil seçici + sosyal alan */
+.app-ltr-pri86d .app-ltr-7tfc0v,
+.app-ltr-pri86d .app-ltr-12rl2rz {
+    padding: 12px 16px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Sosyal ikonlar — footer ile aynı (yuvarlatılmış kare, SVG mask, beyaz/altın sıra) */
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz a.app-ltr-4cj164 {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex-shrink: 0 !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+    text-decoration: none !important;
+    position: relative !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz a.app-ltr-4cj164:hover {
+    background: rgba(224, 181, 80, 0.18) !important;
+    border-color: rgba(224, 181, 80, 0.45) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 14px rgba(224, 181, 80, 0.2) !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz a.app-ltr-4cj164 img.app-ltr-7wh13m {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz a.app-ltr-4cj164::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 22px 22px !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 22px 22px !important;
+    mask-size: 22px 22px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(1)::before {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/whatsapp.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/whatsapp.svg") !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(2)::before {
+    background-color: #E0B550 !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/mail.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/mail.svg") !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(3)::before {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/telegram.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/telegram.svg") !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(4)::before {
+    background-color: #E0B550 !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/x.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/x.svg") !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(1):hover::before,
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(3):hover::before {
+    background-color: #fff !important;
+}
+
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(2):hover::before,
+.app-ltr-pri86d .app-ltr-12rl2rz .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(4):hover::before {
+    background-color: #F7D27F !important;
 }
