@@ -1,3 +1,88 @@
+/* ===== HEADER LOGO — a tag boyutunu büyüt, üstten hizalı (mobil: app-ltr-wz10jn) ===== */
+/* Logo konteyneri: site .app-ltr-cvus8s { max-height: 40px } ile top'tan uzak bırakıyor — eziyoruz */
+.app-ltr-jbtkju .app-ltr-cvus8s:first-child,
+[aria-label="site-header"] .app-ltr-jbtkju .app-ltr-cvus8s:first-child {
+    max-height: 56px !important;
+    min-height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Logo satırı */
+.app-ltr-jbtkju,
+[aria-label="site-header"] .app-ltr-jbtkju {
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Masaüstü logo linki */
+a.app-ltr-1cg87ht {
+    display: inline-flex !important;
+    align-items: center !important;
+    max-width: 220px !important;
+    max-height: 52px !important;
+    min-height: 52px !important;
+    min-width: auto !important;
+    transition: opacity 0.2s ease !important;
+}
+a.app-ltr-1cg87ht img {
+    max-height: 52px !important;
+    height: 52px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* Mobil logo linki (farklı class: app-ltr-wz10jn) */
+a.app-ltr-wz10jn {
+    display: inline-flex !important;
+    align-items: center !important;
+    max-width: 200px !important;
+    max-height: 46px !important;
+    min-height: 46px !important;
+    min-width: auto !important;
+    transition: opacity 0.2s ease !important;
+}
+a.app-ltr-wz10jn img {
+    max-height: 46px !important;
+    height: 46px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    /* Mobilde logo konteyneri class'ı: .app-ltr-s3k5k8 (max-height: 40px'ı eziyoruz) */
+    .app-ltr-jbtkju .app-ltr-s3k5k8,
+    [aria-label="site-header"] .app-ltr-s3k5k8,
+    [aria-label="site-header"] .app-ltr-jbtkju .app-ltr-s3k5k8,
+    .app-ltr-pr9ycx .app-ltr-s3k5k8,
+    .app-ltr-pr9ycx .app-ltr-jbtkju .app-ltr-s3k5k8 {
+        max-height: 52px !important;
+        min-height: auto !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    /* Masaüstü class mobilde de küçülebilir */
+    a.app-ltr-1cg87ht {
+        max-height: 46px !important;
+        min-height: 46px !important;
+    }
+    a.app-ltr-1cg87ht img {
+        max-height: 46px !important;
+        height: 46px !important;
+    }
+    /* Mobil class — büyük logo */
+    a.app-ltr-wz10jn {
+        max-height: 46px !important;
+        min-height: 46px !important;
+    }
+    a.app-ltr-wz10jn img {
+        max-height: 46px !important;
+        height: 46px !important;
+    }
+}
+
 /* ===== MENÜ ÖZEL — Sadece .app-ltr-3uycdy altında (slider vs. bozulmaz) ===== */
 
 /* Ara wrapper'lardaki gereksiz border'ları kaldır, sadece nav içinde */
@@ -254,7 +339,7 @@ a.app-ltr-gvuq9o:hover p.app-ltr-1uys7bq {
 
     /* Mobilde görsel yüksekliği */
     a.app-ltr-gvuq9o img.app-ltr-11ivka5 {
-        height: 160px !important;
+        height: 80px !important;
     }
 
     /* Mobilde yazı boyutu aynı kalsın */
@@ -652,8 +737,9 @@ section,
 
 /* ===== KRALDO ORİJİNALLERİ ALANI (5'li Grid Yapısı) ===== */
 
-/* Ana slider kapsayıcısını grid'e çevirip JS'i eziyoruz */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider {
+/* Ana slider kapsayıcısını grid'e çevirip JS'i eziyoruz (masaüstü + mobil hash) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
     /* Yan yana tam 5 eşit kolon */
@@ -662,8 +748,21 @@ section,
     overflow: visible !important;
 }
 
-/* Tekil kaydırma alanlarını sabitle, JS kuralını iptal et */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide {
+/* Mobil: 2 üstte 2 altta (5. kart gizli) */
+@media (max-width: 768px) {
+    .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider,
+    .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5),
+    .app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide:nth-child(5) {
+        display: none !important;
+    }
+}
+
+/* Tekil kaydırma alanlarını sabitle, JS kuralını iptal et (masaüstü + mobil) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider .keen-slider__slide {
     position: static !important;
     transform: none !important;
     min-width: unset !important;
@@ -671,8 +770,9 @@ section,
     width: 100% !important;
 }
 
-/* ===== Orijinaller Başlık Stili (Son Kazananlar Başlığı İle Aynı) ===== */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc {
+/* ===== Orijinaller Başlık Stili (Son Kazananlar Başlığı İle Aynı) - masaüstü + mobil ===== */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
     background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -686,8 +786,9 @@ section,
     margin-bottom: 5px !important;
 }
 
-/* Görsellerin genişliği kolona göre otomatik otursun ve animasyona hazırlık */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4 {
+/* Görsellerin genişliği kolona göre otomatik otursun ve animasyona hazırlık (masaüstü + mobil) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4 {
     height: auto !important;
     width: 100% !important;
     border-radius: 12px !important;
@@ -697,8 +798,9 @@ section,
     cursor: pointer !important;
 }
 
-/* Oyun kartlarına hover (üzerine gelince) efekti */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover {
+/* Oyun kartlarına hover (üzerine gelince) efekti (masaüstü + mobil) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider img.app-ltr-9cywm4:hover {
     transform: translateY(-8px) scale(1.02) !important;
     /* Hafif yukarı kalkar ve büyür */
     box-shadow: 0 10px 20px rgba(218, 165, 32, 0.4),
@@ -706,13 +808,15 @@ section,
     /* Altın renginde dış ışıma */
 }
 
-/* Aynı alandaki slider içerisindeki oyun isimlerini kaldır */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-5me5kq {
+/* Aynı alandaki slider içerisindeki oyun isimlerini kaldır (masaüstü + mobil hash) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-5me5kq,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54+.keen-slider strong.app-ltr-k6ty3a {
     display: none !important;
 }
 
-/* Hepsi ekrana sığdığı için yön oklarını gizle */
-.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54 .app-ltr-we262u {
+/* Hepsi ekrana sığdığı için yön oklarını gizle (masaüstü + mobil) */
+.app-ltr-1l44gyp:has(p.app-ltr-vorshc)>.app-ltr-1e49d54 .app-ltr-we262u,
+.app-ltr-1l44gyp:has(p.app-ltr-gfovjz)>.app-ltr-1e49d54 .app-ltr-we262u {
     display: none !important;
 }
 
