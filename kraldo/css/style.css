@@ -932,3 +932,216 @@ button.app-ltr-1b4gezl:hover {
 .keen-slider.app-ltr-1yuhvjn .keen-slider__slide.app-ltr-11zm6x9:hover img.app-ltr-12yot19 {
     filter: grayscale(0%) contrast(1.1) brightness(1.1) !important;
 }
+
+/* ===== FOOTER — #081521 uyumlu, saydam çizgili, şık sosyal ikonlar ===== */
+
+footer.app-ltr-13ukv3g,
+.app-ltr-13ukv3g {
+    background: #081521 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Üstte ince altın çizgi */
+.app-ltr-13ukv3g::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(224, 181, 80, 0.15) 20%, rgba(224, 181, 80, 0.4) 50%, rgba(224, 181, 80, 0.15) 80%, transparent 100%) !important;
+    pointer-events: none !important;
+}
+
+/* Modern saydam yatay çizgiler (hafif grid) */
+.app-ltr-13ukv3g::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 1px,
+        rgba(255, 255, 255, 0.02) 1px,
+        rgba(255, 255, 255, 0.02) 2px
+    ) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+.app-ltr-13ukv3g .app-ltr-1l44gyp,
+.app-ltr-13ukv3g .app-ltr-cfnr2u {
+    max-width: 100% !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Footer logo */
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa {
+    display: inline-flex !important;
+    align-items: center !important;
+    opacity: 0.95 !important;
+    transition: opacity 0.2s ease, filter 0.2s ease !important;
+}
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-1r910aa:hover {
+    opacity: 1 !important;
+    filter: brightness(1.1) !important;
+}
+.app-ltr-13ukv3g .app-ltr-ywf5jp img.app-ltr-le4fez {
+    max-height: 36px !important;
+    height: auto !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
+
+/* 18+ ve dil alanı */
+.app-ltr-13ukv3g .app-ltr-19zdw54 {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+.app-ltr-13ukv3g .app-ltr-162t47d {
+    color: rgba(224, 181, 80, 0.9) !important;
+    font-weight: 600 !important;
+}
+
+/* Ayırıcı çizgi */
+.app-ltr-13ukv3g hr.app-ltr-gsjovs {
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin: 16px 0 !important;
+}
+
+/* Alt blok — sosyal + telif */
+.app-ltr-13ukv3g .app-ltr-176106l {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 20px !important;
+}
+
+/* Sosyal medya ikonları — yuvarlatılmış kare, tüm ikonlar görünsün */
+.app-ltr-13ukv3g .app-ltr-1h746bz {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+.app-ltr-13ukv3g a.app-ltr-4cj164 {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex-shrink: 0 !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.app-ltr-13ukv3g a.app-ltr-4cj164:hover {
+    background: rgba(224, 181, 80, 0.18) !important;
+    border-color: rgba(224, 181, 80, 0.45) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 14px rgba(224, 181, 80, 0.2) !important;
+}
+
+/* Mevcut API img'leri gizle — yerine ::before ile kendi SVG'lerimiz */
+.app-ltr-13ukv3g a.app-ltr-4cj164 img.app-ltr-7wh13m {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+/* İkon katmanı: ::before ile SVG mask + renk (buton arka planı ayrı kalır) */
+.app-ltr-13ukv3g a.app-ltr-4cj164 {
+    position: relative !important;
+}
+.app-ltr-13ukv3g a.app-ltr-4cj164::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 22px 22px !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 22px 22px !important;
+    mask-size: 22px 22px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+/* 1. WhatsApp — kendi SVG, beyaz */
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(1)::before {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/whatsapp.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/whatsapp.svg") !important;
+}
+
+/* 2. Email — kendi SVG, altın */
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(2)::before {
+    background-color: #E0B550 !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/mail.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/mail.svg") !important;
+}
+
+/* 3. Telegram — kendi SVG, beyaz */
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(3)::before {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/telegram.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/telegram.svg") !important;
+}
+
+/* 4. X (Twitter) — kendi SVG, altın */
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(4)::before {
+    background-color: #E0B550 !important;
+    -webkit-mask-image: url("https://jacknicholsan.github.io/kraldo/images/x.svg") !important;
+    mask-image: url("https://jacknicholsan.github.io/kraldo/images/x.svg") !important;
+}
+
+/* Hover — ikon rengi parlasın */
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(1):hover::before,
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(3):hover::before {
+    background-color: #fff !important;
+}
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(2):hover::before,
+.app-ltr-13ukv3g .app-ltr-1h746bz a.app-ltr-4cj164:nth-child(4):hover::before {
+    background-color: #F7D27F !important;
+}
+
+/* Telif metni */
+.app-ltr-13ukv3g p.app-ltr-1959n0c {
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-size: 12px !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .app-ltr-13ukv3g a.app-ltr-4cj164 {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
+    .app-ltr-13ukv3g a.app-ltr-4cj164 img.app-ltr-7wh13m {
+        width: 1px !important;
+        height: 1px !important;
+    }
+    .app-ltr-13ukv3g a.app-ltr-4cj164::before {
+        background-size: 20px 20px !important;
+        -webkit-mask-size: 20px 20px !important;
+        mask-size: 20px 20px !important;
+    }
+}
