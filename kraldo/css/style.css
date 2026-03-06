@@ -1276,6 +1276,13 @@ img.app-ltr-le4fez {
     }
 }
 
+/* Laptop / MacBook ekranlarında footer menüde taşan son öğeyi gizle */
+@media (min-width: 769px) and (max-width: 1440px) {
+    .app-ltr-13ukv3g .app-ltr-1uzs5zs li:last-child {
+        display: none !important;
+    }
+}
+
 /* Sosyal medya ikonları — yuvarlatılmış kare */
 
 .app-ltr-13ukv3g a.app-ltr-4cj164 {
@@ -1629,11 +1636,19 @@ img.app-ltr-le4fez {
     background: #081521 !important;
     border-top: none !important;
     box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.25) !important;
+    overflow: visible !important;
+    padding-bottom: 0px !important;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1;
 }
 
 .app-ltr-rlbnh9 .app-ltr-6fyu7i {
     background: #081521 !important;
     border: none !important;
+    overflow: visible !important;
+    position: relative !important;
 }
 
 /* Üstte ışıma — .app-ltr-6fyu7i üzerinde, header gibi kenarlara doğru yok olan */
@@ -1653,22 +1668,27 @@ img.app-ltr-le4fez {
 .app-ltr-rlbnh9 .app-ltr-ja3k2i {
     background: transparent !important;
     border: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-around !important;
+    gap: 2px !important;
+    padding: 8px 6px 14px !important;
 }
 
-.app-ltr-rlbnh9 .app-ltr-ja3k2i {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-around !important;
-    gap: 4px !important;
-    padding: 10px 8px 12px !important;
-}
+/* Sıra: Sol 2, Ortada ANA SAYFA, Sağ 2 */
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:nth-child(1) { order: 3 !important; }
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:nth-child(2) { order: 1 !important; }
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:nth-child(3) { order: 2 !important; }
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:nth-child(4) { order: 4 !important; }
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:nth-child(5) { order: 5 !important; }
 
 .app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 4px !important;
-    padding: 5px 7px !important;
+    gap: 2px !important;
+    padding: 5px 6px !important;
     border-radius: 10px !important;
     text-decoration: none !important;
     color: rgba(255, 255, 255, 0.7) !important;
@@ -1677,6 +1697,61 @@ img.app-ltr-le4fez {
     letter-spacing: 0.02em !important;
     transition: color 0.25s ease, background 0.25s ease !important;
     background: transparent !important;
+}
+
+/* Ortadaki ANA SAYFA — beyaz daire menünün üstüne taşar, taşan kısım altın ışıma */
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child {
+    position: relative !important;
+    overflow: visible !important;
+    padding-top: 36px !important;
+    margin-top: -28px !important;
+    background: transparent !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 50% !important;
+    /* top: 0 !important; */
+    transform: translate(-50%, -50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    /* background: rgba(255, 255, 255, 0.96) !important; */
+    box-shadow: 0 -2px 0 rgba(224, 181, 80, 0.2),
+                0 0 28px rgba(224, 181, 80, 0.4),
+                0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child::after {
+    content: '' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    width: 56px !important;
+    height: 28px !important;
+    border-radius: 56px 56px 0 0 !important;
+    background: linear-gradient(180deg, rgba(224, 181, 80, 0.3) 0%, transparent 100%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child .app-ltr-1rc4kex {
+    position: relative !important;
+    z-index: 2 !important;
+    margin-top: -44px !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link,
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] {
+    color: #E0B550 !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link .app-ltr-1rc4kex,
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] .app-ltr-1rc4kex {
+    filter: none !important;
 }
 
 .app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q:hover {
@@ -1688,6 +1763,10 @@ img.app-ltr-le4fez {
 .app-ltr-rlbnh9 a.sl-navlink.app-ltr-1949j9q[aria-current="page"] {
     color: #E0B550 !important;
     background: rgba(224, 181, 80, 0.12) !important;
+}
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link,
+.app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] {
+    background: transparent !important;
 }
 
 .app-ltr-rlbnh9 .app-ltr-1rc4kex {
