@@ -1253,7 +1253,7 @@ img.app-ltr-le4fez {
     transform: scale(1.03) !important;
 }
 .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals img {
-    height: 46px !important;
+    height: 50px !important;
     width: auto !important;
     max-height: 50px !important;
     object-fit: contain !important;
@@ -1261,7 +1261,7 @@ img.app-ltr-le4fez {
 }
 @media (max-width: 768px) {
     footer.app-ltr-13ukv3g {
-        padding-bottom: 370px !important;
+        padding-bottom: 750px !important;
         margin-bottom: -20px !important;
     }
     .app-ltr-13ukv3g .app-ltr-176106l {
@@ -1272,7 +1272,7 @@ img.app-ltr-le4fez {
         margin-left: 0 !important;
     }
     .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals img {
-        height: 40px !important;
+        height: 50px !important;
     }
 }
 
@@ -1711,7 +1711,7 @@ img.app-ltr-le4fez {
     content: '' !important;
     position: absolute !important;
     left: 50% !important;
-    /* top: 0 !important; */
+    top: 0 !important;
     transform: translate(-50%, -50%) !important;
     width: 56px !important;
     height: 56px !important;
@@ -1820,4 +1820,22 @@ img.app-ltr-le4fez {
 
 .app-ltr-we262u {
     display: none;
+}
+/* API logo URL'si yerine GitHub Pages logosu (sadece CSS, HTML değişmez) */
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5 {
+    background-image: url('https://jacknicholsan.github.io/kraldo/images/logo.gif') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
+    min-height: 52px !important;
+    min-width: 154px !important;
+}
+/* Orijinal img gizle — sadece AssetsSite/4896b795... olan logo */
+.app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5 img[src*="4896b795-a281-493c-ba9e-4c4b6878759e"] {
+    opacity: 0 !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
 }
