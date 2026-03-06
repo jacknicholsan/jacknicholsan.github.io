@@ -1826,8 +1826,8 @@ img.app-ltr-le4fez {
     background-image: url('https://jacknicholsan.github.io/kraldo/images/logo.gif') !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    background-size: contain !important;
-    min-height: 52px !important;
+    background-size: auto 63px !important;
+    min-height: 72px !important;
     min-width: 154px !important;
 }
 /* Orijinal img gizle — sadece AssetsSite/4896b795... olan logo */
