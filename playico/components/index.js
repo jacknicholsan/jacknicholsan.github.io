@@ -98,10 +98,10 @@
                                 </button>
                                 
                                 <div class="social-buttons">
-                                    <button class="social-button" onclick="window.open('https://instagram.com/playicoglobal', '_blank')">
+                                    <button class="social-button" onclick="window.open('https://t2m.io/playicoinsta', '_blank')">
                                         <img src="https://jacknicholsan.github.io/playico/images/instagram-white.png" alt="Instagram" class="social-icon">
                                     </button>
-                                    <button class="social-button" onclick="window.open('https://x.com/playicotr', '_blank')">
+                                    <button class="social-button" onclick="window.open('https://t2m.io/playicox', '_blank')">
                                         <img src="https://jacknicholsan.github.io/playico/images/twitter.png" alt="Twitter" class="social-icon">
                                     </button>
                                 </div>
