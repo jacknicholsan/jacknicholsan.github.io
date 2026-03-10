@@ -900,7 +900,7 @@ section,
 /* Orijinaller başlık stili (masaüstü + mobil) */
 #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -952,7 +952,7 @@ section,
 /* Başlık — masaüstü (vorshc) + mobil (gfovjz) aynı stil */
 #populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 #populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -970,7 +970,7 @@ section,
 /* Popüler Koleksiyonlar başlık — Popüler Sağlayıcılar ile aynı stil */
 .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -1043,7 +1043,7 @@ section,
 
 /* Sağlayıcılar Başlığı (Altın Tasarım) */
 p.app-ltr-1wx00r7 {
-    background: linear-gradient(135deg, #daa520 0%, #f0bf43 100%) !important;
+    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
