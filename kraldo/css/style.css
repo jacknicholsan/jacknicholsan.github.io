@@ -623,9 +623,9 @@ p.app-ltr-whe9cs {
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
-img.app-ltr-v4gekj {
+/* img.app-ltr-v4gekj {
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
-}
+} */
 
 /* Yazının üzerinden geçen MAVİ parlama (shine) animasyonu */
 p.app-ltr-wsdk5y::after,
