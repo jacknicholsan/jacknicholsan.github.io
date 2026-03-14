@@ -24,16 +24,9 @@
             }
         }
     }
-    function setPhoenixSportId() {
-        var section = document.querySelector('section[data-mj="widget-phoenix-sport"]');
-        if (section && !section.id) {
-            section.id = 'kraldo-phoenix-sport';
-        }
-    }
     function runSectionIds() {
         setKraldoOriginalsId();
         setPopulerSaglayicilarId();
-        setPhoenixSportId();
     }
     var sectionObserver = new MutationObserver(runSectionIds);
     if (document.readyState === 'loading') {
