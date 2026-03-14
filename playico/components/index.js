@@ -174,32 +174,32 @@
                 <div class="brand-inner">
                     <div class="brand-slider">
                         <div class="brand-slider-group">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronro" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronro" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronro" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronro" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronro" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronro" class="brand-logo">
                         </div>
                         <div class="brand-slider-group">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronto" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img srcz="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronto" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-atalanta.png" alt="Atalanta" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-hullcity.png" alt="Hullcity" class="brand-logo">
-                                <img src="https://cdn.lexcore.space/playico/assets/partner-toronto.png" alt="Toronro" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronto" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img srcz="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronto" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-atalanta.png" alt="Atalanta" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-galaxy.png" alt="LA-Galaxy" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-hullcity.png" alt="Hullcity" class="brand-logo">
+                                <img src="https://jacknicholsan.github.io/playico/images/partner-toronto.png" alt="Toronro" class="brand-logo">
                         </div>
                     </div>
                 </div>
@@ -395,7 +395,7 @@
                         <div class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <div class="feature-icon-bg">
-                                    <img src="https://cdn.lexcore.space/playico/assets/rocket-black.png" alt="Hızlı" class="feature-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/rocket-black.png" alt="Hızlı" class="feature-icon">
                                 </div>
                             </div>
                             <div class="feature-text">
@@ -405,7 +405,7 @@
                         <div class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <div class="feature-icon-bg">
-                                    <img src="https://cdn.lexcore.space/playico/assets/diamond.png" alt="Güvenli" class="feature-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/diamond.png" alt="Güvenli" class="feature-icon">
                                 </div>
                             </div>
                             <div class="feature-text">
@@ -415,7 +415,7 @@
                         <div class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <div class="feature-icon-bg">
-                                    <img src="https://cdn.lexcore.space/playico/assets/king.png" alt="VIP" class="feature-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/king.png" alt="VIP" class="feature-icon">
                                 </div>
                             </div>
                             <div class="feature-text">
@@ -425,7 +425,7 @@
                         <div class="feature-item">
                             <div class="feature-icon-wrapper">
                                 <div class="feature-icon-bg">
-                                    <img src="https://cdn.lexcore.space/playico/assets/coins.png" alt="Bonus" class="feature-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/coins.png" alt="Bonus" class="feature-icon">
                                 </div>
                             </div>
                             <div class="feature-text">
@@ -463,7 +463,7 @@
   function showBackgroundSplit() {
     const BackgroundComponent = `
             <div class="background-container">
-                <img src="https://cdn.lexcore.space/playico/assets/pink.png" class="background-glow" alt="background effect">
+                <img src="https://jacknicholsan.github.io/playico/images/pink.png" class="background-glow" alt="background effect">
             </div>
         `;
     const backgroundDiv = document.createElement("div");
@@ -565,23 +565,23 @@
                             
                             <div class="sports-buttons">
                                     <button class="sports-button" onclick="window.history.pushState('', '', '/sportsbook'); window.history.pushState('', '', '/sportsbook'); window.history.go(-1);">
-                                    <img src="https://cdn.lexcore.space/playico/assets/football-2.png" alt="Futbol" class="sports-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/football-2.png" alt="Futbol" class="sports-icon">
                                         <span id="football-text">${texts.football}</span>
                                 </button>
                                 <span class="separator">|</span>
                                 <button class="sports-button">
-                                    <img src="https://cdn.lexcore.space/playico/assets/basketball-2.png" alt="Basketbol" class="sports-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/basketball-2.png" alt="Basketbol" class="sports-icon">
                                         <span id="basketball-text">${texts.basketball}</span>
                                 </button>
                                 <span class="separator">|</span>
                                 <button class="sports-button">
-                                    <img src="https://cdn.lexcore.space/playico/assets/tennis-2.png" alt="Tenis" class="sports-icon">
+                                    <img src="https://jacknicholsan.github.io/playico/images/tennis-2.png" alt="Tenis" class="sports-icon">
                                         <span id="tennis-text">${texts.tennis}</span>
                                 </button>
                             </div>
                         </div>
                         <div class="banner-right">
-                                <img src="https://cdn.lexcore.space/playico/assets/players-3.png" alt="Players" class="players-image">
+                                <img src="https://jacknicholsan.github.io/playico/images/players-3.png" alt="Players" class="players-image">
                         </div>
                     </div>
                 </div>
@@ -712,7 +712,7 @@
                 <div class="slider-item active" data-index="0">
                     <div class="slider-content">
                         <div class="slider-icon">
-                            <img src="https://cdn.lexcore.space/playico/assets/star-icon-2.png" alt="Star">
+                            <img src="https://jacknicholsan.github.io/playico/images/star-icon-2.png" alt="Star">
                         </div>
                         <div class="slider-text">
                                 <h3 class="slider-title" id="slider-title-1">${texts.sliderTitle1}</h3>
@@ -720,14 +720,14 @@
                         </div>
                     </div>
                     <div class="slider-image">
-                        <img src="https://cdn.lexcore.space/playico/assets/gift-banner.png" alt="Gift">
+                        <img src="https://jacknicholsan.github.io/playico/images/gift-banner.png" alt="Gift">
                     </div>
                 </div>
     
                 <div class="slider-item active" data-index="1">
                     <div class="slider-content">
                         <div class="slider-icon">
-                            <img src="https://cdn.lexcore.space/playico/assets/king-icon.png" alt="King">
+                            <img src="https://jacknicholsan.github.io/playico/images/king-icon.png" alt="King">
                         </div>
                         <div class="slider-text">
                                 <h3 class="slider-title" id="slider-title-2">${texts.sliderTitle2}</h3>
@@ -735,14 +735,14 @@
                         </div>
                     </div>
                     <div class="slider-image">
-                        <img src="https://cdn.lexcore.space/playico/assets/support-banner-2.png" alt="Support">
+                        <img src="https://jacknicholsan.github.io/playico/images/support-banner-2.png" alt="Support">
                     </div>
                 </div>
     
                 <div class="slider-item active" data-index="2">
                     <div class="slider-content">
                         <div class="slider-icon">
-                            <img src="https://cdn.lexcore.space/playico/assets/vip-icon.png" alt="VIP">
+                            <img src="https://jacknicholsan.github.io/playico/images/vip-icon.png" alt="VIP">
                         </div>
                         <div class="slider-text">
                                     <h3 class="slider-title" id="slider-title-3">${texts.sliderTitle3}</h3>
@@ -750,7 +750,7 @@
                         </div>
                     </div>
                     <div class="slider-image">
-                                <img src="https://cdn.lexcore.space/playico/assets/vip-icon-9.png" alt="VIP">
+                                <img src="https://jacknicholsan.github.io/playico/images/vip-icon-9.png" alt="VIP">
                     </div>
                 </div>
             </div>
@@ -1191,7 +1191,7 @@
                 <div class="popular-sports-container">
                     <div class="popular-sports-title-wrap">
                         <div class="popular-sports-title">
-                            <img src="https://cdn.lexcore.space/playico/assets/sports-icon-2.png" alt="Sports" style="width: 22px; height: 22px; margin-right: 2px; object-fit: contain;">
+                            <img src="https://jacknicholsan.github.io/playico/images/sports-icon-2.png" alt="Sports" style="width: 22px; height: 22px; margin-right: 2px; object-fit: contain;">
                             ${componentTexts[currentLang].title}
                         </div>
                         <a href="/${currentLang}/sportsbook" class="popular-sports-link">${componentTexts[currentLang].link}</a>
@@ -1352,36 +1352,36 @@
                 <div class="originals-container">
                     <div class="originals-title-wrap">
                         <div class="originals-title">
-                            <img src="https://cdn.lexcore.space/playico/assets/fire-icon.png" alt="Playico" style="width: 22px; height: 22px;">
+                            <img src="https://jacknicholsan.github.io/playico/images/fire-icon.png" alt="Playico" style="width: 22px; height: 22px;">
                             ${componentText}
                         </div>
                     </div>
                     <div class="originals-grid">
                         <a href="/${currentLang}/casino/games/ebetlab-dice-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-dice-1.png" alt="Dice">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-dice-1.png" alt="Dice">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-mines-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-mines-1.png" alt="Mines">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-mines-1.png" alt="Mines">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-limbo-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-limbo-1.png" alt="Limbo">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-limbo-1.png" alt="Limbo">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-plinko-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-plinko-1.png" alt="Plinko">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-plinko-1.png" alt="Plinko">
                         </a>
                     </div>
                     <div class="originals-grid">
                         <a href="/${currentLang}/casino/games/ebetlab-crash-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-crash-1.png" alt="Crash">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-crash-1.png" alt="Crash">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-wheel-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-wheel-2.png" alt="Wheel">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-wheel-2.png" alt="Wheel">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-coinflip-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-coinflip-1.png" alt="Coinflip">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-coinflip-1.png" alt="Coinflip">
                         </a>
                         <a href="/${currentLang}/casino/games/ebetlab-night-tower-originals" class="original-game">
-                            <img src="https://cdn.lexcore.space/playico/assets/playico-tower-1.png" alt="Tower">
+                            <img src="https://jacknicholsan.github.io/playico/images/playico-tower-1.png" alt="Tower">
                         </a>
                     </div>
                 </div>
