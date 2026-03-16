@@ -1836,12 +1836,16 @@ img.app-ltr-le4fez {
 }
 /* API logo URL'si yerine GitHub Pages logosu (sadece CSS, HTML değişmez) */
 .app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5 {
-    background-image: url('https://jacknicholsan.github.io/kraldo/images/footer_logo.png') !important;
+    background-image: url('https://jacknicholsan.github.io/kraldo/images/Kraldo_Footer_Oduller.png') !important;
     background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-size: auto 63px !important;
-    min-height: 72px !important;
+    background-position: center center !important;
+    background-size: contain !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    min-height: 140px !important;
     min-width: 154px !important;
+    margin: 0 auto !important;
 }
 /* Orijinal img gizle — sadece AssetsSite/4896b795... olan logo */
 .app-ltr-13ukv3g .app-ltr-ywf5jp a.app-ltr-b7ljj5 img[src*="413afb70-a9e0-45be-bf06-2f80b2bd6f9a"] {
