@@ -1201,8 +1201,21 @@ img.app-ltr-le4fez {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 .app-ltr-13ukv3g .app-ltr-162t47d {
-    color: rgba(224, 181, 80, 0.9) !important;
+    color: transparent !important;
     font-weight: 600 !important;
+    position: relative !important;
+    width: 52px !important;
+    height: 52px !important;
+    margin: 0 auto !important;
+}
+.app-ltr-13ukv3g .app-ltr-162t47d::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/kraldo_18.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: contain !important;
 }
 
 /* Ayırıcı çizgi */
