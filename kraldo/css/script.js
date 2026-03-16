@@ -51,12 +51,21 @@
 
     function initFooterLicenses() {
         var footerBottom = document.querySelector('.app-ltr-13ukv3g .app-ltr-176106l');
-        if (!footerBottom || document.querySelector('.kraldo-license-seals')) return;
+        if (!footerBottom) return;
 
-        var wrap = document.createElement('div');
-        wrap.className = 'kraldo-license-seals';
+        var wrap = document.querySelector('.kraldo-license-seals');
+        if (!wrap) {
+            wrap = document.createElement('div');
+            wrap.className = 'kraldo-license-seals';
+            footerBottom.appendChild(wrap);
+        }
 
         LICENSE_SEALS.forEach(function (seal) {
+            // Aynı görsel zaten varsa tekrar ekleme
+            if (wrap.querySelector('img[src="' + seal.url + '"]')) {
+                return;
+            }
+
             var a = document.createElement('a');
             a.href = '#';
             a.setAttribute('aria-label', seal.alt);
@@ -71,8 +80,6 @@
             a.appendChild(img);
             wrap.appendChild(a);
         });
-
-        footerBottom.appendChild(wrap);
     }
 
     var observer = new MutationObserver(function () {

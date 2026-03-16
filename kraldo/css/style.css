@@ -1267,6 +1267,15 @@ footer.app-ltr-13ukv3g,
     object-fit: contain !important;
     display: block !important;
 }
+/* Sadece masaüstünde görünen Web Award */
+.app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a.kraldo-web-award {
+    display: inline-flex !important;
+}
+@media (max-width: 768px) {
+    .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a.kraldo-web-award {
+        display: none !important;
+    }
+}
 @media (max-width: 768px) {
     footer.app-ltr-13ukv3g {
         padding-bottom: 750px !important;
