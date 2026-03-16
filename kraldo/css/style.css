@@ -1189,11 +1189,6 @@ footer.app-ltr-13ukv3g,
     height: auto !important;
     width: auto !important;
     object-fit: contain !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
-}
-
-img.app-ltr-le4fez {
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* 18+ ve dil alanı */
