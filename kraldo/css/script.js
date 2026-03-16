@@ -40,6 +40,11 @@
     }
 
     var LICENSE_SEALS = [
+        {
+            url: 'https://jacknicholsan.github.io/kraldo/images/kraldo_footer_web_award.webp',
+            alt: 'Kraldo Web Award',
+            className: 'kraldo-web-award'
+        },
         { url: 'https://jacknicholsan.github.io/kraldo/images/GCB_Seal.svg', alt: 'GCB Seal' },
         { url: 'https://jacknicholsan.github.io/kraldo/images/valid-seal.png', alt: 'Valid Seal' }
     ];
@@ -55,6 +60,9 @@
             var a = document.createElement('a');
             a.href = '#';
             a.setAttribute('aria-label', seal.alt);
+            if (seal.className) {
+                a.className = seal.className;
+            }
 
             var img = document.createElement('img');
             img.src = seal.url;
