@@ -220,23 +220,32 @@ button.sl-navlink.app-ltr-1tbbky5:hover .app-ltr-1wn1dck {
 
 /* ===== GİRİŞ & KAYIT BUTONLARI — bizim filter renkleri (#E0B550, #F7D27F) ===== */
 
-/* GİRİŞ — outline, başlıklarla aynı altın gradient çerçeve (çift background) */
+/* GİRİŞ — içi düz arka plan; gradient sadece ::before ile ince çerçeve (border) */
 a.app-ltr-1b4gezl,
 a.app-ltr-18gmgim {
+    position: relative !important;
+    z-index: 0 !important;
+    isolation: isolate !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background:
-        linear-gradient(transparent, transparent) padding-box,
-        linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) border-box !important;
-    background-origin: padding-box, border-box !important;
-    background-clip: padding-box, border-box !important;
-    border: 1.5px solid transparent !important;
+    background: #081521 !important;
+    border: none !important;
     border-radius: 6px !important;
     padding: 9px 22px !important;
     cursor: pointer !important;
-    transition: background 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease !important;
+    transition: background-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease !important;
     text-decoration: none !important;
+}
+a.app-ltr-1b4gezl::before,
+a.app-ltr-18gmgim::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: -1.5px !important;
+    z-index: -1 !important;
+    border-radius: 7.5px !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
+    pointer-events: none !important;
 }
 
 a.app-ltr-1b4gezl .app-ltr-gvln5a,
@@ -250,12 +259,7 @@ a.app-ltr-18gmgim .app-ltr-gvln5a {
 
 a.app-ltr-1b4gezl:hover,
 a.app-ltr-18gmgim:hover {
-    background:
-        linear-gradient(rgba(224, 181, 80, 0.1), rgba(224, 181, 80, 0.1)) padding-box,
-        linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) border-box !important;
-    background-origin: padding-box, border-box !important;
-    background-clip: padding-box, border-box !important;
-    border: 1.5px solid transparent !important;
+    background-color: rgba(224, 181, 80, 0.1) !important;
     box-shadow: 0 0 0 1px rgba(224, 181, 80, 0.35), 0 0 16px rgba(224, 181, 80, 0.2) !important;
     transform: translateY(-1px) !important;
 }
@@ -1772,7 +1776,7 @@ footer.app-ltr-13ukv3g,
     -webkit-mask-image: none !important;
     mask-image: none !important;
     background-color: transparent !important;
-    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.gif") !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -1784,7 +1788,7 @@ footer.app-ltr-13ukv3g,
 
 /* Ana Sayfa favicon — hover'da hafif parlak */
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child:hover .app-ltr-1rc4kex {
-    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.gif") !important;
     filter: brightness(1.15) !important;
 }
 
@@ -1797,7 +1801,7 @@ footer.app-ltr-13ukv3g,
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link .app-ltr-1rc4kex,
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] .app-ltr-1rc4kex {
     background-color: transparent !important;
-    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.png") !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/favicon.gif") !important;
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
