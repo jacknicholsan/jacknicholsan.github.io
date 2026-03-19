@@ -606,65 +606,24 @@ section.app-ltr-1kawqjx::after {
     z-index: 0 !important;
 }
 
-/* Başlık — masaüstü (wsdk5y) + mobil (whe9cs) aynı stil */
+/* Başlık — masaüstü (wsdk5y) + mobil (whe9cs) — diğer altın başlıklarla aynı gradient */
 p.app-ltr-wsdk5y,
 p.app-ltr-whe9cs {
-    color: #f0bf43 !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
     font-size: 18px !important;
     font-weight: 700 !important;
     letter-spacing: 0.3px !important;
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
-    position: relative !important;
-    overflow: hidden !important;
-    display: inline-block !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* img.app-ltr-v4gekj {
     filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 } */
-
-/* Yazının üzerinden geçen MAVİ parlama (shine) animasyonu */
-p.app-ltr-wsdk5y::after,
-p.app-ltr-whe9cs::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: -150% !important;
-    width: 60% !important;
-    /* Parlama genişliği artırıldı */
-    height: 100% !important;
-    background: linear-gradient(to right,
-            transparent 0%,
-            rgba(0, 180, 245, 0.4) 30%,
-            rgba(0, 180, 245, 0.9) 50%,
-            rgba(0, 180, 245, 0.4) 70%,
-            transparent 100%) !important;
-    transform: skewX(-25deg) !important;
-    animation: textShine 3.5s infinite !important;
-    pointer-events: none !important;
-    z-index: 5 !important;
-    mix-blend-mode: color-dodge !important;
-    /* Altın rengiyle birleşince patlama hissi verir */
-}
-
-@keyframes textShine {
-    0% {
-        left: -150%;
-    }
-
-    15% {
-        left: 150%;
-    }
-
-    /* %15 süresince parlar, kalanı bekler */
-    100% {
-        left: 150%;
-    }
-}
 
 /* Sekme container */
 .app-ltr-vvhetf {
