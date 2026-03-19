@@ -220,32 +220,19 @@ button.sl-navlink.app-ltr-1tbbky5:hover .app-ltr-1wn1dck {
 
 /* ===== GİRİŞ & KAYIT BUTONLARI — bizim filter renkleri (#E0B550, #F7D27F) ===== */
 
-/* GİRİŞ — içi düz arka plan; gradient sadece ::before ile ince çerçeve (border) */
+/* GİRİŞ — şeffaf arka plan, düz altın border (gradient / ::before yok) */
 a.app-ltr-1b4gezl,
 a.app-ltr-18gmgim {
-    position: relative !important;
-    z-index: 0 !important;
-    isolation: isolate !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: #081521 !important;
-    border: none !important;
+    background: transparent !important;
+    border: 1.5px solid rgba(224, 181, 80, 0.75) !important;
     border-radius: 6px !important;
     padding: 9px 22px !important;
     cursor: pointer !important;
-    transition: background-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease !important;
+    transition: all 0.22s ease !important;
     text-decoration: none !important;
-}
-a.app-ltr-1b4gezl::before,
-a.app-ltr-18gmgim::before {
-    content: '' !important;
-    position: absolute !important;
-    inset: -1.5px !important;
-    z-index: -1 !important;
-    border-radius: 7.5px !important;
-    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
-    pointer-events: none !important;
 }
 
 a.app-ltr-1b4gezl .app-ltr-gvln5a,
@@ -259,7 +246,8 @@ a.app-ltr-18gmgim .app-ltr-gvln5a {
 
 a.app-ltr-1b4gezl:hover,
 a.app-ltr-18gmgim:hover {
-    background-color: rgba(224, 181, 80, 0.1) !important;
+    background: rgba(224, 181, 80, 0.1) !important;
+    border-color: #F7D27F !important;
     box-shadow: 0 0 0 1px rgba(224, 181, 80, 0.35), 0 0 16px rgba(224, 181, 80, 0.2) !important;
     transform: translateY(-1px) !important;
 }
@@ -944,6 +932,20 @@ section,
 /* Popüler Koleksiyonlar başlık — Popüler Sağlayıcılar ile aynı stil */
 .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    padding-left: 12px !important;
+    border-left: 3px solid #f0bf43 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 5px !important;
+}
+
+p.app-ltr-3w47pi {
     background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
