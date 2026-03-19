@@ -900,7 +900,7 @@ section,
 /* Orijinaller başlık stili (masaüstü + mobil) */
 #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 #kraldo-originals .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -910,9 +910,7 @@ section,
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 5px !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Görsellerin genişliği kolona göre otomatik (masaüstü + mobil) */
@@ -952,7 +950,7 @@ section,
 /* Başlık — masaüstü (vorshc) + mobil (gfovjz) aynı stil */
 #populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 #populer-saglayicilar .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -962,15 +960,13 @@ section,
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 5px !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Popüler Koleksiyonlar başlık — Popüler Sağlayıcılar ile aynı stil */
 .app-ltr-1l44gyp:has(p.app-ltr-vorshc) p.app-ltr-vorshc,
 .app-ltr-1l44gyp:has(p.app-ltr-gfovjz) p.app-ltr-gfovjz {
-    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -980,9 +976,7 @@ section,
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 5px !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Kart link — parlama overlay için, orijinal scale/transform iptal */
@@ -1043,7 +1037,7 @@ section,
 
 /* Sağlayıcılar Başlığı (Altın Tasarım) */
 p.app-ltr-1wx00r7 {
-    background: linear-gradient(135deg, #B8921E 0%, #D4B03C 100%) !important;
+    background: linear-gradient(135deg, #fbf381 0%, #aa9243 33%, #b29842 66%, #c4ad51 100%) !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
@@ -1053,9 +1047,7 @@ p.app-ltr-1wx00r7 {
     padding-left: 12px !important;
     border-left: 3px solid #f0bf43 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 10px rgba(240, 191, 67, 0.5) !important;
     margin-bottom: 0 !important;
-    filter: sepia(30%) saturate(160%) hue-rotate(8deg) brightness(0.92) !important;
 }
 
 /* Sağlayıcılar - "Tümü" Butonu */
