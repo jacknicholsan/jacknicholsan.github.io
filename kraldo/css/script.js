@@ -89,7 +89,14 @@
         }
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    // document.body henüz yoksa (script erken/head'de çalışırsa) DOMContentLoaded'a ertele
+    if (document.body) {
+        observer.observe(document.body, { childList: true, subtree: true });
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    }
 
     /* ============================================================
        STAKE-STİL SOL MENÜ — JS kısmı
@@ -249,12 +256,13 @@
         return top;
     }
 
-    function krUpdateSegActive(sidebar) {
+    function krUpdateSegActive(root) {
+        root = root || document;
         var path = window.location.pathname || '';
         var isSport = path.indexOf('/sports') !== -1 ||
             path.indexOf('/live/') !== -1 ||
             path.indexOf('/sport') !== -1;
-        var btns = sidebar.querySelectorAll('.kr-seg-btn');
+        var btns = root.querySelectorAll('.kr-seg-btn');
         for (var i = 0; i < btns.length; i++) {
             var wantsSport = btns[i].getAttribute('data-kr-sport') === '1';
             if ((wantsSport && isSport) || (!wantsSport && !isSport)) {
@@ -282,6 +290,13 @@
         sidebar.__krWatched = true;
         krApplyCollapsed(sidebar);
         try {
+            // Genişlik değişimini izle — collapse animasyonu bitince doğru ölçümle tetiklenir
+            // (collapse yalnızca className değiştirdiği için childList observer'ı tetiklemiyor).
+            if (window.ResizeObserver) {
+                var ro = new ResizeObserver(function () { krApplyCollapsed(sidebar); });
+                ro.observe(sidebar);
+            }
+            // React className'i sıfırlarsa kr-collapsed'ı geri ekle
             var mo = new MutationObserver(function () { krApplyCollapsed(sidebar); });
             mo.observe(sidebar, { attributes: true, attributeFilter: ['class', 'style'] });
         } catch (e) { /* sessiz */ }
@@ -289,20 +304,20 @@
 
     function krSyncSidebar() {
         try {
+            // Masaüstü dış kapsayıcı varsa daraltma (collapse) izlemesini bağla.
+            // Mobil hamburger drawer'da [data-mj="sidebar"] yoktur — orada collapse olmaz.
             var sidebar = document.querySelector('[data-mj="sidebar"]');
-            if (!sidebar) return;
+            if (sidebar) krWatchSidebar(sidebar);
 
-            // Daraltılmış mı? — className değişimine dayanıklı şekilde işaretle.
-            krWatchSidebar(sidebar);
-
-            var nav = sidebar.querySelector('nav[data-mj="sidebar-nav"]');
+            // Menü nav'ı hem masaüstü sidebar'da hem mobil drawer'da bulunur.
+            var nav = document.querySelector('nav[data-mj="sidebar-nav"]');
             if (!nav) return;
 
-            // Üst blok yoksa ekle (idempotent).
-            if (!sidebar.querySelector('.kr-stake-top')) {
+            // Üst blok (Casino/Spor toggle + arama) yoksa nav'ın üstüne ekle (idempotent).
+            if (!nav.parentNode.querySelector('.kr-stake-top')) {
                 krBuildTopBlock(nav);
             }
-            krUpdateSegActive(sidebar);
+            krUpdateSegActive(document);
         } catch (e) {
             // Sessizce geç — sitenin kendi akışını asla bozma.
         }
@@ -392,6 +407,16 @@
         krSyncSidebar();
         krSyncBottomNav();
         krInitMatchCarousel();
+    }
+
+    // Güvenlik ağı: bazı değişimler (collapse className'i, mobil drawer'ın açılması)
+    // childList observer'ını tetiklemiyor. Tam senkronu periyodik tekrar et —
+    // hepsi idempotent olduğu için ucuz: collapse durumu + toggle/arama enjeksiyonu + carousel.
+    if (!window.__krSyncPoll) {
+        window.__krSyncPoll = true;
+        window.setInterval(function () {
+            try { krInitAll(); } catch (e) { /* sessiz */ }
+        }, 500);
     }
     var krObserver = new MutationObserver(krScheduleSync);
     if (document.readyState === 'loading') {
