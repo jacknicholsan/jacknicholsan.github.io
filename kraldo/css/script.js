@@ -291,14 +291,61 @@
         }
     }
 
+    // Mobil alt navbar: "Promosyonlar" metnini "Canlı Destek" yap (text node — React-güvenli)
+    function krSyncBottomNav() {
+        try {
+            var a = document.querySelector('a[data-mj="bottom-nav-item"][href="/tr/promotions"]');
+            if (!a) return;
+            for (var i = 0; i < a.childNodes.length; i++) {
+                var n = a.childNodes[i];
+                if (n.nodeType === 3 && n.nodeValue && n.nodeValue.replace(/\s/g, '') &&
+                    n.nodeValue.indexOf('Canlı Destek') === -1) {
+                    n.nodeValue = 'Canlı Destek';
+                }
+            }
+        } catch (e) { /* sessiz */ }
+    }
+
     var krFrame = null;
     function krScheduleSync() {
         if (krFrame) return;
         krFrame = window.requestAnimationFrame(function () {
             krFrame = null;
             krSyncSidebar();
+            krSyncBottomNav();
         });
     }
+
+    // Daraltılmış menüde tooltip (Stake gibi) — fixed konum, overflow'a takılmaz
+    function krTipText(el) {
+        var lbl = el.querySelector('span:last-child');
+        return lbl ? lbl.textContent.trim() : (el.getAttribute('aria-label') || '');
+    }
+    function krInitTooltips() {
+        if (window.__krTip) return;
+        window.__krTip = true;
+        var SEL = '[data-mj="sidebar"] a.sl-navlink, [data-mj="sidebar"] .kr-seg-btn, [data-mj="sidebar"] .kr-search';
+        document.addEventListener('mouseover', function (e) {
+            var sb = document.querySelector('[data-mj="sidebar"]');
+            if (!sb || sb.offsetWidth >= 150) return; // sadece daraltılmışken göster
+            var el = e.target.closest && e.target.closest(SEL);
+            if (!el || !sb.contains(el)) return;
+            var txt = krTipText(el);
+            if (!txt) return;
+            var tip = document.getElementById('kr-tip');
+            if (!tip) { tip = document.createElement('div'); tip.id = 'kr-tip'; tip.className = 'kr-tip'; document.body.appendChild(tip); }
+            tip.textContent = txt;
+            var r = el.getBoundingClientRect();
+            tip.style.top = (r.top + r.height / 2) + 'px';
+            tip.style.left = (r.right + 10) + 'px';
+            tip.classList.add('kr-tip-on');
+        });
+        document.addEventListener('mouseout', function (e) {
+            var el = e.target.closest && e.target.closest(SEL);
+            if (el) { var t = document.getElementById('kr-tip'); if (t) t.classList.remove('kr-tip-on'); }
+        });
+    }
+    krInitTooltips();
 
     var krObserver = new MutationObserver(krScheduleSync);
     if (document.readyState === 'loading') {
@@ -312,10 +359,51 @@
     }
     window.addEventListener('resize', krScheduleSync);
 
-    /* Canlı destek — Chatwoot widget'ını içeri aktar */
+    /* ============================================================
+       CANLI DESTEK — Chatwoot'u kendi butonumuzla kontrol et
+       Varsayılan baloncuk gizli; masaüstünde kendi butonumuz,
+       mobilde alt navbar'daki "Canlı Destek" (Promosyonlar yerine).
+       ============================================================ */
+    var KR_ICON_CHAT =
+        '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M4.5 12a7.5 7.5 0 0 1 15 0v4.5a3 3 0 0 1-3 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<rect x="2.4" y="11.4" width="4.2" height="6.2" rx="2" stroke="currentColor" stroke-width="2"/>' +
+        '<rect x="17.4" y="11.4" width="4.2" height="6.2" rx="2" stroke="currentColor" stroke-width="2"/></svg>';
+
+    function krChatToggle() {
+        if (window.$chatwoot && typeof window.$chatwoot.toggle === 'function') {
+            window.$chatwoot.toggle();
+        }
+    }
+    function krBuildChatButton() {
+        if (document.getElementById('kr-chat-btn') || !document.body) return;
+        var b = document.createElement('button');
+        b.id = 'kr-chat-btn';
+        b.className = 'kr-chat-btn';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Canlı Destek');
+        b.innerHTML = KR_ICON_CHAT + '<span>Canlı Destek</span>';
+        b.addEventListener('click', krChatToggle);
+        document.body.appendChild(b);
+    }
+    // Mobil alt navbar: Promosyonlar → Canlı Destek (tıklamayı yakala, tek sefer bağla)
+    if (!window.__krBottomChat) {
+        window.__krBottomChat = true;
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[data-mj="bottom-nav-item"][href="/tr/promotions"]');
+            if (a) { e.preventDefault(); e.stopPropagation(); krChatToggle(); }
+        }, true);
+    }
+
     function loadChatwoot() {
         var BASE_URL = 'https://livechatsystem.net';
-        // Zaten yüklendiyse tekrar ekleme
+        // Varsayılan baloncuğu gizle — kontrolü kendi butonumuza ver
+        window.chatwootSettings = window.chatwootSettings || {};
+        window.chatwootSettings.hideMessageBubble = true;
+
+        krBuildChatButton();
+
+        // SDK zaten yüklüyse tekrar ekleme
         if (document.getElementById('kraldo-chatwoot-sdk')) return;
 
         var g = document.createElement('script');

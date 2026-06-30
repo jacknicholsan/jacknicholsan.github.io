@@ -1848,6 +1848,7 @@ footer.app-ltr-13ukv3g,
     backdrop-filter: blur(14px) !important;
     border-right: 1px solid rgba(224, 181, 80, 0.12) !important;
     padding: 6px !important;
+    container-type: inline-size !important; /* collapsed'ı genişlikten algıla (React'e dayanıklı) */
 }
 [data-mj="sidebar-content"] {
     background: transparent !important;
@@ -2291,8 +2292,12 @@ ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/pro
     padding: 4px 0 !important;
 }
 [data-mj="sidebar"] [data-mj="social-links"] a {
-    width: 36px !important;
-    height: 36px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    flex: 0 0 38px !important;       /* shrink olmasın → kare kalsın, glyph tam ortada */
+    box-sizing: border-box !important;
+    padding: 0 !important;
     border-radius: 10px !important; /* kare + yumuşak köşe (squircle) */
     display: flex !important;
     align-items: center !important;
@@ -2359,10 +2364,92 @@ button[data-mj="sidebar-collapse"]:hover {
     color: #E0B550 !important;
 }
 
-/* --- Daraltılmış durumda enjekte öğeleri ve başlıkları gizle --- */
-[data-mj="sidebar"].kr-collapsed .kr-stake-top,
-[data-mj="sidebar"].kr-collapsed ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]::before {
-    display: none !important;
+/* --- Daraltılmış (collapsed) durum — container query (React className değişimine dayanıklı) --- */
+@container (max-width: 150px) {
+    /* Üst blok görünür kalsın — toggle + arama DİKEY ikon stack (Stake gibi, stabil) */
+    [data-mj="sidebar"] .kr-stake-top {
+        padding: 6px 0 4px !important;
+        gap: 4px !important;
+    }
+    [data-mj="sidebar"] .kr-seg {
+        flex-direction: column !important;   /* yan yana shrink yarışını bitir → flicker yok */
+        background: transparent !important;
+        border: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        padding: 0 !important;
+        gap: 4px !important;
+    }
+    [data-mj="sidebar"] .kr-seg-btn {
+        width: auto !important;
+        flex: 0 0 auto !important;
+        padding: 10px 0 !important;
+        border-radius: 9px !important;
+    }
+    [data-mj="sidebar"] .kr-seg-btn > span {
+        display: none !important; /* metni gizle, ikon kalsın */
+    }
+    [data-mj="sidebar"] .kr-search {
+        justify-content: center !important;
+        padding: 11px 0 !important;
+    }
+    [data-mj="sidebar"] .kr-search-ph {
+        display: none !important; /* "Oyun ara…" metnini gizle, büyüteç kalsın */
+    }
+
+    /* bölüm başlıklarını gizle */
+    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:first-child::before,
+    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/casino"]:not([href*="livecasino"]))::before,
+    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/promotions"])::before {
+        display: none !important;
+    }
+    /* satırlar: ikon tam ortada, label gizli (kırpma yok) */
+    [data-mj="sidebar"] a.sl-navlink {
+        justify-content: center !important;
+        gap: 0 !important;
+        padding: 11px 0 !important;
+    }
+    [data-mj="sidebar"] a.sl-navlink > span:last-child {
+        display: none !important;
+    }
+    /* açma okları ve açık alt menüleri gizle */
+    [data-mj="sidebar"] button.sl-icon[name="arrow_down"],
+    [data-mj="sidebar"] button.sl-icon[name="arrow_up"] {
+        display: none !important;
+    }
+    [data-mj="sidebar"] li[data-mj="sidebar-section"] > div > div:nth-child(2) {
+        display: none !important;
+    }
+    /* footer: dil seçici metnini gizle (bayrak kalır), sosyal ikonları ortala */
+    [data-mj="sidebar-footer"] .app-ltr-11io9ir,
+    [data-mj="sidebar-footer"] .sl-select__single-value p {
+        display: none !important;
+    }
+    [data-mj="sidebar"] [data-mj="social-links"] {
+        gap: 6px !important;
+    }
+}
+
+/* Collapsed menü tooltip'i (JS ile konumlanır, fixed → kırpılmaz) */
+.kr-tip {
+    position: fixed !important;
+    z-index: 99998 !important;
+    transform: translateY(-50%) !important;
+    background: rgba(13, 26, 38, 0.98) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(224, 181, 80, 0.32) !important;
+    padding: 6px 11px !important;
+    border-radius: 8px !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+    transition: opacity 0.12s ease !important;
+}
+.kr-tip.kr-tip-on {
+    opacity: 1 !important;
 }
 
 /* ============================================================
@@ -2516,4 +2603,69 @@ div:has(> [data-mj="auth-modal"]) {
 }
 [data-mj="auth-modal"] a:hover {
     color: #fbf381 !important;
+}
+
+/* ============================================================
+   CANLI DESTEK — varsayılan baloncuğu gizle + kendi butonumuz
+   ============================================================ */
+
+/* Chatwoot varsayılan launcher baloncuğunu gizle (sohbet penceresi kalır) */
+.woot-widget-bubble,
+#cw-bubble-holder,
+#woot-widget-bubble-icon {
+    display: none !important;
+}
+
+/* Masaüstü "Canlı Destek" butonu — altın gradient pill */
+.kr-chat-btn {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    z-index: 9000 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    padding: 12px 18px !important;
+    background: linear-gradient(135deg, #fbf381, #E0B550) !important;
+    color: #1a1205 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    box-shadow: 0 8px 26px rgba(224, 181, 80, 0.4) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+.kr-chat-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+    flex: 0 0 auto !important;
+}
+.kr-chat-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 34px rgba(224, 181, 80, 0.52) !important;
+}
+/* Mobilde gizle — orada alt navbar'daki Canlı Destek kullanılır */
+@media (max-width: 768px) {
+    .kr-chat-btn {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   MOBİL ALT NAVBAR — glass + Promosyonlar → Canlı Destek
+   ============================================================ */
+[data-mj="bottom-nav"] {
+    background: rgba(11, 23, 35, 0.92) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(224, 181, 80, 0.18) !important;
+}
+
+/* Promosyonlar → Canlı Destek: metin JS ile (text node), ikon CSS mask ile */
+/* İkonu kulaklık/destek ikonuyla değiştir (inline mask'ı override et) */
+a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 2C7 2 3 6 3 11v5.5A3.5 3.5 0 0 0 6.5 20H8a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H5.2C5.6 7.6 8.5 4.8 12 4.8s6.4 2.8 6.8 7.2H16a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h1.5a3.5 3.5 0 0 0 .4-.02C18.5 21.3 16.9 22 14.8 22h-2.3a1.2 1.2 0 1 0 0 2.4h2.3c3.6 0 6.4-2.6 6.4-6.4V11c0-5-4-9-9-9z'/></svg>") !important;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 2C7 2 3 6 3 11v5.5A3.5 3.5 0 0 0 6.5 20H8a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H5.2C5.6 7.6 8.5 4.8 12 4.8s6.4 2.8 6.8 7.2H16a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h1.5a3.5 3.5 0 0 0 .4-.02C18.5 21.3 16.9 22 14.8 22h-2.3a1.2 1.2 0 1 0 0 2.4h2.3c3.6 0 6.4-2.6 6.4-6.4V11c0-5-4-9-9-9z'/></svg>") !important;
 }
