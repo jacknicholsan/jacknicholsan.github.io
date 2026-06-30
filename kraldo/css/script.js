@@ -323,6 +323,29 @@
         } catch (e) { /* sessiz */ }
     }
 
+    // Günün Maçları — yavaş otomatik carousel (ping-pong); hover/touch'ta durur
+    function krInitMatchCarousel() {
+        var track = document.querySelector('[data-mj="widget-phoenix-sport"] .top-events');
+        if (!track || track.__krCarousel) return;
+        track.__krCarousel = true;
+        var hover = false, touchPaused = false, dir = 1, idle = 0;
+        track.addEventListener('mouseenter', function () { hover = true; });
+        track.addEventListener('mouseleave', function () { hover = false; });
+        track.addEventListener('touchstart', function () { touchPaused = true; idle = 0; }, { passive: true });
+        function step() {
+            if (!document.body.contains(track)) return; // DOM'dan çıktıysa döngüyü bitir
+            if (touchPaused && ++idle > 180) { touchPaused = false; idle = 0; } // dokunmadan ~3sn sonra devam
+            var max = track.scrollWidth - track.clientWidth;
+            if (!hover && !touchPaused && max > 5) {
+                track.scrollLeft += 0.5 * dir;        // yavaş (~30px/sn)
+                if (track.scrollLeft >= max - 1) dir = -1;
+                else if (track.scrollLeft <= 1) dir = 1;
+            }
+            window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+    }
+
     var krFrame = null;
     function krScheduleSync() {
         if (krFrame) return;
@@ -330,6 +353,7 @@
             krFrame = null;
             krSyncSidebar();
             krSyncBottomNav();
+            krInitMatchCarousel();
         });
     }
 
