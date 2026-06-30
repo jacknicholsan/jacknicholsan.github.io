@@ -2790,3 +2790,11 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     color: #fbf381 !important;
     transform: translateY(-1px) !important;
 }
+
+/* ============================================================
+   Promosyonlar sayfası — görsel altındaki bonus ismi metnini gizle
+   Kart: [data-mj="promotions-grid"] a > (img + div>strong)
+   ============================================================ */
+[data-mj="promotions-grid"] a > div {
+    display: none !important;
+}
