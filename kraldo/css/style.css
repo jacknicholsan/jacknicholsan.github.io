@@ -37,15 +37,15 @@ a.app-ltr-1cg87ht img {
 a.app-ltr-wz10jn {
     display: inline-flex !important;
     align-items: center !important;
-    max-width: 200px !important;
-    max-height: 46px !important;
-    min-height: 46px !important;
+    max-width: 165px !important;
+    max-height: 36px !important;
+    min-height: 36px !important;
     min-width: auto !important;
     transition: opacity 0.2s ease !important;
 }
 a.app-ltr-wz10jn img {
-    max-height: 46px !important;
-    height: 46px !important;
+    max-height: 36px !important;
+    height: 36px !important;
     width: auto !important;
     object-fit: contain !important;
     display: block !important;
@@ -72,14 +72,14 @@ a.app-ltr-wz10jn img {
         max-height: 46px !important;
         height: 46px !important;
     }
-    /* Mobil class — büyük logo */
+    /* Mobil logo — Giriş/Kayıt'a taşmasın diye küçültüldü */
     a.app-ltr-wz10jn {
-        max-height: 46px !important;
-        min-height: 46px !important;
+        max-height: 36px !important;
+        min-height: 36px !important;
     }
     a.app-ltr-wz10jn img {
-        max-height: 46px !important;
-        height: 46px !important;
+        max-height: 36px !important;
+        height: 36px !important;
     }
 }
 
