@@ -388,14 +388,19 @@
     }
     krInitTooltips();
 
+    function krInitAll() {
+        krSyncSidebar();
+        krSyncBottomNav();
+        krInitMatchCarousel();
+    }
     var krObserver = new MutationObserver(krScheduleSync);
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
-            krSyncSidebar();
+            krInitAll();
             krObserver.observe(document.body, { childList: true, subtree: true });
         });
     } else {
-        krSyncSidebar();
+        krInitAll();
         krObserver.observe(document.body, { childList: true, subtree: true });
     }
     window.addEventListener('resize', krScheduleSync);

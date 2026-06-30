@@ -1250,8 +1250,8 @@ footer.app-ltr-13ukv3g,
 }
 @media (max-width: 768px) {
     footer.app-ltr-13ukv3g {
-        padding-bottom: 850px !important;
-        margin-bottom: -20px !important;
+        padding-bottom: 90px !important; /* alt navbar'ı (71px) geçecek kadar — eski 850px boşluk hatasıydı */
+        margin-bottom: 0 !important;
     }
     .app-ltr-13ukv3g .app-ltr-176106l {
         justify-content: center !important;
