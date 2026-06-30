@@ -466,13 +466,31 @@
         }, true);
     }
 
+    // Balonu Chatwoot'un KENDİ API'siyle gizle (CSS/hideMessageBubble değil).
+    // toggleBubbleVisibility('hide') widget'ı bozmaz → X (kapatma) çalışır.
+    function krHideChatBubble() {
+        try {
+            if (window.$chatwoot && typeof window.$chatwoot.toggleBubbleVisibility === 'function') {
+                window.$chatwoot.toggleBubbleVisibility('hide');
+                return true;
+            }
+        } catch (e) { /* sessiz */ }
+        return false;
+    }
+
     function loadChatwoot() {
         var BASE_URL = 'https://livechatsystem.net';
-        // NOT: hideMessageBubble KULLANMIYORUZ. O ayarla iframe'deki kapatma (X)
-        // butonu çalışmıyor (SDK kapanışta balona dönmeye çalışıyor). Bunun yerine
-        // balonu yalnızca CSS ile gizliyoruz → balon DOM'da kalır (X kapatır),
-        // ama görünmez; açmayı kendi butonumuz/alt navbar yapar.
         krBuildChatButton();
+
+        // Chatwoot hazır olunca balonu API ile gizle (event + güvenlik retry'ı).
+        if (!window.__krChatReady) {
+            window.__krChatReady = true;
+            window.addEventListener('chatwoot:ready', krHideChatBubble);
+            var tries = 0;
+            var iv = window.setInterval(function () {
+                if (krHideChatBubble() || ++tries > 30) window.clearInterval(iv);
+            }, 400);
+        }
 
         // SDK zaten yüklüyse tekrar ekleme
         if (document.getElementById('kraldo-chatwoot-sdk')) return;

@@ -2611,15 +2611,10 @@ div:has(> [data-mj="auth-modal"]) {
 }
 
 /* ============================================================
-   CANLI DESTEK — varsayılan baloncuğu gizle + kendi butonumuz
+   CANLI DESTEK — kendi butonumuz
+   (Varsayılan baloncuk artık Chatwoot API'siyle gizleniyor:
+    $chatwoot.toggleBubbleVisibility('hide') — CSS değil → X kapatma çalışır.)
    ============================================================ */
-
-/* Chatwoot varsayılan launcher baloncuğunu gizle (sohbet penceresi kalır) */
-.woot-widget-bubble,
-#cw-bubble-holder,
-#woot-widget-bubble-icon {
-    display: none !important;
-}
 
 /* Masaüstü "Canlı Destek" butonu — altın gradient pill */
 .kr-chat-btn {
