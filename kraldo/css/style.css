@@ -1832,3 +1832,688 @@ footer.app-ltr-13ukv3g,
     overflow: hidden !important;
     pointer-events: none !important;
 }
+
+/* ============================================================
+   SOL MENÜ — NAVY/ALTIN GLASSMORPHISM
+   Palet: zemin #081521 navy, altın #E0B550/#fbf381 (bizim tema).
+   Hedefleme: stabil data-mj seçicileri (SPA hash drift'ine dayanıklı).
+   Glass: translucent + backdrop-blur + ince altın kenarlar.
+   Bölüm başlıkları saf CSS (:has + ::before) — DOM'a dokunmaz.
+   ============================================================ */
+
+/* --- Kapsayıcı: navy cam panel --- */
+[data-mj="sidebar"] {
+    background: rgba(11, 23, 35, 0.82) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+    border-right: 1px solid rgba(224, 181, 80, 0.12) !important;
+    padding: 6px !important;
+}
+[data-mj="sidebar-content"] {
+    background: transparent !important;
+    padding: 4px 4px !important;
+}
+
+/* --- Nav listesi (sıkı padding) --- */
+nav[data-mj="sidebar-nav"] {
+    padding: 4px 0 !important;
+}
+ul[data-mj="sidebar-nav-list"] {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+}
+li[data-mj="sidebar-section"] {
+    margin: 0 !important;
+    list-style: none !important;
+    display: block !important;          /* site li'yi flex yapıyor; başlık ::before üste binmesin */
+    background: transparent !important; /* sitenin rgba(255,255,255,.04) kart zeminini kaldır */
+}
+li[data-mj="sidebar-section"] > div {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ana satır (a + ok) yatay; SADECE ilk çocuk — submenu'yu etkileme */
+li[data-mj="sidebar-section"] > div > div:first-child {
+    display: flex !important;
+    align-items: center !important;
+}
+li[data-mj="sidebar-section"] > div > div:first-child > a.sl-navlink {
+    flex: 1 1 auto !important;
+}
+
+/* --- Menü linki satırı --- */
+[data-mj="sidebar"] a.sl-navlink {
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    padding: 8px 10px !important;
+    border-radius: 9px !important;
+    text-decoration: none !important;
+    position: relative !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease !important;
+}
+
+/* İkon (mask-image span — ilk çocuk) */
+[data-mj="sidebar"] a.sl-navlink > span:first-child {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    background-color: rgba(255, 255, 255, 0.58) !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    transition: background-color 0.18s ease !important;
+}
+
+/* Metin etiketi (son span) */
+[data-mj="sidebar"] a.sl-navlink > span:last-child {
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+/* Hover — hafif cam dokunuş */
+[data-mj="sidebar"] a.sl-navlink:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+[data-mj="sidebar"] li[data-mj="sidebar-section"] > div > div:first-child:hover a.sl-navlink {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+[data-mj="sidebar"] a.sl-navlink:hover > span:first-child {
+    background-color: #ffffff !important;
+}
+[data-mj="sidebar"] a.sl-navlink:hover > span:last-child {
+    color: #ffffff !important;
+}
+
+/* Aktif öğe — altın cam + sol şerit */
+[data-mj="sidebar"] a.sl-navlink::before {
+    content: "" !important;
+    position: absolute !important;
+    left: -1px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 3px !important;
+    height: 0 !important;
+    border-radius: 0 3px 3px 0 !important;
+    background: linear-gradient(180deg, #fbf381, #E0B550) !important;
+    transition: height 0.18s ease !important;
+}
+[data-mj="sidebar"] a.sl-navlink[aria-current="page"],
+[data-mj="sidebar"] a.sl-navlink.active,
+[data-mj="sidebar"] a.sl-navlink.active-link {
+    background: linear-gradient(135deg, rgba(251, 243, 129, 0.13), rgba(224, 181, 80, 0.10)) !important;
+    border-color: rgba(224, 181, 80, 0.28) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+    box-shadow: 0 2px 10px rgba(224, 181, 80, 0.08) !important;
+}
+[data-mj="sidebar"] a.sl-navlink[aria-current="page"]::before,
+[data-mj="sidebar"] a.sl-navlink.active::before,
+[data-mj="sidebar"] a.sl-navlink.active-link::before {
+    height: 60% !important;
+}
+[data-mj="sidebar"] a.sl-navlink[aria-current="page"] > span:first-child,
+[data-mj="sidebar"] a.sl-navlink.active > span:first-child,
+[data-mj="sidebar"] a.sl-navlink.active-link > span:first-child {
+    background-color: #E0B550 !important;
+}
+[data-mj="sidebar"] a.sl-navlink[aria-current="page"] > span:last-child,
+[data-mj="sidebar"] a.sl-navlink.active > span:last-child,
+[data-mj="sidebar"] a.sl-navlink.active-link > span:last-child {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Alt menü açma oku */
+[data-mj="sidebar"] button.sl-icon[name="arrow_down"],
+[data-mj="sidebar"] button.sl-icon[name="arrow_up"] {
+    color: rgba(255, 255, 255, 0.5) !important;
+    background: transparent !important;
+    border: none !important;
+    margin-right: 4px !important;
+    cursor: pointer !important;
+    transition: color 0.18s ease !important;
+}
+[data-mj="sidebar"] li[data-mj="sidebar-section"] > div > div:first-child:hover button.sl-icon {
+    color: #ffffff !important;
+}
+
+/* --- ALT MENÜ (açılan submenu: 2. çocuk div) — dikey + girintili --- */
+li[data-mj="sidebar-section"] > div > div:nth-child(2) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+    margin: 2px 0 6px 0 !important;
+    padding-left: 14px !important;
+    border-left: 1px solid rgba(224, 181, 80, 0.14) !important;
+    margin-left: 18px !important;
+}
+li[data-mj="sidebar-section"] > div > div:nth-child(2) > a.sl-navlink {
+    padding: 6px 10px !important;
+    gap: 9px !important;
+    border-radius: 7px !important;
+}
+li[data-mj="sidebar-section"] > div > div:nth-child(2) > a.sl-navlink > span:first-child {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    background-color: rgba(255, 255, 255, 0.42) !important;
+}
+li[data-mj="sidebar-section"] > div > div:nth-child(2) > a.sl-navlink > span:last-child {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+li[data-mj="sidebar-section"] > div > div:nth-child(2) > a.sl-navlink:hover > span:last-child {
+    color: #ffffff !important;
+}
+li[data-mj="sidebar-section"] > div > div:nth-child(2) > a.sl-navlink:hover > span:first-child {
+    background-color: #ffffff !important;
+}
+
+/* --- Bölüm başlıkları (saf CSS, ARKA PLANSIZ, gold-muted) --- */
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:first-child::before,
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/casino"]:not([href*="livecasino"]))::before,
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/promotions"])::before {
+    display: block !important;
+    background: transparent !important;
+    padding: 13px 10px 4px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase !important;
+    color: rgba(224, 181, 80, 0.6) !important;
+}
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:first-child::before {
+    content: "Spor Bahisleri" !important;
+    padding-top: 16px !important; /* arama kutusundan uzaklaştır */
+}
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/casino"]:not([href*="livecasino"]))::before {
+    content: "Casino" !important;
+}
+ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/promotions"])::before {
+    content: "Diğer" !important;
+}
+
+/* --- Üst blok: Casino/Spor toggle + arama (JS ile enjekte) — glass --- */
+.kr-stake-top {
+    padding: 8px 8px 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 9px !important;
+    position: relative !important;
+    z-index: 30 !important; /* arama dropdown'ı menünün üstünde kalsın */
+}
+.kr-seg {
+    display: flex !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 11px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+}
+.kr-seg-btn {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    padding: 8px 6px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+.kr-seg-btn svg {
+    width: 16px !important;
+    height: 16px !important;
+    flex: 0 0 auto !important;
+}
+.kr-seg-btn:hover {
+    color: #ffffff !important;
+}
+.kr-seg-btn.kr-active {
+    background: linear-gradient(135deg, rgba(251, 243, 129, 0.18), rgba(224, 181, 80, 0.13)) !important;
+    color: #ffffff !important;
+    border-color: rgba(224, 181, 80, 0.32) !important;
+    box-shadow: inset 0 -2px 0 #E0B550, 0 3px 10px rgba(224, 181, 80, 0.14) !important;
+}
+/* Arama kutusu = modal tetikleyici */
+.kr-search {
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    width: 100% !important;
+    padding: 10px 12px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: border-color 0.18s ease, background 0.18s ease !important;
+}
+.kr-search:hover {
+    border-color: rgba(224, 181, 80, 0.45) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+.kr-search svg {
+    width: 16px !important;
+    height: 16px !important;
+    flex: 0 0 auto !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+}
+.kr-search-ph {
+    color: rgba(255, 255, 255, 0.42) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+/* --- Tam ekran arama MODALI --- */
+.kr-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    display: none;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 56px 16px 16px !important;
+    background: rgba(4, 10, 16, 0.72) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+}
+.kr-modal-box {
+    width: 100% !important;
+    max-width: 780px !important;
+    max-height: 86vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(13, 26, 38, 0.99) !important;
+    border: 1px solid rgba(224, 181, 80, 0.22) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 26px 80px rgba(0, 0, 0, 0.65) !important;
+    overflow: hidden !important;
+}
+.kr-modal-head {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 16px 18px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+.kr-modal-head svg {
+    width: 20px !important;
+    height: 20px !important;
+    flex: 0 0 auto !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.kr-modal-input {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: #ffffff !important;
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    padding: 0 !important;
+}
+.kr-modal-input::placeholder {
+    color: rgba(255, 255, 255, 0.38) !important;
+}
+.kr-modal-close {
+    flex: 0 0 auto !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 9px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 22px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+}
+.kr-modal-close:hover {
+    background: rgba(224, 181, 80, 0.2) !important;
+    color: #ffffff !important;
+}
+.kr-modal-body {
+    padding: 18px !important;
+    overflow-y: auto !important;
+}
+.kr-modal-hint {
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 14px !important;
+    padding: 48px 16px !important;
+}
+.kr-modal-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)) !important;
+    gap: 14px !important;
+}
+.kr-game-card {
+    display: block !important;
+    text-decoration: none !important;
+}
+.kr-game-thumb {
+    width: 100% !important;
+    aspect-ratio: 3 / 4 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    background: #0a1722 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease !important;
+}
+.kr-game-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+.kr-game-card:hover .kr-game-thumb {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 24px rgba(224, 181, 80, 0.22) !important;
+    border-color: rgba(224, 181, 80, 0.5) !important;
+}
+.kr-game-name {
+    color: #ffffff !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    margin-top: 7px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.kr-game-prov {
+    color: rgba(255, 255, 255, 0.42) !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* --- Footer dil seçici — navy glass --- */
+[data-mj="sidebar-footer"] {
+    background: transparent !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 10px 8px !important;
+}
+[data-mj="sidebar-footer"] .sl-select__control {
+    background: rgba(255, 255, 255, 0.04) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    min-height: 42px !important;
+}
+[data-mj="sidebar-footer"] .sl-select__control:hover {
+    border-color: rgba(224, 181, 80, 0.4) !important;
+}
+[data-mj="sidebar-footer"] .app-ltr-11io9ir,
+[data-mj="sidebar-footer"] .sl-select__single-value p {
+    color: #e7ecf3 !important;
+}
+[data-mj="sidebar-footer"] .sl-icon {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* --- Sosyal ikonlar — SADECE sidebar; cam daireler + tek tip SVG glyph --- */
+[data-mj="sidebar"] [data-mj="social-links"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 9px !important;
+    flex-wrap: wrap !important;
+    padding: 4px 0 !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important; /* kare + yumuşak köşe (squircle) */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a:hover {
+    background: rgba(224, 181, 80, 0.16) !important;
+    border-color: rgba(224, 181, 80, 0.5) !important;
+    transform: translateY(-2px) !important;
+}
+/* Orijinal brand img'leri gizle (telegram/email dolu rozet → blob oluyordu) */
+[data-mj="sidebar"] [data-mj="social-links"] a img {
+    display: none !important;
+}
+/* Tek tip glyph: mask + tema rengi */
+[data-mj="sidebar"] [data-mj="social-links"] a::before {
+    content: "" !important;
+    width: 18px !important;
+    height: 18px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    transition: background-color 0.2s ease !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a:hover::before {
+    background-color: #E0B550 !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="t.me"]::before,
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="telegram"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z'/></svg>") !important;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z'/></svg>") !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="x.com"]::before,
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="twitter"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/></svg>") !important;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/></svg>") !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="wa.me"]::before,
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="whatsapp"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.18c-.24.68-1.42 1.31-1.95 1.36-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.82 2.01.89 2.16.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.18 1.53 1.91 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.18-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.21.53.32.07.12.07.66-.17 1.34z'/></svg>") !important;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.18c-.24.68-1.42 1.31-1.95 1.36-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.82 2.01.89 2.16.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.18 1.53 1.91 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.17-.19.69-.81.88-1.09.18-.28.37-.23.62-.14.25.09 1.61.76 1.89.9.28.14.46.21.53.32.07.12.07.66-.17 1.34z'/></svg>") !important;
+}
+[data-mj="sidebar"] [data-mj="social-links"] a[href^="mailto"]::before,
+[data-mj="sidebar"] [data-mj="social-links"] a[href*="email"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18a1 1 0 0 1 1 1v.4l-10 5.6L2 6.4V6a1 1 0 0 1 1-1zm-1 3.6V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8.6l-9.5 5.3a1 1 0 0 1-1 0L2 8.6z'/></svg>") !important;
+    mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18a1 1 0 0 1 1 1v.4l-10 5.6L2 6.4V6a1 1 0 0 1 1-1zm-1 3.6V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8.6l-9.5 5.3a1 1 0 0 1-1 0L2 8.6z'/></svg>") !important;
+}
+
+/* --- Daralt/genişlet butonu --- */
+button[data-mj="sidebar-collapse"] {
+    color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.18s ease !important;
+}
+button[data-mj="sidebar-collapse"]:hover {
+    color: #E0B550 !important;
+}
+
+/* --- Daraltılmış durumda enjekte öğeleri ve başlıkları gizle --- */
+[data-mj="sidebar"].kr-collapsed .kr-stake-top,
+[data-mj="sidebar"].kr-collapsed ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]::before {
+    display: none !important;
+}
+
+/* ============================================================
+   LOGIN / REGISTER (auth) MODAL — NAVY/ALTIN GLASSMORPHISM
+   Hedefleme: data-mj="auth-modal" + :has (hash drift'ine dayanıklı).
+   ============================================================ */
+
+/* Backdrop — koyu + blur */
+div:has(> [data-mj="auth-modal"]) {
+    background: rgba(4, 10, 16, 0.72) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Panel — navy cam */
+[data-mj="auth-modal"] {
+    background: rgba(13, 26, 38, 0.82) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(224, 181, 80, 0.22) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Input alanları — glass wrapper */
+[data-mj="auth-modal"] div:has(> input[type="text"]),
+[data-mj="auth-modal"] div:has(> input[type="email"]),
+[data-mj="auth-modal"] div:has(> input[type="password"]),
+[data-mj="auth-modal"] div:has(> input[type="tel"]),
+[data-mj="auth-modal"] div:has(> input[type="number"]) {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 11px !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+[data-mj="auth-modal"] div:has(> input[type="text"]):focus-within,
+[data-mj="auth-modal"] div:has(> input[type="email"]):focus-within,
+[data-mj="auth-modal"] div:has(> input[type="password"]):focus-within,
+[data-mj="auth-modal"] div:has(> input[type="tel"]):focus-within,
+[data-mj="auth-modal"] div:has(> input[type="number"]):focus-within {
+    border-color: rgba(224, 181, 80, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(224, 181, 80, 0.12) !important;
+}
+[data-mj="auth-modal"] input[type="text"],
+[data-mj="auth-modal"] input[type="email"],
+[data-mj="auth-modal"] input[type="password"],
+[data-mj="auth-modal"] input[type="tel"],
+[data-mj="auth-modal"] input[type="number"] {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+[data-mj="auth-modal"] input::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Tarih input'u (doğum tarihi) — glass */
+[data-mj="auth-modal"] div:has(> input[type="date"]) {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 11px !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+}
+[data-mj="auth-modal"] input[type="date"] {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+/* Select'ler (Cinsiyet, Ülke) — glass */
+[data-mj="auth-modal"] .sl-select__control {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 11px !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+[data-mj="auth-modal"] .sl-select__control:hover,
+[data-mj="auth-modal"] .sl-select__control--is-focused {
+    border-color: rgba(224, 181, 80, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(224, 181, 80, 0.12) !important;
+}
+[data-mj="auth-modal"] .sl-select__single-value,
+[data-mj="auth-modal"] .sl-select__single-value p,
+[data-mj="auth-modal"] .sl-select__input-container {
+    color: #ffffff !important;
+}
+/* Select açılır menüsü — navy cam */
+[data-mj="auth-modal"] .sl-select__menu {
+    background: #0d1c28 !important;
+    border: 1px solid rgba(224, 181, 80, 0.18) !important;
+    border-radius: 11px !important;
+    overflow: hidden !important;
+}
+[data-mj="auth-modal"] .sl-select__option--is-focused {
+    background: rgba(224, 181, 80, 0.12) !important;
+}
+[data-mj="auth-modal"] .sl-select__option--is-selected {
+    background: rgba(224, 181, 80, 0.22) !important;
+}
+
+/* Checkbox — altın */
+[data-mj="auth-modal"] input[type="checkbox"] {
+    accent-color: #E0B550 !important;
+}
+
+/* Submit (Giriş / Kayıt Ol) — altın gradient */
+[data-mj="auth-modal"] button[type="submit"] {
+    background: linear-gradient(135deg, #fbf381, #E0B550) !important;
+    color: #1a1205 !important;
+    border: none !important;
+    border-radius: 11px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 6px 20px rgba(224, 181, 80, 0.28) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+[data-mj="auth-modal"] button[type="submit"]:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 8px 26px rgba(224, 181, 80, 0.42) !important;
+}
+
+/* Kapatma butonu — glass daire (input içindeki göz ikonunu hariç tut) */
+[data-mj="auth-modal"] button.sl-icon {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-radius: 10px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+}
+[data-mj="auth-modal"] button.sl-icon:hover {
+    background: rgba(224, 181, 80, 0.2) !important;
+    color: #ffffff !important;
+}
+[data-mj="auth-modal"] div:has(> input) button.sl-icon {
+    background: transparent !important;
+    border-radius: 0 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+[data-mj="auth-modal"] div:has(> input) button.sl-icon:hover {
+    background: transparent !important;
+    color: #E0B550 !important;
+}
+
+/* Alt linkler — altın */
+[data-mj="auth-modal"] a {
+    color: #E0B550 !important;
+    transition: color 0.15s ease !important;
+}
+[data-mj="auth-modal"] a:hover {
+    color: #fbf381 !important;
+}
