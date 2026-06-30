@@ -468,10 +468,10 @@
 
     function loadChatwoot() {
         var BASE_URL = 'https://livechatsystem.net';
-        // Varsayılan baloncuğu gizle — kontrolü kendi butonumuza ver
-        window.chatwootSettings = window.chatwootSettings || {};
-        window.chatwootSettings.hideMessageBubble = true;
-
+        // NOT: hideMessageBubble KULLANMIYORUZ. O ayarla iframe'deki kapatma (X)
+        // butonu çalışmıyor (SDK kapanışta balona dönmeye çalışıyor). Bunun yerine
+        // balonu yalnızca CSS ile gizliyoruz → balon DOM'da kalır (X kapatır),
+        // ama görünmez; açmayı kendi butonumuz/alt navbar yapar.
         krBuildChatButton();
 
         // SDK zaten yüklüyse tekrar ekleme
