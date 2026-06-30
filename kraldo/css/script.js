@@ -265,18 +265,35 @@
         }
     }
 
+    // Daraltılmış durumu .kr-collapsed class'ı ile işaretle. React sidebar'ın
+    // className'ini yenileyip class'ı silebildiği için, her sidebar'a className
+    // değişimini izleyen bir observer bağlanır → silinirse anında geri eklenir.
+    function krApplyCollapsed(sidebar) {
+        var w = sidebar.offsetWidth;
+        var collapsed = w > 0 && w < 150;
+        if (collapsed) {
+            if (!sidebar.classList.contains('kr-collapsed')) sidebar.classList.add('kr-collapsed');
+        } else {
+            if (sidebar.classList.contains('kr-collapsed')) sidebar.classList.remove('kr-collapsed');
+        }
+    }
+    function krWatchSidebar(sidebar) {
+        if (sidebar.__krWatched) { krApplyCollapsed(sidebar); return; }
+        sidebar.__krWatched = true;
+        krApplyCollapsed(sidebar);
+        try {
+            var mo = new MutationObserver(function () { krApplyCollapsed(sidebar); });
+            mo.observe(sidebar, { attributes: true, attributeFilter: ['class', 'style'] });
+        } catch (e) { /* sessiz */ }
+    }
+
     function krSyncSidebar() {
         try {
             var sidebar = document.querySelector('[data-mj="sidebar"]');
             if (!sidebar) return;
 
-            // Daraltılmış mı? — enjekte öğeleri ve başlıkları gizlemek için.
-            var w = sidebar.offsetWidth;
-            if (w > 0 && w < 120) {
-                sidebar.classList.add('kr-collapsed');
-            } else {
-                sidebar.classList.remove('kr-collapsed');
-            }
+            // Daraltılmış mı? — className değişimine dayanıklı şekilde işaretle.
+            krWatchSidebar(sidebar);
 
             var nav = sidebar.querySelector('nav[data-mj="sidebar-nav"]');
             if (!nav) return;

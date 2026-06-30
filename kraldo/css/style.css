@@ -1848,7 +1848,6 @@ footer.app-ltr-13ukv3g,
     backdrop-filter: blur(14px) !important;
     border-right: 1px solid rgba(224, 181, 80, 0.12) !important;
     padding: 6px !important;
-    container-type: inline-size !important; /* collapsed'ı genişlikten algıla (React'e dayanıklı) */
 }
 [data-mj="sidebar-content"] {
     background: transparent !important;
@@ -2365,69 +2364,70 @@ button[data-mj="sidebar-collapse"]:hover {
 }
 
 /* --- Daraltılmış (collapsed) durum — container query (React className değişimine dayanıklı) --- */
-@container (max-width: 150px) {
-    /* Üst blok görünür kalsın — toggle + arama DİKEY ikon stack (Stake gibi, stabil) */
-    [data-mj="sidebar"] .kr-stake-top {
-        padding: 6px 0 4px !important;
-        gap: 4px !important;
-    }
-    [data-mj="sidebar"] .kr-seg {
-        flex-direction: column !important;   /* yan yana shrink yarışını bitir → flicker yok */
-        background: transparent !important;
-        border: none !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        padding: 0 !important;
-        gap: 4px !important;
-    }
-    [data-mj="sidebar"] .kr-seg-btn {
-        width: auto !important;
-        flex: 0 0 auto !important;
-        padding: 10px 0 !important;
-        border-radius: 9px !important;
-    }
-    [data-mj="sidebar"] .kr-seg-btn > span {
-        display: none !important; /* metni gizle, ikon kalsın */
-    }
-    [data-mj="sidebar"] .kr-search {
-        justify-content: center !important;
-        padding: 11px 0 !important;
-    }
-    [data-mj="sidebar"] .kr-search-ph {
-        display: none !important; /* "Oyun ara…" metnini gizle, büyüteç kalsın */
-    }
+/* --- Daraltılmış (collapsed) — JS .kr-collapsed class'ı (className değişimini izleyen
+   observer ile React'e dayanıklı; container query Chrome'da güvenilmez çıktı) --- */
 
-    /* bölüm başlıklarını gizle */
-    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:first-child::before,
-    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/casino"]:not([href*="livecasino"]))::before,
-    ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/promotions"])::before {
-        display: none !important;
-    }
-    /* satırlar: ikon tam ortada, label gizli (kırpma yok) */
-    [data-mj="sidebar"] a.sl-navlink {
-        justify-content: center !important;
-        gap: 0 !important;
-        padding: 11px 0 !important;
-    }
-    [data-mj="sidebar"] a.sl-navlink > span:last-child {
-        display: none !important;
-    }
-    /* açma okları ve açık alt menüleri gizle */
-    [data-mj="sidebar"] button.sl-icon[name="arrow_down"],
-    [data-mj="sidebar"] button.sl-icon[name="arrow_up"] {
-        display: none !important;
-    }
-    [data-mj="sidebar"] li[data-mj="sidebar-section"] > div > div:nth-child(2) {
-        display: none !important;
-    }
-    /* footer: dil seçici metnini gizle (bayrak kalır), sosyal ikonları ortala */
-    [data-mj="sidebar-footer"] .app-ltr-11io9ir,
-    [data-mj="sidebar-footer"] .sl-select__single-value p {
-        display: none !important;
-    }
-    [data-mj="sidebar"] [data-mj="social-links"] {
-        gap: 6px !important;
-    }
+/* Üst blok görünür kalsın — toggle + arama DİKEY ikon stack (Stake gibi, stabil) */
+[data-mj="sidebar"].kr-collapsed .kr-stake-top {
+    padding: 6px 0 4px !important;
+    gap: 4px !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-seg {
+    flex-direction: column !important;   /* yan yana shrink yarışını bitir → flicker yok */
+    background: transparent !important;
+    border: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    gap: 4px !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-seg-btn {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    padding: 10px 0 !important;
+    border-radius: 9px !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-seg-btn > span {
+    display: none !important; /* metni gizle, ikon kalsın */
+}
+[data-mj="sidebar"].kr-collapsed .kr-search {
+    justify-content: center !important;
+    padding: 11px 0 !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-search-ph {
+    display: none !important; /* "Oyun ara…" metnini gizle, büyüteç kalsın */
+}
+
+/* bölüm başlıklarını gizle */
+[data-mj="sidebar"].kr-collapsed ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:first-child::before,
+[data-mj="sidebar"].kr-collapsed ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/casino"]:not([href*="livecasino"]))::before,
+[data-mj="sidebar"].kr-collapsed ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/promotions"])::before {
+    display: none !important;
+}
+/* satırlar: ikon tam ortada, label gizli (kırpma yok) */
+[data-mj="sidebar"].kr-collapsed a.sl-navlink {
+    justify-content: center !important;
+    gap: 0 !important;
+    padding: 11px 0 !important;
+}
+[data-mj="sidebar"].kr-collapsed a.sl-navlink > span:last-child {
+    display: none !important;
+}
+/* açma okları ve açık alt menüleri gizle */
+[data-mj="sidebar"].kr-collapsed button.sl-icon[name="arrow_down"],
+[data-mj="sidebar"].kr-collapsed button.sl-icon[name="arrow_up"] {
+    display: none !important;
+}
+[data-mj="sidebar"].kr-collapsed li[data-mj="sidebar-section"] > div > div:nth-child(2) {
+    display: none !important;
+}
+/* footer: dil seçici metnini gizle (bayrak kalır), sosyal ikonları ortala */
+[data-mj="sidebar"].kr-collapsed [data-mj="sidebar-footer"] .app-ltr-11io9ir,
+[data-mj="sidebar"].kr-collapsed [data-mj="sidebar-footer"] .sl-select__single-value p {
+    display: none !important;
+}
+[data-mj="sidebar"].kr-collapsed [data-mj="social-links"] {
+    gap: 6px !important;
 }
 
 /* Collapsed menü tooltip'i (JS ile konumlanır, fixed → kırpılmaz) */
