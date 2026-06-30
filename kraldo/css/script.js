@@ -90,4 +90,30 @@
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+
+    /* Canlı destek — Chatwoot widget'ını içeri aktar */
+    function loadChatwoot() {
+        var BASE_URL = 'https://livechatsystem.net';
+        // Zaten yüklendiyse tekrar ekleme
+        if (document.getElementById('kraldo-chatwoot-sdk')) return;
+
+        var g = document.createElement('script');
+        var s = document.getElementsByTagName('script')[0];
+        g.id = 'kraldo-chatwoot-sdk';
+        g.src = BASE_URL + '/packs/js/sdk.js';
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+            window.chatwootSDK.run({
+                websiteToken: 'TPyYbWGeMLnMWCPY29ZvAZfP',
+                baseUrl: BASE_URL
+            });
+        };
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadChatwoot);
+    } else {
+        loadChatwoot();
+    }
 })();
