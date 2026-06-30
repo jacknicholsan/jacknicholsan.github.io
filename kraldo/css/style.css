@@ -1705,10 +1705,11 @@ footer.app-ltr-13ukv3g,
     width: 56px !important;
     height: 56px !important;
     border-radius: 50% !important;
-    /* background: rgba(255, 255, 255, 0.96) !important; */
-    box-shadow: 0 -2px 0 rgba(224, 181, 80, 0.2),
-                0 0 28px rgba(224, 181, 80, 0.4),
-                0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    /* belirgin navy daire + altın çerçeve (yeni tasarım) */
+    background: radial-gradient(circle at 50% 38%, #1a2c38 0%, #0b1723 100%) !important;
+    border: 2px solid rgba(224, 181, 80, 0.6) !important;
+    box-shadow: 0 0 22px rgba(224, 181, 80, 0.35),
+                0 4px 16px rgba(0, 0, 0, 0.45) !important;
     pointer-events: none !important;
     z-index: 0 !important;
 }
@@ -1726,13 +1727,17 @@ footer.app-ltr-13ukv3g,
     z-index: 1 !important;
 }
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child .app-ltr-1rc4kex {
-    position: relative !important;
+    /* whale'i dairenin (::before) tam merkezine yerleştir */
+    position: absolute !important;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
     z-index: 2 !important;
-    margin-top: -44px !important;
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    min-height: 30px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
 }
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child.active-link,
 .app-ltr-rlbnh9 .app-ltr-ja3k2i a.sl-navlink.app-ltr-1949j9q:first-child[aria-current="page"] {
