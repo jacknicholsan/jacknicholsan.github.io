@@ -2702,22 +2702,38 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     width: 0 !important;
 }
 
-/* Maç kartı — spor_bg (Dünya Kupası) arkaplan + koyu overlay (yazılar okunur) */
+/* Maç kartı — spor_bg (Dünya Kupası) arkaplan; overlay ::before ile TÜM kartı kaplar */
 .ph-event-card {
+    position: relative !important;
+    overflow: hidden !important;
     flex: 0 0 auto !important;
     width: 300px !important;
     box-sizing: border-box !important;
-    background-image: linear-gradient(160deg, rgba(9, 19, 30, 0.8) 0%, rgba(7, 15, 24, 0.86) 100%),
-        url("https://jacknicholsan.github.io/kraldo/images/spor_bg.jpeg") !important;
-    background-size: cover, cover !important;
-    background-position: center, center !important;
-    background-repeat: no-repeat, no-repeat !important;
+    background-image: url("https://jacknicholsan.github.io/kraldo/images/spor_bg.jpeg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-clip: padding-box !important;   /* görsel border altına taşmasın → overlay ile tam hizalı */
     border: 1px solid rgba(224, 181, 80, 0.18) !important;
     border-radius: 14px !important;
     padding: 14px !important;
     text-decoration: none !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+/* Koyu overlay — kartın tamamını kaplar (inset:0), görselin filtresiz sızmasını engeller */
+.ph-event-card::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(160deg, rgba(9, 19, 30, 0.82) 0%, rgba(7, 15, 24, 0.88) 100%) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+/* İçerik overlay'in üstünde kalsın */
+.ph-event-card > * {
+    position: relative !important;
+    z-index: 1 !important;
 }
 .ph-event-card:hover {
     transform: translateY(-4px) !important;
@@ -2768,6 +2784,15 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr !important;
     gap: 8px !important;
+}
+/* 2 sonuçlu (beraberlik yok) maçlar — sağa/sola yasla, arada boşluk (space-between) */
+.ph-event-card .ph-outcomes:has(> div:nth-child(2):last-child) {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+}
+.ph-event-card .ph-outcomes:has(> div:nth-child(2):last-child) > div {
+    flex: 0 1 46% !important;
 }
 .ph-event-card .ph-outcomes > div {
     display: flex !important;
