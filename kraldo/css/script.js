@@ -339,26 +339,28 @@
     }
 
     // Günün Maçları — yavaş otomatik carousel (ping-pong); hover/touch'ta durur
+    // Swiper tarzı: her ~3.5sn'de bir kart yumuşak kayar (marquee gibi akmaz).
     function krInitMatchCarousel() {
         var track = document.querySelector('[data-mj="widget-phoenix-sport"] .top-events');
         if (!track || track.__krCarousel) return;
         track.__krCarousel = true;
-        var hover = false, touchPaused = false, dir = 1, idle = 0;
+        var hover = false, touchPaused = false, touchIdle = 0;
         track.addEventListener('mouseenter', function () { hover = true; });
         track.addEventListener('mouseleave', function () { hover = false; });
-        track.addEventListener('touchstart', function () { touchPaused = true; idle = 0; }, { passive: true });
-        function step() {
-            if (!document.body.contains(track)) return; // DOM'dan çıktıysa döngüyü bitir
-            if (touchPaused && ++idle > 180) { touchPaused = false; idle = 0; } // dokunmadan ~3sn sonra devam
+        track.addEventListener('touchstart', function () { touchPaused = true; touchIdle = 0; }, { passive: true });
+        var timer = window.setInterval(function () {
+            if (!document.body.contains(track)) { window.clearInterval(timer); return; }
+            if (touchPaused && ++touchIdle >= 2) { touchPaused = false; touchIdle = 0; } // dokunmadan ~7sn sonra devam
+            if (hover || touchPaused) return;
             var max = track.scrollWidth - track.clientWidth;
-            if (!hover && !touchPaused && max > 5) {
-                track.scrollLeft += 0.5 * dir;        // yavaş (~30px/sn)
-                if (track.scrollLeft >= max - 1) dir = -1;
-                else if (track.scrollLeft <= 1) dir = 1;
-            }
-            window.requestAnimationFrame(step);
-        }
-        window.requestAnimationFrame(step);
+            if (max <= 5) return;
+            var card = track.querySelector('.ph-event-card');
+            var step = card ? Math.round(card.getBoundingClientRect().width) + 14 : 320; // kart genişliği + gap
+            var next = track.scrollLeft + step;
+            if (next > max - 4) next = 0; // sona gelince başa dön
+            try { track.scrollTo({ left: next, behavior: 'smooth' }); }
+            catch (e) { track.scrollLeft = next; }
+        }, 3500);
     }
 
     var krFrame = null;
@@ -403,10 +405,26 @@
     }
     krInitTooltips();
 
+    // Casino Sağlayıcıları — carousel'i 2 dengeli satıra böl (sütun = ceil(adet/2))
+    function krSyncProviders() {
+        try {
+            var slider = document.querySelector('[data-mj="widget-top-providers-slider"]');
+            if (!slider) return;
+            var n = slider.querySelectorAll('[data-mj="widget-top-providers-item"]').length;
+            if (!n) return;
+            var cols = Math.ceil(n / 2);
+            if (slider.style.getPropertyValue('--kr-prov-cols') !== String(cols)) {
+                slider.style.setProperty('--kr-prov-cols', String(cols));
+            }
+            if (slider.getAttribute('data-kr-grid') !== '1') slider.setAttribute('data-kr-grid', '1');
+        } catch (e) { /* sessiz */ }
+    }
+
     function krInitAll() {
         krSyncSidebar();
         krSyncBottomNav();
         krInitMatchCarousel();
+        krSyncProviders();
     }
 
     // Güvenlik ağı: bazı değişimler (collapse className'i, mobil drawer'ın açılması)

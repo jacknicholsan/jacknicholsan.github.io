@@ -1089,13 +1089,14 @@ button.app-ltr-1b4gezl:hover {
     height: auto !important;
     max-height: 45px !important;
     object-fit: contain !important;
-    filter: grayscale(40%) contrast(1.1) brightness(0.9) !important;
+    /* tek renk (grayscale) açık gri — şık monokrom; hover'da renkli */
+    filter: grayscale(1) brightness(1.7) opacity(0.72) !important;
     transition: filter 0.2s ease !important;
 }
 
 /* Hover'da logolar tam renge gelsin (Minimal geçiş) */
 .keen-slider.app-ltr-1yuhvjn .keen-slider__slide.app-ltr-11zm6x9:hover img.app-ltr-12yot19 {
-    filter: grayscale(0%) contrast(1.1) brightness(1.1) !important;
+    filter: grayscale(0) brightness(1) opacity(1) !important;
 }
 
 /* ===== FOOTER — #081521 uyumlu, saydam çizgili, şık sosyal ikonlar ===== */
@@ -2675,7 +2676,13 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
    Kapsayıcı: data-mj="widget-phoenix-sport", kartlar a.ph-event-card
    ============================================================ */
 
-/* Scroll şeridi — scrollbar gizli, kartlar aralıklı */
+/* Bölüm çerçevesi (arkaplan resmi kartlarda) */
+[data-mj="widget-phoenix-sport"] {
+    position: relative !important;
+    padding: 4px 0 !important;
+}
+
+/* Scroll şeridi — scrollbar gizli, swiper tarzı tek-tek geçiş (JS) */
 [data-mj="widget-phoenix-sport"] .top-events {
     display: flex !important;
     gap: 14px !important;
@@ -2684,7 +2691,10 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     scrollbar-width: none !important;          /* Firefox */
     -ms-overflow-style: none !important;        /* eski Edge */
     padding: 6px 2px 10px !important;
-    scroll-behavior: auto !important;
+    scroll-snap-type: x mandatory !important;   /* tek tek hizalanarak dursun */
+}
+[data-mj="widget-phoenix-sport"] .top-events > .ph-event-card {
+    scroll-snap-align: start !important;
 }
 [data-mj="widget-phoenix-sport"] .top-events::-webkit-scrollbar {
     display: none !important;                    /* Chrome/Safari */
@@ -2692,15 +2702,17 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     width: 0 !important;
 }
 
-/* Maç kartı — navy cam */
+/* Maç kartı — spor_bg (Dünya Kupası) arkaplan + koyu overlay (yazılar okunur) */
 .ph-event-card {
     flex: 0 0 auto !important;
     width: 300px !important;
     box-sizing: border-box !important;
-    background: linear-gradient(160deg, rgba(20, 38, 54, 0.92), rgba(11, 23, 35, 0.94)) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    background-image: linear-gradient(160deg, rgba(9, 19, 30, 0.8) 0%, rgba(7, 15, 24, 0.86) 100%),
+        url("https://jacknicholsan.github.io/kraldo/images/spor_bg.jpeg") !important;
+    background-size: cover, cover !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat, no-repeat !important;
+    border: 1px solid rgba(224, 181, 80, 0.18) !important;
     border-radius: 14px !important;
     padding: 14px !important;
     text-decoration: none !important;
@@ -2775,8 +2787,8 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
 }
 .ph-event-card .ph-outcome {
     text-align: center !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(9, 19, 30, 0.72) !important;   /* koyu — arkaplan görselini kapatsın */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 8px !important;
     padding: 8px 4px !important;
     font-size: 14px !important;
@@ -2797,4 +2809,52 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
    ============================================================ */
 [data-mj="promotions-grid"] a > div {
     display: none !important;
+}
+
+/* ============================================================
+   CASINO SAĞLAYICILARI — carousel'i boz, 2 dengeli satır grid
+   + logolar tek renk (grayscale), hover'da renkli
+   Sütun sayısı JS ile ceil(adet/2) → 10 sağlayıcı = 5+5, 18 = 9+9
+   ============================================================ */
+[data-mj="widget-top-providers-slider"][data-kr-grid] {
+    display: grid !important;
+    grid-template-columns: repeat(var(--kr-prov-cols, 5), minmax(0, 1fr)) !important;
+    gap: 6px 7px !important;
+    transform: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    padding: 4px 0 !important;
+}
+[data-mj="widget-top-providers-item"] {
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 8px !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease !important;
+}
+[data-mj="widget-top-providers-item"]:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(224, 181, 80, 0.35) !important;
+    transform: translateY(-2px) !important;
+}
+/* (Logo tek-renk filtresi mevcut kuralda: .keen-slider ... img.app-ltr-12yot19) */
+
+/* Carousel okları artık işlevsiz (statik grid) → gizle */
+[data-mj="widget-top-providers"] button[name="arrow_left"],
+[data-mj="widget-top-providers"] button[name="arrow_right"] {
+    display: none !important;
+}
+
+/* Mobilde daha az sütun (dense) */
+@media (max-width: 768px) {
+    [data-mj="widget-top-providers-slider"][data-kr-grid] {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
 }
