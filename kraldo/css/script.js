@@ -428,8 +428,8 @@
 
     // Menü sütunları (KRALDO + KAYNAKLAR sabit; TOPLULUK sosyal linklerden üretilir)
     var KR_COL_KRALDO = [
-        ['Ana Sayfa', '/tr'], ['Casino', '/tr/casino'],
-        ['Canlı Casino', '/tr/live-casino'], ['Promosyonlar', '/tr/promotions']
+        ['Ana Sayfa', '/tr'], ['Spor', '/tr/sports/demo'], ['Casino', '/tr/casino'],
+        ['Canlı Casino', '/tr/livecasino'], ['Promosyonlar', '/tr/promotions']
     ];
     var KR_COL_KAYNAK = [
         ['Kanıtlanabilir Adillik', '/tr/provably-fair'], ['Kullanım Şartları', '/tr/terms'],
@@ -561,8 +561,83 @@
         } catch (e) { /* sessiz */ }
     }
 
+    // Sol menü ekstraları — promo + Popüler Oyunlar + Telegram + Canlı Destek
+    var KR_ICON_TROPHY =
+        '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M6 4h12v3.5a6 6 0 0 1-12 0V4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>' +
+        '<path d="M6 5.2H3.6v1.3A3.4 3.4 0 0 0 7 9.9M18 5.2h2.4v1.3A3.4 3.4 0 0 1 17 9.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<path d="M12 13v3m-3.2 4.5h6.4M9.3 20.5 10 16h4l.7 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var KR_ICON_PLANE = '<svg viewBox="0 0 24 24" fill="none"><path d="M22 3 2 10l7 2.5m13-9.5-9 18-3.5-8m12.5-10L9 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var KR_ICON_DICE = '<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4.5" stroke="currentColor" stroke-width="1.6"/><circle cx="8.3" cy="8.3" r="1.35" fill="currentColor"/><circle cx="12" cy="12" r="1.35" fill="currentColor"/><circle cx="15.7" cy="15.7" r="1.35" fill="currentColor"/></svg>';
+    var KR_ICON_BOMB = '<svg viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="14" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 8.5 19 5m0 0h-2.6M19 5v2.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var KR_ICON_TARGET = '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>';
+    var KR_ICON_TG = '<svg viewBox="0 0 24 24" fill="none"><path d="M21.5 4.3 2.6 11.6c-.9.35-.85 1.65.06 1.9L7.3 14.8l1.8 5.4c.24.7 1.14.86 1.6.28l2.5-3.1 4.7 3.45c.6.44 1.45.1 1.6-.62L22.9 5.3c.17-.83-.63-1.5-1.4-1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>';
+    // Gerçek crash-oyun rotaları (siteden doğrulandı)
+    var KR_SB_GAMES = [
+        ['Aviator', '/tr/crash-games/spribe/game/70760', KR_ICON_PLANE, 'HOT'],
+        ['Dice', '/tr/crash-games/spribe/game/63197', KR_ICON_DICE, ''],
+        ['Mines', '/tr/crash-games/spribe/game/63200', KR_ICON_BOMB, ''],
+        ['Keno', '/tr/crash-games/spribe/game/63202', KR_ICON_TARGET, '']
+    ];
+
+    function krSyncSidebarExtras() {
+        try {
+            var nav = document.querySelector('[data-mj="sidebar-nav"]');
+            var list = document.querySelector('[data-mj="sidebar-nav-list"]');
+            if (!nav || !list) return;
+            // NOT: promo/support'u <ul> DIŞINA koyuyoruz. İçine <li> koymak nth-child
+            // kaydırıp section etiketlerini ("Spor Bahisleri" vb.) bozuyor.
+
+            // Dünya Kupası 2026 promo kartı — listenin üstünde
+            if (!nav.querySelector('.kr-sb-promo')) {
+                var promo = document.createElement('a');
+                promo.className = 'kr-sb-promo';
+                promo.href = '/tr/promotions';
+                promo.innerHTML = '<span class="kr-sb-promo-ic">' + KR_ICON_TROPHY + '</span>' +
+                    '<span class="kr-sb-promo-txt"><b>Dünya Kupası 2026</b><small>Özel bonuslar &amp; bahisler</small></span>' +
+                    '<span class="kr-sb-promo-badge">YENİ</span>';
+                nav.insertBefore(promo, list);
+            }
+            // Popüler Oyunlar grubu — listenin altında (gerçek game linkleri)
+            if (!nav.querySelector('.kr-sb-group')) {
+                var g = document.createElement('div');
+                g.className = 'kr-sb-group';
+                var h = '<span class="kr-sb-label">Popüler Oyunlar</span>';
+                KR_SB_GAMES.forEach(function (gm) {
+                    h += '<a class="kr-sb-link" href="' + gm[1] + '">' +
+                        '<span class="kr-sb-link-ic">' + gm[2] + '</span><span>' + gm[0] + '</span>' +
+                        (gm[3] ? '<span class="kr-sb-hot">' + gm[3] + '</span>' : '') + '</a>';
+                });
+                g.innerHTML = h;
+                list.insertAdjacentElement('afterend', g);
+            }
+            // Telegram kanalı — grubun ardında
+            if (!nav.querySelector('.kr-sb-tg')) {
+                var tg = document.createElement('a');
+                tg.className = 'kr-sb-link kr-sb-tg';
+                tg.href = 'https://t.me/kraldo';
+                tg.target = '_blank';
+                tg.rel = 'noopener';
+                tg.innerHTML = '<span class="kr-sb-link-ic">' + KR_ICON_TG + '</span><span>Telegram Kanalı</span>';
+                var grp = nav.querySelector('.kr-sb-group');
+                if (grp) grp.insertAdjacentElement('afterend', tg);
+                else nav.appendChild(tg);
+            }
+            // Canlı Destek — en altta
+            if (!nav.querySelector('.kr-sb-support')) {
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'kr-sb-support';
+                btn.innerHTML = KR_ICON_CHAT + '<span>Canlı Destek</span>';
+                btn.addEventListener('click', krChatToggle);
+                nav.appendChild(btn);
+            }
+        } catch (e) { /* sessiz */ }
+    }
+
     function krInitAll() {
         krSyncSidebar();
+        krSyncSidebarExtras();
         krSyncBottomNav();
         krInitMatchCarousel();
         krSyncProviders();

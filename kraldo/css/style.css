@@ -1266,11 +1266,10 @@ footer.app-ltr-13ukv3g,
     .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals {
         margin: 0 auto !important;
     }
-    .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a.kraldo-web-award img {
-        height: auto !important;
-        max-height: none !important;
-        width: 82vw !important;
-        max-width: 340px !important;
+    /* Mobilde ödüller zaten en üstte Oduller.png banner olarak gösteriliyor;
+       alttaki web_award'ı gizle ki tekrar (çift ödül) olmasın. */
+    .app-ltr-13ukv3g .app-ltr-176106l .kraldo-license-seals a.kraldo-web-award {
+        display: none !important;
     }
 }
 
@@ -1454,16 +1453,30 @@ footer.app-ltr-13ukv3g,
     display: block !important;
 }
 
-/* Menü linki — varsayılan */
+/* Menü linki — skorsky tarzı bordered kart */
+.app-ltr-pri86d .app-ltr-8atqhb {
+    position: relative !important;
+    margin-bottom: 8px !important;
+}
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8 {
     display: flex !important;
     align-items: center !important;
     gap: 12px !important;
-    padding: 12px 22px !important;
-    border-radius: 10px !important;
+    padding: 11px 18px !important;
+    border-radius: 12px !important;
     text-decoration: none !important;
-    transition: background 0.25s ease, color 0.25s ease !important;
-    background: transparent !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    position: relative !important;
+}
+/* Dropdown oku kartın içinde, sağda */
+.app-ltr-pri86d .app-ltr-8atqhb .app-ltr-pkzbfq {
+    position: absolute !important;
+    right: 14px !important;
+    top: 21px !important;
+    transform: translateY(-50%) !important;
+    z-index: 1 !important;
 }
 
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8 .app-ltr-129y8n7 {
@@ -1486,25 +1499,24 @@ footer.app-ltr-13ukv3g,
     font-weight: 500 !important;
 }
 
-/* Hover — hafif dokunuş (bizim palet) */
+/* Hover — altın kenar + hafif kayma */
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: rgba(224, 181, 80, 0.08) !important;
+    border-color: rgba(224, 181, 80, 0.38) !important;
+    transform: translateX(2px) !important;
 }
 
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8:hover .app-ltr-129y8n7 {
     background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
-/* Seçili menü öğesi — altın arka plan + üst/altta içe ışıma (görseldeki gibi) */
+/* Seçili menü öğesi — altın kart */
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"],
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8.active {
-    background-color: rgba(224, 181, 80, 0.22) !important;
-    background-image: linear-gradient(180deg, rgba(224, 181, 80, 0.5) 0%, transparent 6px),
-        linear-gradient(0deg, rgba(224, 181, 80, 0.5) 0%, transparent 6px) !important;
-    background-size: 100% 8px, 100% 8px !important;
-    background-position: 0 0, 0 100% !important;
-    background-repeat: no-repeat !important;
-    border-radius: 10px !important;
+    background: linear-gradient(90deg, rgba(224, 181, 80, 0.2), rgba(224, 181, 80, 0.08)) !important;
+    border-color: rgba(224, 181, 80, 0.55) !important;
+    box-shadow: inset 0 0 0 1px rgba(224, 181, 80, 0.15) !important;
+    border-radius: 12px !important;
 }
 
 .app-ltr-pri86d a.sl-navlink.app-ltr-779vh8[aria-current="page"] .app-ltr-129y8n7,
@@ -3089,25 +3101,10 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     transition: transform 0.2s ease;
 }
 
-/* --- Alt: ödül görseli (lisans mühürleri ayrıldı) --- */
+/* --- Alt: ödül görseli satırı (seals kuralları ~1218'de düzenlendi) --- */
 [data-mj="footer-bottom"] {
     justify-content: center !important;
     padding-top: 18px !important;
-}
-.kraldo-license-seals {
-    margin: 0 auto !important;
-    justify-content: center !important;
-}
-/* GCB lisansı ve Curaçao mührü ödül satırından kaldırıldı (Curaçao kutuya taşındı) */
-.kraldo-license-seals a:has(img[src*="GCB_Seal"]),
-.kraldo-license-seals a:has(img[src*="valid-seal"]) {
-    display: none !important;
-}
-/* Ödül görselini ortala + büyüt */
-.kraldo-license-seals a.kraldo-web-award img {
-    height: 76px !important;
-    width: auto !important;
-    max-width: 100% !important;
 }
 
 /* --- Lisans metni --- */
@@ -3140,7 +3137,8 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
         margin: 0 auto;
         max-width: 100%;
     }
-    .kr-foot-social { justify-content: center !important; }
+    /* deployed .app-ltr-1h746bz{justify-content:flex-start} kuralını yenmek için özgüllük artır */
+    .app-ltr-13ukv3g .kr-foot-desc .kr-foot-social { justify-content: center !important; width: 100%; }
 
     /* akordeon */
     .kr-foot-cols {
@@ -3182,13 +3180,229 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
     .kr-foot-badges { grid-template-columns: 1fr !important; gap: 12px; }
     .kr-badge { padding: 18px 16px; }
 
-    /* ödül görseli — mobilde ortalı ve responsive büyük */
     [data-mj="footer-bottom"] { padding-top: 14px !important; }
-    .kraldo-license-seals a.kraldo-web-award img {
-        height: auto !important;
-        width: 78% !important;
-        max-width: 320px !important;
-    }
 
     .kr-foot-license { font-size: 11px; padding: 14px 12px 4px; }
 }
+
+/* ============================================================
+   SOL MENÜ — Dünya Kupası promo kartı + Canlı Destek (JS ile eklenir)
+   ============================================================ */
+li.kr-sb-item { list-style: none !important; margin: 0 !important; }
+
+/* Dünya Kupası promo kartı */
+.kr-sb-promo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 0 12px !important;
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    background: linear-gradient(120deg, rgba(224, 181, 80, 0.24), rgba(224, 181, 80, 0.06)) !important;
+    border: 1px solid rgba(224, 181, 80, 0.42) !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease !important;
+}
+.kr-sb-promo::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -60%;
+    width: 45%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.5s ease;
+}
+.kr-sb-promo:hover {
+    transform: translateY(-1px);
+    border-color: rgba(224, 181, 80, 0.75) !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+}
+.kr-sb-promo:hover::after { left: 120%; }
+.kr-sb-promo-ic {
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    color: #f0c96a;
+}
+.kr-sb-promo-ic svg { width: 26px; height: 26px; }
+.kr-sb-promo-txt { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.kr-sb-promo-txt b { color: #fff; font-size: 14px; font-weight: 700; }
+.kr-sb-promo-txt small { color: rgba(255, 255, 255, 0.62); font-size: 11.5px; }
+.kr-sb-promo-badge {
+    margin-left: auto;
+    background: #e0b550; color: #1a1205;
+    font-size: 10px; font-weight: 800;
+    padding: 2px 7px; border-radius: 20px;
+    letter-spacing: 0.3px; flex: 0 0 auto;
+}
+
+/* Canlı Destek item — dolgulu kart (border yok) */
+.kr-sb-support {
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-top: 7px;
+    padding: 11px 16px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 0 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease, transform 0.15s ease !important;
+}
+.kr-sb-support:hover {
+    background: rgba(224, 181, 80, 0.12) !important;
+}
+.kr-sb-support svg { width: 22px; height: 22px; flex: 0 0 auto; color: #e0b550; }
+.kr-sb-support svg path,
+.kr-sb-support svg rect { stroke: #e0b550; }
+
+/* --- Zenginleştirme grubu: Popüler Oyunlar + Telegram --- */
+.kr-sb-group { margin: 14px 0 4px !important; }
+.kr-sb-label {
+    display: block;
+    color: #e0b550;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin: 0 0 8px 4px;
+}
+.kr-sb-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 7px !important;
+    padding: 11px 16px !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 15px; font-weight: 500;
+    transition: background 0.2s ease, transform 0.15s ease !important;
+}
+.kr-sb-link:hover {
+    background: rgba(224, 181, 80, 0.12) !important;
+}
+.kr-sb-link .kr-sb-link-ic {
+    width: 24px; height: 24px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    color: #e0b550;
+}
+.kr-sb-link .kr-sb-link-ic svg { width: 21px; height: 21px; }
+.kr-sb-hot {
+    margin-left: auto;
+    background: rgba(224, 76, 76, 0.9); color: #fff;
+    font-size: 9.5px; font-weight: 800; letter-spacing: 0.3px;
+    padding: 2px 6px; border-radius: 20px; flex: 0 0 auto;
+}
+
+/* collapsed: grup etiketi + linklerin metni gizli */
+[data-mj="sidebar"].kr-collapsed .kr-sb-label,
+[data-mj="sidebar"].kr-collapsed .kr-sb-link span:not(.kr-sb-link-ic),
+[data-mj="sidebar"].kr-collapsed .kr-sb-hot { display: none !important; }
+[data-mj="sidebar"].kr-collapsed .kr-sb-link {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 0 !important;
+}
+
+/* Küçültülmüş (collapsed) menüde: sadece ikon */
+[data-mj="sidebar"].kr-collapsed .kr-sb-promo-txt,
+[data-mj="sidebar"].kr-collapsed .kr-sb-promo-badge,
+[data-mj="sidebar"].kr-collapsed .kr-sb-support span {
+    display: none !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-sb-promo,
+[data-mj="sidebar"].kr-collapsed .kr-sb-support {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 0 !important;
+}
+[data-mj="sidebar"].kr-collapsed .kr-sb-promo-ic { margin: 0 auto; }
+
+/* ============================================================
+   SOL MENÜ — item kartları (STABİL selektörler; .app-ltr-pri86d
+   hash'i değiştiği için eski kurallar uygulanmıyordu)
+   ============================================================ */
+[data-mj="sidebar-section"] { margin-bottom: 7px !important; }
+
+/* Dolgulu kart (border YOK) — skorsky gibi. box-sizing: yatay taşmayı önler */
+[data-mj="sidebar-nav"] a.sl-navlink,
+.kr-sb-link,
+.kr-sb-support {
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    transition: background 0.25s ease, box-shadow 0.25s ease !important;
+}
+[data-mj="sidebar-nav"] a.sl-navlink { padding: 11px 16px !important; }
+
+/* Şık hover — sol altın accent bar içeri kayar + arka plan tatlanır (translateX YOK) */
+[data-mj="sidebar-nav"] a.sl-navlink::before,
+.kr-sb-link::before,
+.kr-sb-support::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 62%;
+    width: 3px;
+    background: #e0b550;
+    border-radius: 0 3px 3px 0;
+    transform: translateY(-50%) scaleY(0);
+    transition: transform 0.28s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+[data-mj="sidebar-nav"] a.sl-navlink:hover,
+.kr-sb-link:hover,
+.kr-sb-support:hover {
+    background: rgba(224, 181, 80, 0.12) !important;
+    box-shadow: inset 0 0 0 100px rgba(224, 181, 80, 0.04) !important;
+}
+[data-mj="sidebar-nav"] a.sl-navlink:hover::before,
+.kr-sb-link:hover::before,
+.kr-sb-support:hover::before {
+    transform: translateY(-50%) scaleY(1);
+}
+/* Ana menü ikonları (maskeli span) hover'da altın */
+[data-mj="sidebar-nav"] a.sl-navlink:hover > span:first-child {
+    background-color: #e0b550 !important;
+}
+
+/* Seçili öğe — altın gradyan + kalıcı accent bar */
+[data-mj="sidebar-nav"] a.sl-navlink[aria-current="page"],
+[data-mj="sidebar-nav"] a.sl-navlink.active {
+    background: linear-gradient(90deg, rgba(224, 181, 80, 0.3), rgba(224, 181, 80, 0.11)) !important;
+}
+[data-mj="sidebar-nav"] a.sl-navlink[aria-current="page"]::before,
+[data-mj="sidebar-nav"] a.sl-navlink.active::before {
+    transform: translateY(-50%) scaleY(1);
+}
+
+/* ============================================================
+   Sol menü yatay scroll fix + Kraldo Orijinalleri isim overlay
+   ============================================================ */
+/* Yataya taşan içeriği kırp (sağ-sol scroll'u önle) */
+[data-mj="sidebar"],
+[data-mj="sidebar-content"],
+[data-mj="sidebar-nav"] {
+    overflow-x: hidden !important;
+}
+.kr-sb-promo,
+.kr-sb-group {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+}
+
+/* Kraldo Orijinalleri — görsel üzerindeki beyaz oyun ismini gizle */
+[data-mj="widget-collection-slider-item"] strong { display: none !important; }
