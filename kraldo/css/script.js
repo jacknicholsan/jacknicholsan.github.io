@@ -440,8 +440,8 @@
     // 3 kutu için satır içi SVG ikonlar
     var KR_SVG_SHIELD =
         '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.7 12l2.2 2.2 4.4-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    var KR_SVG_CERT =
-        '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/><path d="M8.7 13.5 7 22l5-2.6L17 22l-1.7-8.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 9l1.7 1.7L15 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    // "Lisanslı" kutusunun ikonu = gerçek Curaçao lisans mührü (valid-seal, zaten deploy'da)
+    var KR_LIC_IMG = 'https://jacknicholsan.github.io/kraldo/images/valid-seal.png';
 
     // Lisans metni — skorsky ile birebir aynı (aynı operatör/lisans), yalnızca marka kraldo.com.
     var KR_LICENSE_HTML =
@@ -547,7 +547,7 @@
                 badges.innerHTML =
                     '<div class="kr-badge"><span class="kr-badge-ic kr-badge-18">18+</span><span>Sorumlu Oyun</span></div>' +
                     '<div class="kr-badge"><span class="kr-badge-ic">' + KR_SVG_SHIELD + '</span><span>Kanıtlanabilir Adillik</span></div>' +
-                    '<div class="kr-badge"><span class="kr-badge-ic">' + KR_SVG_CERT + '</span><span>Lisanslı</span></div>';
+                    '<div class="kr-badge"><span class="kr-badge-ic kr-badge-lic"><img src="' + KR_LIC_IMG + '" alt="Lisans"></span><span>Lisanslı</span></div>';
                 bottom.parentNode.insertBefore(badges, bottom);
             }
 
