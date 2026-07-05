@@ -2078,7 +2078,7 @@ ul[data-mj="sidebar-nav-list"] > li[data-mj="sidebar-section"]:has(a[href*="/pro
 
 /* --- Üst blok: Casino/Spor toggle + arama (JS ile enjekte) — glass --- */
 .kr-stake-top {
-    padding: 8px 8px 4px !important;
+    padding: 8px 8px 4px 0 !important; /* sol padding 0 → arama & tab menü item'larıyla aynı genişlik (left=10, right=273) */
     display: flex !important;
     flex-direction: column !important;
     gap: 9px !important;
