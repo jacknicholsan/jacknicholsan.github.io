@@ -3406,3 +3406,45 @@ li.kr-sb-item { list-style: none !important; margin: 0 !important; }
 
 /* Kraldo Orijinalleri — görsel üzerindeki beyaz oyun ismini gizle */
 [data-mj="widget-collection-slider-item"] strong { display: none !important; }
+
+/* ============================================================
+   Normal menü item'larını kr-sb item'larıyla EŞİTLE
+   (genişlik + hover + boyut aynı olsun)
+   ============================================================ */
+/* UL padding'ini sıfırla → normal item'lar kr-sb ile aynı sola hizalansın */
+ul[data-mj="sidebar-nav-list"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+/* Satır + link tam genişlik (dropdown'da chevron kartı daraltmasın) */
+li[data-mj="sidebar-section"] > div,
+li[data-mj="sidebar-section"] > div > div:first-child {
+    width: 100% !important;
+    position: relative !important;
+}
+[data-mj="sidebar-nav"] a.sl-navlink {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+}
+/* Dropdown oku kartın İÇİNDE sağda (kart tam genişlik kalsın) */
+li[data-mj="sidebar-section"] > div > div:first-child .sl-icon,
+li[data-mj="sidebar-section"] > div > div:first-child button.sl-icon {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+}
+/* Metin boyutu kr-sb ile aynı (15px) */
+[data-mj="sidebar-content"] a.sl-navlink > span:last-child {
+    font-size: 15px !important;
+}
+/* Hover: eski beyaz bg/kenar kalksın — sadece kr-sb altın hover kalsın */
+[data-mj="sidebar-content"] a.sl-navlink {
+    border: 0 !important;
+}
+[data-mj="sidebar-content"] a.sl-navlink:hover,
+[data-mj="sidebar-content"] li[data-mj="sidebar-section"] > div > div:first-child:hover a.sl-navlink {
+    border-color: transparent !important;
+    background: rgba(224, 181, 80, 0.12) !important;
+}
