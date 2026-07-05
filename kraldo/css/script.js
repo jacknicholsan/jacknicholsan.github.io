@@ -420,11 +420,153 @@
         } catch (e) { /* sessiz */ }
     }
 
+    // ============================================================
+    // Footer — skorsky düzeni JS ile inşa: marka + 3 sütun menü +
+    // kripto sırası + 3 kutu (badge) + lisans metni. Hepsi idempotent.
+    // ============================================================
+    var KR_PAY_ICONS = ['usdt', 'btc', 'eth', 'trx', 'ltc', 'sol', 'xrp', 'link', 'bnb', 'doge']; // visa/mc kaldırıldı
+
+    // Menü sütunları (KRALDO + KAYNAKLAR sabit; TOPLULUK sosyal linklerden üretilir)
+    var KR_COL_KRALDO = [
+        ['Ana Sayfa', '/tr'], ['Casino', '/tr/casino'],
+        ['Canlı Casino', '/tr/live-casino'], ['Promosyonlar', '/tr/promotions']
+    ];
+    var KR_COL_KAYNAK = [
+        ['Kanıtlanabilir Adillik', '/tr/provably-fair'], ['Kullanım Şartları', '/tr/terms'],
+        ['Gizlilik Politikası', '/tr/privacy'], ['Sorumlu Bahis', '/tr/responsible-gambling'],
+        ['AML Politikası', '/tr/aml'], ['Spor Kuralları', '/tr/sport-rules']
+    ];
+
+    // 3 kutu için satır içi SVG ikonlar
+    var KR_SVG_SHIELD =
+        '<svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.7 12l2.2 2.2 4.4-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var KR_SVG_CERT =
+        '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/><path d="M8.7 13.5 7 22l5-2.6L17 22l-1.7-8.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 9l1.7 1.7L15 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    // Lisans metni — skorsky ile birebir aynı (aynı operatör/lisans), yalnızca marka kraldo.com.
+    var KR_LICENSE_HTML =
+        'Kraldo.com, RSO Limited tarafından işletilmekte olup şirketin mülkiyetindedir. ' +
+        'Kayıt Numarası: 000048851, kayıtlı adres: 9 Barrack Road, Belize City, Belize. ' +
+        'Kraldo.com, Komorlar Birliği’nin bir parçası olan Anjouan Özerk Adası Hükümeti tarafından ' +
+        'lisanslanmış ve düzenlenmiş olup ALSI-182407017-FI1 lisansı altında faaliyet göstermektedir. ' +
+        'Kraldo.com tüm düzenleyici gereklilikleri karşılamakta ve her türlü şans oyununu sunmaya yetkilidir. ' +
+        'Telif Hakkı © 2026 Kraldo.com. Tüm hakları saklıdır.';
+
+    function krFootCol(title, links) {
+        var lis = links.map(function (l) {
+            var ext = /^(https?:|mailto:)/.test(l[1]);
+            return '<li><a href="' + l[1] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + l[0] + '</a></li>';
+        }).join('');
+        return '<div class="kr-foot-col"><button type="button" class="kr-foot-col-h">' + title +
+            '<i>+</i></button><ul class="kr-foot-col-list">' + lis + '</ul></div>';
+    }
+
+    function krSyncFooter() {
+        try {
+            var footer = document.querySelector('[data-mj="footer"]');
+            if (!footer) return;
+            var base = 'https://jacknicholsan.github.io/kraldo/images/payments/';
+            var socialEl = footer.querySelector('[data-mj="social-links"]');
+
+            // 1) Marka açıklaması + email + sosyal ikon klonu — logonun altına
+            var logo = footer.querySelector('[data-mj="footer-logo"]');
+            var descEl = footer.querySelector('.kr-foot-desc');
+            if (logo && !descEl) {
+                descEl = document.createElement('div');
+                descEl.className = 'kr-foot-desc';
+                descEl.innerHTML =
+                    '<p>KRALDO; spor bahisleri, casino, canlı casino ve hızlı oyunları tek çatı ' +
+                    'altında sunan bir çevrimiçi eğlence platformudur. 7/24 canlı destek, hızlı para ' +
+                    'çekme ve sorumlu oyun ilkeleriyle güvenli bir deneyim sağlar.</p>' +
+                    '<a class="kr-foot-mail" href="mailto:support@kraldo.com">support@kraldo.com</a>';
+                logo.insertAdjacentElement('afterend', descEl);
+            }
+            // sosyal ikonları markaya klonla (orijinali CSS ile gizli)
+            if (descEl && socialEl && !descEl.querySelector('.kr-foot-social')) {
+                var sc = socialEl.cloneNode(true);
+                sc.removeAttribute('data-mj');
+                sc.className = (sc.className ? sc.className + ' ' : '') + 'kr-foot-social';
+                descEl.appendChild(sc);
+            }
+
+            // 2) 3 sütun menü — footer-top içine (orijinal nav CSS ile gizli)
+            var top = footer.querySelector('[data-mj="footer-top"]');
+            if (top && !footer.querySelector('.kr-foot-cols')) {
+                var community = [];
+                if (socialEl) {
+                    [].forEach.call(socialEl.querySelectorAll('a'), function (a) {
+                        var h = a.getAttribute('href') || '';
+                        var name = /t\.me|telegram/i.test(h) ? 'Telegram' :
+                            /x\.com|twitter/i.test(h) ? 'X (Twitter)' :
+                            /wa\.me|whatsapp/i.test(h) ? 'WhatsApp' :
+                            /instagram/i.test(h) ? 'Instagram' :
+                            /mailto/i.test(h) ? 'E-posta' : 'Bağlantı';
+                        if (h) community.push([name, h]);
+                    });
+                }
+                if (!community.length) {
+                    community = [['Telegram', 'https://t.me/kraldo'], ['X (Twitter)', 'https://x.com/'],
+                        ['WhatsApp', 'https://wa.me/'], ['E-posta', 'mailto:support@kraldo.com']];
+                }
+                var cols = document.createElement('div');
+                cols.className = 'kr-foot-cols';
+                cols.innerHTML = krFootCol('KRALDO', KR_COL_KRALDO) +
+                    krFootCol('KAYNAKLAR', KR_COL_KAYNAK) + krFootCol('TOPLULUK', community);
+                top.appendChild(cols);
+                // Mobil akordeon: başlığa tıkla → aç/kapa (+/−). Masaüstünde hep açık.
+                [].forEach.call(cols.querySelectorAll('.kr-foot-col-h'), function (h) {
+                    h.addEventListener('click', function () {
+                        var col = h.parentNode, open = col.classList.toggle('kr-open');
+                        var i = h.querySelector('i'); if (i) i.textContent = open ? '−' : '+';
+                    });
+                });
+                var first = cols.querySelector('.kr-foot-col');
+                if (first) { first.classList.add('kr-open'); var fi = first.querySelector('i'); if (fi) fi.textContent = '−'; }
+            }
+
+            var bottom = footer.querySelector('[data-mj="footer-bottom"]');
+            if (!bottom) return;
+
+            // 3) Kripto/ödeme ikon sırası
+            if (!footer.querySelector('.kr-pay-row')) {
+                var row = document.createElement('div');
+                row.className = 'kr-pay-row';
+                var html = '';
+                KR_PAY_ICONS.forEach(function (n) {
+                    html += '<span class="kr-pay-ico"><img src="' + base + n + '.svg" alt="' + n + '" loading="lazy"></span>';
+                });
+                html += '<span class="kr-pay-more">& daha fazlası…</span>';
+                row.innerHTML = html;
+                bottom.parentNode.insertBefore(row, bottom);
+            }
+
+            // 4) 3 kutu (badge) — kripto sırasının altına
+            if (!footer.querySelector('.kr-foot-badges')) {
+                var badges = document.createElement('div');
+                badges.className = 'kr-foot-badges';
+                badges.innerHTML =
+                    '<div class="kr-badge"><span class="kr-badge-ic kr-badge-18">18+</span><span>Sorumlu Oyun</span></div>' +
+                    '<div class="kr-badge"><span class="kr-badge-ic">' + KR_SVG_SHIELD + '</span><span>Kanıtlanabilir Adillik</span></div>' +
+                    '<div class="kr-badge"><span class="kr-badge-ic">' + KR_SVG_CERT + '</span><span>Lisanslı</span></div>';
+                bottom.parentNode.insertBefore(badges, bottom);
+            }
+
+            // 5) Lisans metni — en altta, tam genişlik (skorsky formatı)
+            if (!footer.querySelector('.kr-foot-license')) {
+                var lic = document.createElement('p');
+                lic.className = 'kr-foot-license';
+                lic.textContent = KR_LICENSE_HTML;
+                bottom.parentNode.appendChild(lic);
+            }
+        } catch (e) { /* sessiz */ }
+    }
+
     function krInitAll() {
         krSyncSidebar();
         krSyncBottomNav();
         krInitMatchCarousel();
         krSyncProviders();
+        krSyncFooter();
     }
 
     // Güvenlik ağı: bazı değişimler (collapse className'i, mobil drawer'ın açılması)

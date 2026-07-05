@@ -2883,3 +2883,261 @@ a[data-mj="bottom-nav-item"][href="/tr/promotions"] > span {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     }
 }
+
+/* ============================================================
+   FOOTER — skorsky düzeni (JS ile inşa edildi)
+   marka | 3 sütun menü · kripto sırası · 3 kutu · lisans
+   ============================================================ */
+
+/* --- Değiştirdiklerimizi gizle --- */
+[data-mj="footer-nav"] { display: none !important; }                          /* eski tek menü */
+[data-mj="footer-content"] > div:not([data-mj]) { display: none !important; } /* eski büyük 18+ */
+[data-mj="footer-bottom"] [data-mj="social-links"] { display: none !important; } /* alt sosyal (markaya taşındı) */
+[data-mj="footer-copyright"] { display: none !important; }                     /* kısa copyright (lisans metni var) */
+
+/* --- Üst alan: sol marka | sağ 3 sütun --- */
+[data-mj="footer-content"] { align-items: flex-start !important; }
+
+[data-mj="footer-top"] {
+    display: grid !important;
+    grid-template-columns: minmax(240px, 1.1fr) 2fr !important;
+    column-gap: 56px !important;
+    row-gap: 18px !important;
+    align-items: start !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+}
+
+[data-mj="footer-logo"] {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    align-self: start !important;
+}
+
+.kr-foot-desc {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    max-width: 420px;
+    text-align: left !important;
+}
+.kr-foot-desc p {
+    margin: 0 0 14px !important;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13.5px;
+    line-height: 1.75;
+}
+.kr-foot-mail {
+    display: inline-block;
+    color: #e0b550;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.kr-foot-mail:hover { text-decoration: underline; }
+
+/* sosyal ikon klonu (markada) */
+.kr-foot-social {
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 18px !important;
+    flex-wrap: wrap;
+}
+
+/* --- 3 sütun menü --- */
+.kr-foot-cols {
+    grid-column: 2 !important;
+    grid-row: 1 / span 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 22px;
+    align-self: start !important;
+    text-align: left !important;
+}
+.kr-foot-col-h {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0 0 16px;
+    width: 100%;
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+}
+.kr-foot-col-h i { display: none; font-style: normal; }
+.kr-foot-col-list { list-style: none; margin: 0; padding: 0; }
+.kr-foot-col-list li { margin: 0 0 11px; }
+.kr-foot-col-list a {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.kr-foot-col-list a:hover { color: #e0b550; }
+
+/* --- Kripto/ödeme ikon sırası --- */
+.kr-pay-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px 16px !important;
+    padding: 22px 12px !important;
+    margin: 4px 0 10px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.kr-pay-ico {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 30px !important;
+    line-height: 0 !important;
+}
+.kr-pay-ico img {
+    height: 30px !important;
+    width: auto !important;
+    max-width: 52px !important;
+    object-fit: contain !important;
+    opacity: 0.92;
+    transition: transform 0.16s ease, opacity 0.16s ease !important;
+}
+.kr-pay-ico img:hover { transform: translateY(-2px) scale(1.07) !important; opacity: 1; }
+.kr-pay-more {
+    color: rgba(255, 255, 255, 0.42) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.2px;
+    align-self: center !important;
+    white-space: nowrap;
+}
+
+/* --- 3 kutu (badge) --- */
+.kr-foot-badges {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 10px auto 6px !important;
+    padding: 0 12px;
+}
+.kr-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 20px 16px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+}
+.kr-badge-ic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #e0b550;
+    flex: 0 0 auto;
+}
+.kr-badge-ic svg { width: 27px; height: 27px; }
+.kr-badge-18 {
+    border: 2px solid #e0b550;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+/* --- Alt: sertifika rozetleri (mevcut seals) --- */
+[data-mj="footer-bottom"] {
+    justify-content: center !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 20px !important;
+}
+
+/* --- Lisans metni --- */
+.kr-foot-license {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.34);
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 1100px;
+    margin: 8px auto 0 !important;
+    padding: 16px 14px 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================================
+   FOOTER — mobil (skorsky mobil: ortalı marka + akordeon menü)
+   ============================================================ */
+@media (max-width: 768px) {
+    [data-mj="footer-top"] {
+        grid-template-columns: 1fr !important;
+        row-gap: 6px !important;
+        justify-items: center !important;
+        text-align: center;
+    }
+    [data-mj="footer-logo"] { justify-self: center !important; }
+    .kr-foot-desc {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        text-align: center !important;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    .kr-foot-social { justify-content: center !important; }
+
+    /* akordeon */
+    .kr-foot-cols {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+        width: 100%;
+        margin-top: 10px;
+        text-align: left;
+    }
+    .kr-foot-col { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .kr-foot-col-h {
+        padding: 15px 4px !important;
+        margin: 0 !important;
+        cursor: pointer;
+    }
+    .kr-foot-col-h i {
+        display: block;
+        color: #e0b550;
+        font-size: 20px;
+        line-height: 1;
+    }
+    .kr-foot-col-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding-left: 4px;
+    }
+    .kr-foot-col.kr-open .kr-foot-col-list {
+        max-height: 420px;
+        padding-bottom: 14px;
+    }
+
+    .kr-pay-row { gap: 10px 13px !important; padding: 20px 8px !important; }
+    .kr-pay-ico, .kr-pay-ico img { height: 27px !important; }
+    .kr-pay-more { font-size: 12px !important; width: 100%; text-align: center; }
+
+    .kr-foot-badges { grid-template-columns: 1fr !important; gap: 12px; }
+    .kr-badge { padding: 18px 16px; }
+
+    .kr-foot-license { font-size: 11px; padding: 14px 12px 4px; }
+}
