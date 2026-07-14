@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betvoy Topbar</title>
+    <style>
+        /* --- 1. TEMEL --- */
+        :root {
+            --accent:   #e77d0b;
+            --ink:      #1a1a1f;
+            --muted:    #8a8a95;
+            --hairline: #e5e5e8;
+            --pad:      14px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #f7f7f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter,
+                         Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bar {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ffffff 0%, #f7f7f8 100%);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* --- 2. PIN (sabit domain) --- */
+        .pin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+            padding: 0 var(--pad);
+            background: #ffffff;
+            border-right: 1px solid var(--hairline);
+        }
+
+        .live {
+            flex: 0 0 auto;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1;   box-shadow: 0 0 0 0   rgba(231, 125, 11, .45); }
+            50%      { opacity: .55; box-shadow: 0 0 0 4px rgba(231, 125, 11, 0);   }
+        }
+
+        .pin-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .pin-label {
+            font-size: 9px;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .pin-domain {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--ink);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .pin-domain.accent { color: var(--accent); }
+
+        .pin-arrow {
+            color: #c8c8d0;
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        /* --- 3. ŞERİT (kayan) --- */
+        .strip {
+            position: relative;
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            -webkit-mask-image: linear-gradient(to right,
+                        transparent 0, #000 24px,
+                        #000 calc(100% - 24px), transparent 100%);
+                    mask-image: linear-gradient(to right,
+                        transparent 0, #000 24px,
+                        #000 calc(100% - 24px), transparent 100%);
+        }
+
+        .strip-track {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee var(--dur, 20s) linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translate3d(0, 0, 0); }
+            to   { transform: translate3d(calc(-1 * var(--dist, 0px)), 0, 0); }
+        }
+
+        .strip:hover .strip-track { animation-play-state: paused; }
+
+        .chunk { display: inline-flex; align-items: center; }
+
+        .item {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 var(--pad);
+        }
+
+        .ico { font-size: 12px; line-height: 1; }
+
+        .tag {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .val, .slogan {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .sep { color: var(--hairline); font-size: 11px; }
+
+        /* --- 4. MOBİL: pin kısalır, sadece SONRAKİ --- */
+        @media (max-width: 480px) {
+            :root { --pad: 10px; }
+            #pin-current, .pin-arrow { display: none; }
+            .pin { gap: 8px; }
+            .tag { display: none; }
+        }
+
+        /* --- 5. ERİŞİLEBİLİRLİK --- */
+        @media (prefers-reduced-motion: reduce) {
+            .strip-track { animation: none; }
+            .live { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bar">
+        <div class="pin">
+            <span class="live"></span>
+            <div class="pin-group" id="pin-current">
+                <span class="pin-label">Güncel</span>
+                <span class="pin-domain" id="dom-current">Betvoy</span>
+            </div>
+            <span class="pin-arrow">&rarr;</span>
+            <div class="pin-group">
+                <span class="pin-label">Sonraki</span>
+                <span class="pin-domain accent" id="dom-next">Betvoy</span>
+            </div>
+        </div>
+
+        <div class="strip" id="strip">
+            <div class="strip-track" id="track"></div>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        // --- AYARLAR ---
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/19aDuV5ByuFWBaSxjXXupjYAXoFjv-JW2CwOl1pDXzOY/export?format=csv";
+        const SLOGAN    = "🚀 #BETVOYkazandırır";
+        const SPEED     = 45; // px / saniye — ekran tazeleme oranından bağımsız
+
+        // GLOBAL DEĞİŞKENLER
+        let CACHED_DOMAIN = { current: "Betvoy", next: "Betvoy" };
+        let MAC_DETAY = "";
+        let lastSignature = null;
+
+        const strip      = document.getElementById('strip');
+        const track      = document.getElementById('track');
+        const domCurrent = document.getElementById('dom-current');
+        const domNext    = document.getElementById('dom-next');
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[c]);
+        }
+
+        // --- 1. DOMAIN BULUCU (Sadece 1 Kere Çalışır ve Kaydeder) ---
+        function initDomain() {
+            try {
+                let host = (window.location !== window.parent.location)
+                           ? document.referrer
+                           : document.location.hostname;
+
+                // Temizlik
+                host = host.replace('https://', '').replace('http://', '').split('/')[0].replace(/^www\.|^m\./, '');
+
+                // Netlify veya boş gelirse varsayılanı koru, yoksa güncelle
+                if (host && !host.includes('netlify') && !host.includes('tiiny') && host !== "") {
+                    let next = host;
+                    const match = host.match(/(\d+)/);
+                    if (match) {
+                        next = host.replace(match[0], parseInt(match[0]) + 1);
+                    }
+                    CACHED_DOMAIN = { current: host, next: next };
+                }
+            } catch(e) { console.log("Domain alınamadı"); }
+        }
+
+        function renderPin() {
+            domCurrent.textContent = CACHED_DOMAIN.current;
+            domNext.textContent    = CACHED_DOMAIN.next;
+        }
+
+        // --- 2. ŞERİT İÇERİĞİ ---
+        // Ayraç chunk'ın İÇİNDE — böylece bir chunk genişliği kadar kaydırmak
+        // kusursuz/dikişsiz bir döngü verir.
+        function chunkHTML() {
+            let matchHTML = "";
+            if (MAC_DETAY && MAC_DETAY.length > 1) {
+                matchHTML = `
+                    <span class="item">
+                        <span class="ico">⚽</span>
+                        <span class="tag">Günün Süper Oranlı Maçı</span>
+                        <span class="val">${escapeHtml(MAC_DETAY)}</span>
+                    </span>
+                    <span class="sep">•</span>
+                `;
+            }
+            return `
+                <span class="chunk">
+                    ${matchHTML}
+                    <span class="item"><span class="slogan">${SLOGAN}</span></span>
+                    <span class="sep">•</span>
+                </span>
+            `;
+        }
+
+        // --- 3. ŞERİT KURULUMU ---
+        // Kopya sayısı ölçülerek hesaplanır (sabit sayı değil), süre içerik
+        // genişliğinden türetilir → her ekranda aynı okuma hızı.
+        function buildStrip() {
+            track.innerHTML = chunkHTML();
+            const first = track.firstElementChild;
+            if (!first) return;
+
+            // getBoundingClientRect: offsetWidth'in aksine tam sayıya yuvarlamaz,
+            // yuvarlama olsa döngüde birikip dikiş kayması yapardı.
+            const chunkW = first.getBoundingClientRect().width;
+            if (!chunkW) return;
+
+            const stripW = strip.getBoundingClientRect().width;
+            const copies = Math.max(2, Math.ceil(stripW / chunkW) + 1);
+
+            track.innerHTML = chunkHTML().repeat(copies);
+            track.style.setProperty('--dist', chunkW + 'px');
+            track.style.setProperty('--dur', (chunkW / SPEED) + 's');
+
+            // Animasyonu baştan başlat
+            track.style.animation = 'none';
+            void track.offsetWidth;
+            track.style.animation = '';
+
+            lastSignature = MAC_DETAY;
+        }
+
+        // --- 4. VERİ GÜNCELLEME (Sayfayı Yenilemeden) ---
+        async function updateData() {
+            try {
+                const response = await fetch(SHEET_URL + '&t=' + Date.now());
+                if (response.ok) {
+                    const text = await response.text();
+                    const cleanText = text.split('\n')[0].replace(/['"]+/g, '').trim();
+
+                    // Tarih Kontrolü
+                    if (cleanText.includes('|')) {
+                        const parts = cleanText.split('|');
+                        const dateStr = parts[1].trim().split(' ');
+                        const [d, m, y] = dateStr[0].split('.');
+                        const [hr, min] = dateStr[1].split(':');
+                        const target = new Date(y, m-1, d, hr, min);
+                        if (new Date() < target) {
+                            MAC_DETAY = parts[0].trim();
+                        } else {
+                            MAC_DETAY = ""; // Süre doldu
+                        }
+                    } else {
+                        MAC_DETAY = cleanText;
+                    }
+                }
+            } catch(e) {}
+
+            // Sadece içerik gerçekten değiştiyse yeniden kur — aksi halde
+            // her 60sn'de animasyon başa sarıp gözle görülür sıçrama yapardı.
+            if (MAC_DETAY !== lastSignature) buildStrip();
+        }
+
+        // --- BAŞLATMA ---
+        initDomain();  // Domaini hafızaya al
+        renderPin();   // Sabit kısmı bas
+        buildStrip();  // Şeridi kur (veri gelmeden slogan döner)
+        updateData();  // İlk veriyi çek
+
+        // Her 60 saniyede bir veriyi sessizce güncelle (RELOAD YOK)
+        setInterval(updateData, 60000);
+
+        // Ekran genişliği değişince kopya sayısı yeniden hesaplanmalı
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(buildStrip, 150);
+        });
+    })();
+    </script>
+
+</body>
+</html>
