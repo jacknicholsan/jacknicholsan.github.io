@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Betvoy Topbar</title>
+    <!-- Poppins: header (web.css) ile aynı tipografi. iframe ayrı bir doküman
+         olduğu için üst sayfanın fontunu MİRAS ALMAZ — burada ayrıca yüklenmeli,
+         yoksa font-family sessizce Arial'a düşer. preconnect ilk boyamayı hızlandırır. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. TEMEL --- */
+        /* --- 1. TEMEL ---
+           Değerler web.css'teki flat header ile BİREBİR aynı tutuluyor:
+           bar header'ın hemen altında duruyor, en ufak sapma dikiş gibi görünür.
+             --bv-flat-bg  #2b0512      --cs-six-color #e57a0a
+             --bv-text     rgba(255,255,255,.82)
+             --bv-icon     rgba(255,255,255,.55)
+             --bv-line     rgba(255,255,255,.09)
+             font          Poppins 12.5px          radius 8px
+           Bunlardan biri web.css'te değişirse BURASI da elle güncellenmeli —
+           iframe olduğu için ortak değişken paylaşılamıyor. */
         :root {
-            --accent:     #e77d0b;  /* marka turuncusu — hairline, nokta */
-            --accent-lit: #ffa733;  /* turuncu camın üstünde okunan açık türev */
-            --ink:        rgba(255, 255, 255, .95);
-            --muted:      rgba(255, 255, 255, .55);
-            --hairline:   rgba(255, 255, 255, .14);
-            --pad:        14px;
+            --accent:   #e57a0a;   /* --cs-six-color: sitenin turuncusu */
+            --gold:     #fcbf40;   /* --cs-third-color */
+            --flat-bg:  #2b0512;   /* --bv-flat-bg: header ile AYNI */
+            --ink:      rgba(255, 255, 255, .82);
+            --ink-hi:   #ffffff;
+            --muted:    rgba(255, 255, 255, .55);
+            --line:     rgba(255, 255, 255, .09);
+            --radius:   8px;
+            --pad:      14px;
         }
 
         * { box-sizing: border-box; }
@@ -23,111 +41,88 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            /* Şeffaf: sitenin kendi zemini iframe'in içinden sızar —
-               barı siteye bağlayan asıl şey bu. */
-            background: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter,
-                         Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--flat-bg);
+            font-family: "Poppins", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- CAM ---
-           backdrop-filter iframe içinde ÇALIŞMAZ (iframe kendi backdrop
-           root'unu kurar, üst sayfayı bulanıklaştıramaz). Cam hissi bu yüzden
-           katmanlarla kuruluyor: grain + sheen + turuncu tint + koyu taban.
-           Taban, site zemini ne olursa olsun yazının okunmasını garantiler. */
+        /* --- BAR — FLAT ---
+           Eski hali camdı: grain + sheen + turuncu tint + bordo taban + iç
+           highlight. Hepsi kaldırıldı — flat dilde TEK düz renk var; süs
+           katmanı eklendiği anda header'la arasındaki bütünlük bozulur.
+           (backdrop-filter zaten iframe'de çalışmıyor, o not artık gereksiz.) */
         .bar {
             position: relative;
             display: flex;
             align-items: stretch;
             width: 100%;
             height: 100%;
-            background:
-                /* 1) grain — camın "buzlu" dokusu */
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E"),
-                /* 2) sheen — üstten gelen ışık */
-                linear-gradient(180deg, rgba(255, 255, 255, .13) 0%,
-                                        rgba(255, 255, 255, 0)   60%),
-                /* 3) turuncu tint — bordo yutulmasın diye kasten hafif */
-                linear-gradient(180deg, rgba(231, 125, 11, .13) 0%,
-                                        rgba(231, 125, 11, .04) 100%),
-                /* 4) bordo taban #530623 — belirgin olsun diye yüksek opaklık.
-                      Site artık sadece hafifçe sızıyor; cam hissini şeffaflık
-                      değil grain + sheen + üst highlight taşıyor.
-                      Daha camsı/şeffaf isteniyorsa: .55 / .42 yap. */
-                linear-gradient(180deg, rgba(83, 6, 35, .93) 0%,
-                                        rgba(83, 6, 35, .84) 100%);
-            background-blend-mode: overlay, normal, normal, normal;
-            border-bottom: 1px solid rgba(231, 125, 11, .85);
-            box-shadow: inset 0 1px 0 rgba(255, 220, 180, .22),
-                        0 6px 20px -8px rgba(0, 0, 0, .5);
+            background: var(--flat-bg);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid rgba(229, 122, 10, .55);  /* header'ın alt çizgisiyle aynı dil */
+            box-shadow: none;
         }
 
-        /* --- 2. PIN (sabit domain) --- */
+        /* --- 2. PIN (sabit domain) ---
+           Flat: gradient panel yerine ince ayraç. Menüdeki haplarla aynı dil. */
         .pin {
             display: flex;
             align-items: center;
             gap: 10px;
             flex: 0 0 auto;
             padding: 0 var(--pad);
-            /* Camın üstünde bir tık daha aydınlık panel — derinlik verir */
-            background: linear-gradient(180deg, rgba(255, 255, 255, .10) 0%,
-                                                rgba(255, 255, 255, .04) 100%);
-            border-right: 1px solid var(--hairline);
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .12);
+            background: transparent;
+            border-right: 1px solid var(--line);
+            box-shadow: none;
         }
 
+        /* Canlı nokta: glow YOK (flat), sadece opaklık nabzı */
         .live {
             flex: 0 0 auto;
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #ffb057;
+            background: var(--accent);
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1;   box-shadow: 0 0 0 0   rgba(255, 176, 87, .5),
-                                                 0 0 6px 0 rgba(255, 176, 87, .8); }
-            50%      { opacity: .5;  box-shadow: 0 0 0 5px rgba(255, 176, 87, 0),
-                                                 0 0 6px 0 rgba(255, 176, 87, .2); }
+            0%, 100% { opacity: 1; }
+            50%      { opacity: .35; }
         }
 
         .pin-group {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 2px;
+            gap: 3px;
         }
 
         .pin-label {
             font-size: 9px;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 1;
-            letter-spacing: .08em;
+            letter-spacing: .06em;
             text-transform: uppercase;
             color: var(--muted);
             white-space: nowrap;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
         }
 
         .pin-domain {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 12.5px;      /* header menüsüyle aynı */
+            font-weight: 600;
             line-height: 1.15;
-            color: var(--ink);
+            color: var(--ink-hi);
             white-space: nowrap;
             font-variant-numeric: tabular-nums;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, .75), 0 0 8px rgba(0, 0, 0, .4);
         }
 
-        .pin-domain.accent {
-            color: var(--accent-lit);
-            text-shadow: 0 0 10px rgba(255, 167, 51, .35);
-        }
+        /* Sonraki domain: düz turuncu — flat zeminde okunuyor,
+           artık açık türeve (#ffa733) gerek yok, glow da yok. */
+        .pin-domain.accent { color: var(--accent); }
 
         .pin-arrow {
-            color: rgba(255, 255, 255, .3);
+            color: rgba(255, 255, 255, .28);
             font-size: 13px;
             line-height: 1;
         }
@@ -174,23 +169,26 @@
 
         .ico { font-size: 12px; line-height: 1; }
 
+        /* Maç etiketi: altın (--cs-third-color) — turuncu ana eylem rengi,
+           altın ikincil bilgi. Header'daki BONUS butonuyla aynı hiyerarşi. */
         .tag {
             font-size: 9px;
-            font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--accent-lit);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
-        }
-
-        .val, .slogan {
-            font-size: 13px;
             font-weight: 600;
-            color: var(--ink);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, .75), 0 0 8px rgba(0, 0, 0, .4);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--gold);
         }
 
-        .sep { color: rgba(255, 255, 255, .25); font-size: 11px; }
+        /* text-shadow YOK: flat zeminde gerek yok. Cam versiyonunda
+           okunabilirliği gölge taşıyordu çünkü site altından sızıyordu;
+           artık zemin düz #2b0512, kontrast zaten yeterli. */
+        .val, .slogan {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .sep { color: rgba(255, 255, 255, .22); font-size: 11px; }
 
         /* --- 4. MOBİL: pin kısalır, sadece SONRAKİ --- */
         @media (max-width: 480px) {
@@ -206,43 +204,11 @@
             .live { animation: none; }
         }
 
-        /* --- 6. AÇIK ZEMİNLİ SİTE ANAHTARI ------------------------------
-           Cam, KOYU zeminli site için ayarlı: taban kasten ince tutuldu ki
-           sitenin arka planı camdan sızsın. Sitenin topbar bölgesi AÇIK ise
-           beyaz yazı okunmaz. O durumda <html> etiketine light ekle:
-
-               <html lang="tr" class="light">
-
-           Başka hiçbir yeri değiştirmen gerekmez.                        */
-        .light .bar {
-            background:
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E"),
-                linear-gradient(180deg, rgba(255, 255, 255, .5) 0%,
-                                        rgba(255, 255, 255, .3) 60%),
-                linear-gradient(180deg, rgba(231, 125, 11, .16) 0%,
-                                        rgba(231, 125, 11, .07) 100%),
-                linear-gradient(180deg, rgba(255, 252, 248, .5) 0%,
-                                        rgba(255, 252, 248, .4) 100%);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6),
-                        0 6px 20px -8px rgba(0, 0, 0, .18);
-        }
-
-        .light { --ink: #1a1408; --muted: #6b5a45; --hairline: rgba(0, 0, 0, .1); }
-
-        .light .pin {
-            background: linear-gradient(180deg, rgba(255, 255, 255, .45) 0%,
-                                                rgba(255, 255, 255, .2) 100%);
-            box-shadow: inset -1px 0 0 rgba(255, 255, 255, .5);
-        }
-
-        .light .pin-domain.accent { color: #b35f08; text-shadow: none; }
-        .light .pin-arrow { color: rgba(0, 0, 0, .25); }
-        .light .tag       { color: #b35f08; text-shadow: none; }
-        .light .sep       { color: rgba(0, 0, 0, .2); }
-        .light .live      { background: var(--accent); }
-
-        .light .pin-domain, .light .pin-label,
-        .light .val, .light .slogan { text-shadow: 0 1px 1px rgba(255, 255, 255, .6); }
+        /* NOT: Eski "açık zeminli site anahtarı" (.light) SİLİNDİ.
+           Cam versiyonda gerekiyordu çünkü zemin yarı şeffaftı ve sitenin
+           arka planı sızıyordu — açık zeminli sitede beyaz yazı okunmuyordu.
+           Bar artık düz #2b0512 taşıyor, hangi sitede olursa olsun koyu.
+           Anahtar işlevsiz kalmıştı, ölü kod olarak durmasın. */
     </style>
 </head>
 <body>
